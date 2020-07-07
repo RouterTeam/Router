@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.fragment_mine_layout.view.*
 class MineFragment :
     BaseFragment<FragmentMineLayoutBinding, MineViewModel>() {
 
-
     override fun onBindLayout(): Int {
         return R.layout.fragment_mine_layout
     }
