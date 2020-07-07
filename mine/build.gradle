@@ -1,0 +1,39 @@
+if (isNeedShelfModule.toBoolean()) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
+apply from: "../module.gradle"
+android {
+
+    sourceSets {
+        main {
+            if (isNeedMineModule.toBoolean()) {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                //集成开发模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude 'debug/**'
+                }
+            } else {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            }
+        }
+    }
+
+    defaultConfig {
+        if (!isNeedMineModule.toBoolean()) {
+            applicationId rootProject.ext.android["minefApplicationId"]
+        }
+    }
+}
+kapt {
+    generateStubs = true
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':commonlibrary')
+    kapt rootProject.ext.dependencies["arouter-compiler"]
+}

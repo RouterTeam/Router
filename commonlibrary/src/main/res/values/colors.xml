@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="coloTopBar">#FFFFFF</color>
+    <color name="colorBottomBar">#F2F2F2</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="loading_color">#323232</color>
+    <color name="_323232">#323232</color>
+    <color name="_909090">#909090</color>
+    <color name="_1D1D1E">#1D1D1E</color>
+    <color name="_F2F2F2">#F2F2F2</color>
+    <color name="_8da7fc">#8da7fc</color>
+    <color name="_f7f7f7">#f7f7f7</color>
+
+</resources>

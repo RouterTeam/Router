@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="coloTopBar_night">#1D1D1E</color>
+    <color name="colorBottomBar_night">#1D1D1E</color>
+    <color name="white_night">#1D1D1E</color>
+    <color name="black_night">#000000</color>
+    <color name="loading_color_night">#909090</color>
+    <color name="_323232_night">#909090</color>
+    <color name="_1D1D1E_night">#1D1D1E</color>
+    <color name="_F2F2F2_night">#F2F2F2</color>
+    <color name="_f7f7f7_night">#141414</color>
+</resources>

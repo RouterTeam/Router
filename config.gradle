@@ -1,0 +1,104 @@
+ext {
+    //android开发版本配置
+    android = [
+            compileSdkVersion    : 30,
+            buildToolsVersion    : "29.0.3",
+            applicationId        : "com.ifenghui.storyship",
+            homeApplicationId    : "com.ifenghui.storyship.home",
+            magazineApplicationId: "com.ifenghui.storyship.magazine",
+            shelfApplicationId   : "com.ifenghui.storyship.shelf",
+            minefApplicationId   : "com.ifenghui.storyship.mine",
+            minSdkVersion        : 19,
+            targetSdkVersion     : 30,
+            versionCode          : 1,
+            versionName          : "1.0.0"
+    ]
+
+
+    //version配置
+    versions = [
+            supportSdkVersion             : '1.0.0',
+            appcompatSdkVersion           : '1.1.0',
+            recyclerviewSdkVersion        : '1.1.0',
+            dagger2SdkVersion             : "2.6",
+            rxlifecycleSdkVersion         : "0.6.1",
+            espressoSdkVersion            : "2.2.2",
+            glideSdkVersion               : '4.11.0',
+            glidetransformationsSdkVersion: '4.0.1',
+            multidexSdkVersion            : "2.0.1",
+            kotlinSdkVersion              : "1.3.72",
+            ktxSdkVersion                 : "1.3.0",
+            lifecycleKtxSdkVersion        : "2.2.0",
+            constraintlayoutSdkVersion    : "1.1.3",
+            eventbusSdkVersion            : '3.2.0',
+            lifecycleSdkVersion           : '2.2.0',
+            rxandroidSdkVersion           : '2.1.1',
+            rxjavaSdkVersion              : '2.2.19',
+            gsonSdkVersion                : '2.9.0',
+            retrofitSdkVersion            : '2.9.0',
+            logginginterceptorSdkVersion  : '4.7.2',
+            rxbindingSdkVersion           : '2.2.0',
+            jacksonSdkVersion             : '2.9.0',
+            arouterSdkVersion             : "1.4.1",
+            arouterCompilderSdkVersion    : "1.2.2",
+            lottieSdkVersion              : '3.4.1',
+            mmkvSdkVersion                : '1.1.2',
+            rxpermissionsSdkVersion       : '0.9.5@aar',
+            skinSdkVersion                : '4.0.4',
+
+    ]
+
+
+    dependencies = [
+            "appcompat-v7"                  : "androidx.appcompat:appcompat:${versions["appcompatSdkVersion"]}",
+            "material"                      : "com.google.android.material:material:${versions["supportSdkVersion"]}",
+            "support-v4"                    : "androidx.legacy:legacy-support-v4:${versions["supportSdkVersion"]}",
+            "recyclerview"                  : "androidx.recyclerview:recyclerview:${versions["recyclerviewSdkVersion"]}",
+            "cardview"                      : "androidx.cardview:cardview:${versions["supportSdkVersion"]}",
+            "constraintlayout"              : "androidx.constraintlayout:constraintlayout:${versions["constraintlayoutSdkVersion"]}",
+            //rxjava
+            "rxjava"                        : "io.reactivex.rxjava2:rxjava:${versions["rxjavaSdkVersion"]}",
+            "rxandroid"                     : "io.reactivex.rxjava2:rxandroid:${versions["rxandroidSdkVersion"]}",
+            //必要rxandrroid依赖，切线程时需要用到
+            "retrofit"                      : "com.squareup.retrofit2:retrofit:${versions["retrofitSdkVersion"]}",
+            //必要retrofit依赖
+            "adapter-rxjava2"               : "com.squareup.retrofit2:adapter-rxjava2:${versions["retrofitSdkVersion"]}",
+            "logging-interceptor"           : "com.squareup.okhttp3:logging-interceptor:${versions["logginginterceptorSdkVersion"]}",
+            "converter-gson"                : "com.squareup.retrofit2:converter-gson:${versions["gsonSdkVersion"]}",
+
+            "jackson"                       : "com.squareup.retrofit2:converter-jackson:${versions["jacksonSdkVersion"]}",
+            //rx系列与View生命周期同步
+            "rxlifecycle"                   : "com.trello.rxlifecycle2:rxlifecycle:2.2.2",
+            "rxlifecycle-components"        : "com.trello.rxlifecycle2:rxlifecycle-components:2.2.2",
+            //rxbinding
+            "rxbinding"                     : "com.jakewharton.rxbinding2:rxbinding:${versions["rxbindingSdkVersion"]}",
+            "rxpermissions"                 : "com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar",
+            //图片处理框架
+            "glide"                         : "com.github.bumptech.glide:glide:${versions["glideSdkVersion"]}",
+            "glide-transformations"         : "jp.wasabeef:glide-transformations:${versions["glidetransformationsSdkVersion"]}",
+            "glidekapt"                     : "com.github.bumptech.glide:compiler:${versions["glideSdkVersion"]}",
+            "glideokhttp3"                  : "com.github.bumptech.glide:okhttp3-integration:${versions["glideSdkVersion"]}",
+            //超过64K解决方法
+            "multidex"                      : "androidx.multidex:multidex:${versions["multidexSdkVersion"]}",
+            //Kotlin库
+            "kotlin"                        : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions["kotlinSdkVersion"]}",
+            //Kotlin 扩展库 KTX
+            "ktx"                           : "androidx.core:core-ktx:${versions["ktxSdkVersion"]}",
+            "lifecycle-viewmodel-ktx"       : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions["lifecycleKtxSdkVersion"]}",
+            "eventbus"                      : "org.greenrobot:eventbus:${versions["eventbusSdkVersion"]}",
+            //阿里路由框架
+            "arouter-api"                   : "com.alibaba:arouter-api:${versions["arouterSdkVersion"]}",
+            "arouter-compiler"              : "com.alibaba:arouter-compiler:${versions["arouterCompilderSdkVersion"]}",
+            //Google AAC
+            "lifecycle-extensions"          : "androidx.lifecycle:lifecycle-extensions:${versions["lifecycleSdkVersion"]}",
+            "lifecycle-compiler"            : "androidx.lifecycle:compiler:${versions["lifecycleSdkVersion"]}",
+            "lottie"                        : "com.airbnb.android:lottie:${versions["lottieSdkVersion"]}",
+            "mmkv"                          : "com.tencent:mmkv-static:${versions["mmkvSdkVersion"]}",
+            "rxpermissions"                 : "com.tbruyelle.rxpermissions2:rxpermissions:${versions["rxpermissionsSdkVersion"]}",
+            "skin-support"                  : "skin.support:skin-support:${versions["skinSdkVersion"]}",
+            "skin-support-appcompat"        : "skin.support:skin-support-appcompat:${versions["skinSdkVersion"]}",
+            "skin-support-design"           : "skin.support:skin-support-design:${versions["skinSdkVersion"]}",
+            "skin-support-cardview"         : "skin.support:skin-support-cardview:${versions["skinSdkVersion"]}",
+            "skin-support-constraint-layout": "skin.support:skin-support-constraint-layout:${versions["skinSdkVersion"]}",
+    ]
+}

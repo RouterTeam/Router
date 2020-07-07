@@ -1,0 +1,5 @@
+include ':smartrefreshlibrary'
+include ':spinkitlibrary'
+include ':linkedviewpager'
+include ':app',':login', ':home',':magazine',':shelf',':mine', ':commonlibrary', ':main', ':apilibrary',':skinlibrary', ':imageloaderlibrary',':bottomNavigation'
+

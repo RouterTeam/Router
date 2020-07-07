@@ -1,0 +1,14 @@
+apply plugin: 'com.android.library'
+apply from: "../module.gradle"
+kapt {
+    generateStubs = true
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(path: ':commonlibrary')
+    kapt rootProject.ext.dependencies["arouter-compiler"]
+
+}

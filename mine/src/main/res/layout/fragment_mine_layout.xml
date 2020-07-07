@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="mineViewModel"
+            type="com.colin.mine.mvvm.viewmodel.MineViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_30"
+            android:text="点击跳转登录页面"
+            android:textColor="@color/_323232"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/group_night"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_26"
+            android:layout_marginLeft="@dimen/dp_18"
+            android:layout_marginTop="@dimen/dp_30"
+            android:background="@drawable/skin_bg"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/night_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/night"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/night_tv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/night_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_3"
+                android:includeFontPadding="false"
+                android:textColor="@color/_323232"
+                android:textSize="@dimen/dp_12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/night_img"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.colin.skinlibrary.weiget.SkinTextView
+            android:id="@+id/tv_get_skin_path"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_26"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_30"
+            android:background="@drawable/skin_bg"
+            app:isNeedGray="true"
+            android:gravity="center"
+            android:text="悼念模式"
+            android:textColor="@color/_323232"
+            android:textSize="@dimen/dp_12"
+            app:layout_constraintLeft_toRightOf="@+id/group_night"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

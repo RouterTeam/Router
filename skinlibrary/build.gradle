@@ -1,0 +1,14 @@
+apply plugin: 'com.android.library'
+apply from: "../module.gradle"
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    // Support libraries
+    api rootProject.ext.dependencies["rxlifecycle"]
+    api rootProject.ext.dependencies["rxlifecycle-components"]
+    api rootProject.ext.dependencies["skin-support"]                       // skin-support
+    api rootProject.ext.dependencies["skin-support-appcompat"]             // skin-support 基础控件支持
+    api rootProject.ext.dependencies["skin-support-design"]                // skin-support-design material design 控件支持[可选]
+    api rootProject.ext.dependencies["skin-support-cardview"]              // skin-support-cardview CardView 控件支持[可选]
+    api rootProject.ext.dependencies["skin-support-constraint-layout"]     // skin-support-constraint-layout ConstraintLayout 控件支持[可选]
+}

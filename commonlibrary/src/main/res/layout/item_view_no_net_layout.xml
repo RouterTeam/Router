@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootContent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent">
+
+    <ImageView
+        android:id="@+id/txt_net_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/empty_pic_net"
+        app:layout_constraintBottom_toTopOf="@+id/btn_net_refresh"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/btn_net_refresh"
+        android:layout_width="@dimen/dp_122"
+        android:layout_height="@dimen/dp_35"
+        android:layout_marginTop="@dimen/dp_16"
+        android:background="@drawable/shape_round_white"
+        android:text="刷新"
+        android:textColor="@color/_323232"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_net_error" />
+</androidx.constraintlayout.widget.ConstraintLayout>

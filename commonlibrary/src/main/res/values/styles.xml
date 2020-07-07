@@ -1,0 +1,49 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowAnimationStyle">@style/AnimFadeFromRight</item>
+    </style>
+    <!-- Application theme.默认主题 -->
+    <style name="AppTheme" mce_bogus="1" parent="AppBaseTheme" />
+
+    <!-- 透明的Activity -->
+    <style name="TransparenceTheme" parent="AppTheme">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!-- 右进右出的Activity动画效果 -->
+    <style name="AnimFadeFromRight" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_from_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_none</item>   
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_to_right</item>   
+        <item name="android:activityCloseEnterAnimation">@anim/slide_none</item>
+    </style>
+
+    <!-- 无动效的Activity动画效果 -->
+    <style name="AnimFadeNone" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_none</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_none</item>   
+        <item name="android:activityCloseExitAnimation">@anim/slide_none</item>   
+        <item name="android:activityCloseEnterAnimation">@anim/slide_none</item>
+    </style>
+
+    <!-- 主页面样式 -->
+    <style name="MainStyle" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/shape_home_bg</item>
+    </style>
+
+    <!-- 启动页面样式 -->
+    <style name="StartStyle" parent="TransparenceTheme">
+        <item name="android:windowAnimationStyle">@style/AnimFadeNone</item>
+        <item name="android:windowBackground">@drawable/shape_home_bg</item>
+    </style>
+</resources>

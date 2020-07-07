@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="splashViewModel"
+            type="com.ifenghui.main.mvvm.viewmodel.SplashViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.colin.skinlibrary.weiget.SkinImageView
+            android:id="@+id/iv_ad_cover"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="@dimen/dp_0"
+            android:scaleType="fitXY"
+            app:layout_constraintDimensionRatio="750:1080"
+            android:background="@color/_f7f7f7"
+            app:imageDefaultUrl="@{splashViewModel.mNewsDetails.banner}"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

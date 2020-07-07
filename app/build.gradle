@@ -1,0 +1,104 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    defaultConfig {
+        applicationId rootProject.ext.android["applicationId"]
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        //版本名后面添加一句话，意思就是flavor dimension 它的维度就是该版本号，这样维度就是都是统一的了
+        flavorDimensions "versionCode"
+        // dex突破65535的限制 (超过64K解决方法)manifestPlaceholders
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('storyship.jks')
+            storePassword "vista688"
+            keyAlias "storyship"
+            keyPassword "vista688"
+//            Android 7.0 引入一项新的应用签名方案 APK Signature Scheme v2，
+//             它能提供更快的应用安装时间和更多针对未授权 APK 文件更改的保护
+//            v2SigningEnabled false
+        }
+    }
+
+    buildTypes {
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            //混淆
+            minifyEnabled false
+            //zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            //签名
+            signingConfig signingConfigs.release
+            //gradle 打包
+            android.applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = "storyShip_v${defaultConfig.versionName}_${variant.productFlavors[0].name}.apk"
+                        outputFileName = fileName
+                    }
+                }
+            }
+        }
+
+        debug {
+            //签名
+            signingConfig signingConfigs.release
+            applicationIdSuffix ".debug" //debug版本使用新的包名
+            debuggable true
+        }
+    }
+
+    //gradle 多渠道打包
+    productFlavors {
+        _main {
+            //manifestPlaceholders.put("BAIDU_CHANNEL_VALUE", '_main')//自定义渠道名
+            //applicationId "com.ifenghui.storyship.a"                //自定义包名
+            //versionName "version-a-1.0"                             //自定义versionname
+        }
+    }
+
+//   暂时隐掉
+//    productFlavors.all {
+//        flavor -> flavor.manifestPlaceholders = [BAIDU_CHANNEL_VALUE: name]
+//    }
+
+    buildFeatures{
+        dataBinding = true
+        // for view binding : viewBinding 也是一种控件绑定的技术，我还是认为dataBinding 更强大
+        // viewBinding = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':commonlibrary')
+    implementation project(path: ':main')
+    implementation project(path: ':login')
+    if (isNeedHomeModule.toBoolean()) {
+        implementation project(path: ':home')
+    }
+    if (isNeedMagazineModule.toBoolean()) {
+        implementation project(path: ':magazine')
+    }
+    if (isNeedShelfModule.toBoolean()) {
+        implementation project(path: ':shelf')
+    }
+    if (isNeedMineModule.toBoolean()) {
+        implementation project(path: ':mine')
+    }
+}

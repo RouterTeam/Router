@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="-15dp"
+    android:layout_marginRight="-15dp"
+    android:clipChildren="false">
+
+    <com.colin.linkedviewpager.NotouchLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        app:layout_constraintTop_toTopOf="parent">
+        <com.colin.linkedviewpager.CycleViewPager
+            android:id="@+id/main_scrolllayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:focusable="false" />
+    </com.colin.linkedviewpager.NotouchLayout>
+
+    <com.colin.linkedviewpager.CycleViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="-100dp"
+        android:layout_marginRight="-100dp"
+        android:paddingLeft="@dimen/dp_100"
+        android:paddingRight="@dimen/dp_100"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        android:background="@color/transparent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

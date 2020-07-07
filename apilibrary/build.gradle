@@ -1,0 +1,22 @@
+apply plugin: 'com.android.library'
+apply from: "../module.gradle"
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    //引入rxjava
+    api rootProject.ext.dependencies["rxjava"]
+    //引入rxandroid
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["retrofit"]
+    //引入rxjava适配器，方便rxjava与retrofit的结合
+    api rootProject.ext.dependencies["adapter-rxjava2"]
+    //引入Log拦截器，方便DEBUG模式输出log信息
+    implementation rootProject.ext.dependencies["logging-interceptor"]
+    //引入json转换器，方便将返回的数据转换为json格式
+    api rootProject.ext.dependencies["converter-gson"]
+    // other
+    api rootProject.ext.dependencies["kotlin"]
+    api rootProject.ext.dependencies["ktx"]
+    api rootProject.ext.dependencies["jackson"]
+    api rootProject.ext.dependencies["rxbinding"]
+}
+

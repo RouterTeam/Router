@@ -1,0 +1,34 @@
+apply plugin: 'com.android.library'
+apply from: "../module.gradle"
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Support libraries
+    api rootProject.ext.dependencies["appcompat-v7"]
+    api rootProject.ext.dependencies["support-v4"]
+    api rootProject.ext.dependencies["multidex"]
+    api rootProject.ext.dependencies["constraintlayout"]
+    api rootProject.ext.dependencies["cardview"]
+    api rootProject.ext.dependencies["recyclerview"]
+    // RxJava and retrofit
+
+
+
+    // other
+    //skinlibrary 中已引用此处可以省略
+    //api rootProject.ext.dependencies["rxlifecycle"]
+    //api rootProject.ext.dependencies["rxlifecycle-components"]
+    api rootProject.ext.dependencies["eventbus"]
+    api rootProject.ext.dependencies["lifecycle-extensions"]
+    api rootProject.ext.dependencies["lifecycle-viewmodel-ktx"]
+    api rootProject.ext.dependencies["arouter-api"]
+    api rootProject.ext.dependencies["mmkv"]
+    api rootProject.ext.dependencies["rxpermissions"]
+    api project(path: ':apilibrary')
+    api project(path: ':skinlibrary')
+    api project(path: ':imageloaderlibrary')
+    api project(path: ':spinkitlibrary')
+    api project(path: ':smartrefreshlibrary')
+}
+
