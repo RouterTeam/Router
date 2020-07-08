@@ -13,6 +13,7 @@ import com.ifenghui.commonlibrary.application.Constance.Companion.LOGIN_FRAGMENT
 import com.ifenghui.commonlibrary.base.ui.fragment.BaseFragment
 import com.ifenghui.commonlibrary.provider.ProviderHelper
 import kotlinx.android.synthetic.main.fragment_mine_layout.view.*
+import java.util.*
 
 class MineFragment :
     BaseFragment<FragmentMineLayoutBinding, MineViewModel>() {
@@ -52,12 +53,20 @@ class MineFragment :
      * 初始化数据
      */
     override fun onCreateDelay(bundle: Bundle?) {
+        mViewModel?.getMineData()
         setNightText(!SkinManager.checkIsDefaultMode())
+        val list2: MutableList<Int> = ArrayList()
+        list2.add(R.mipmap.mine_top_bg0)
+        list2.add(R.mipmap.mine_top_bg1)
+        list2.add(R.mipmap.mine_top_bg2)
+        list2.add(R.mipmap.mine_top_bg3)
+        list2.add(R.mipmap.mine_top_bg4)
+        mMainView?.gradient?.setImageResources(list2)
     }
 
     override fun bindListener() {
         super.bindListener()
-        mMainView?.tv_login?.setOnClickListener {
+        mMainView?.uc_avater?.setOnClickListener {
             ProviderHelper.startAct(LOGIN_FRAGMENT_FLAG,mActivity(),"login",null)
         }
         mMainView?.group_night?.setOnClickListener {

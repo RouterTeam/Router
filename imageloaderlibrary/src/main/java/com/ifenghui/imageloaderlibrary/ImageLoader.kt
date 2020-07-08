@@ -14,7 +14,7 @@ interface ImageLoader {
     /**
      * 显示头像圆图
      */
-    fun <CONTEXT,RES>displayCircleImage(context: CONTEXT, url: RES?, imageView: ImageView?,cornerRadiousDp:Int,imageListener:ImageLoaderListener?,onProgressListener: OnProgressListener?)
+    fun <CONTEXT,RES>displayCircleImage(context: CONTEXT, url: RES?, imageView: ImageView?,imageListener:ImageLoaderListener?,onProgressListener: OnProgressListener?)
 
     /**
      * 获取图片资源

@@ -35,7 +35,8 @@ class GlideImageLoader : ImageLoader {
     private val centerCropOptions: RequestOptions = RequestOptions().centerCrop().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate()
     private val centerInsideOptions: RequestOptions = RequestOptions().centerInside().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate()
     private val fitCenterOptions: RequestOptions = RequestOptions().fitCenter().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate()
-    private val circleCropOptions: RequestOptions = RequestOptions().circleCrop().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate()
+    private val circleCropOptions: RequestOptions = RequestOptions().circleCrop().placeholder(R.mipmap.image_loading).error(R.mipmap.image_loading).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate()
+//    private val circleCropOptions: RequestOptions = RequestOptions().circleCrop().diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate()
 
     /**
      * 单例方式获取
@@ -77,8 +78,8 @@ class GlideImageLoader : ImageLoader {
             }
             else -> null
         }
-        return with?.asDrawable()?.load(url)?.thumbnail(0.05f)?.transition(crossFade)
-//        return with?.asDrawable()?.load(url)?.transition(crossFade)
+//        return with?.asDrawable()?.load(url)?.thumbnail(0.05f)?.transition(crossFade)
+        return with?.asDrawable()?.load(url)?.transition(crossFade)
     }
 
     /**
@@ -193,8 +194,8 @@ class GlideImageLoader : ImageLoader {
     /**
      * CircleCrop方式加载
      */
-    override fun <CONTEXT, RES> displayCircleImage(context: CONTEXT, url: RES?, imageView: ImageView?, cornerRadiousDp: Int, imageListener: ImageLoaderListener?, onProgressListener: OnProgressListener?) {
-        displayDefaultImage(context, url, imageView, true, cornerRadiousDp, imageListener, onProgressListener)
+    override fun <CONTEXT, RES> displayCircleImage(context: CONTEXT, url: RES?, imageView: ImageView?, imageListener: ImageLoaderListener?, onProgressListener: OnProgressListener?) {
+        displayDefaultImage(context, url, imageView, true, 0, imageListener, onProgressListener)
     }
 
     /**

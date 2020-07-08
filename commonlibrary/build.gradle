@@ -8,6 +8,7 @@ dependencies {
     api rootProject.ext.dependencies["appcompat-v7"]
     api rootProject.ext.dependencies["support-v4"]
     api rootProject.ext.dependencies["multidex"]
+    api rootProject.ext.dependencies["material"]
     api rootProject.ext.dependencies["constraintlayout"]
     api rootProject.ext.dependencies["cardview"]
     api rootProject.ext.dependencies["recyclerview"]

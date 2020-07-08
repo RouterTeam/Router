@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -13,148 +12,490 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:background="@color/white">
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipChildren="false"
-        android:clipToPadding="false">
-        <skin.support.design.widget.SkinMaterialAppBarLayout
+        android:background="@color/_f2f2f2">
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_overscroll_behavior"
+            android:background="@color/transparent"
             android:clipChildren="false"
             android:clipToPadding="false">
-            <skin.support.design.widget.SkinMaterialCollapsingToolbarLayout
+
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
                 android:clipChildren="false"
-                android:clipToPadding="false">
-                <com.colin.behavorlayoutlibrary.widget.DisInterceptNestedScrollView
+                android:clipToPadding="false"
+                app:elevation="0dp"
+                app:layout_behavior="@string/appbar_overscroll_behavior">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_collapseMode="parallax"
+                    android:layout_height="match_parent"
                     android:clipChildren="false"
                     android:clipToPadding="false"
-                    app:layout_collapseParallaxMultiplier="0.8">
+                    android:background="@color/transparent"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-                    <LinearLayout
-                        android:id="@+id/user_head_container"
+                    <com.colin.behavorlayoutlibrary.widget.DisInterceptNestedScrollView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:tag="overScroll">
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:tag="overScroll"
+                        app:layout_collapseMode="parallax"
+                        app:layout_collapseParallaxMultiplier="0.8">
 
-
-                        <ImageView
-                            android:id="@+id/uc_zoomiv"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/user_head_container"
                             android:layout_width="match_parent"
-                            android:layout_height="300dp"
-                            android:background="@mipmap/banner_bg1"
-                            android:scaleType="centerCrop"
-                            />
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:tag="overScroll">
 
-                    </LinearLayout>
+                            <com.colin.mine.widget.Gradient
+                                android:id="@+id/gradient"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp_240"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                </com.colin.behavorlayoutlibrary.widget.DisInterceptNestedScrollView>
-                <com.colin.behavorlayoutlibrary.widget.DisInterceptNestedScrollView
-                    android:id="@+id/middle_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="300dp"
-                    android:tag="middle"
-                    app:layout_collapseMode="parallax"
-                    app:layout_collapseParallaxMultiplier="0.5">
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <LinearLayout
+                    </com.colin.behavorlayoutlibrary.widget.DisInterceptNestedScrollView>
+
+                    <com.colin.behavorlayoutlibrary.widget.DisInterceptNestedScrollView
+                        android:id="@+id/middle_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginTop="@dimen/dp_220"
+                        android:clipChildren="false"
+                        android:background="@color/transparent"
+                        android:tag="middle"
+                        app:layout_collapseMode="parallax"
+                        app:layout_collapseParallaxMultiplier="0.5">
 
-                        <TextView
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="dafakjflajslfjkas"/>
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-40dp"
+                            android:clipChildren="false"
+                            android:background="@color/transparent"
+                            android:paddingTop="@dimen/dp_4"
+                            android:paddingBottom="@dimen/dp_15">
 
-                    </LinearLayout>
-                </com.colin.behavorlayoutlibrary.widget.DisInterceptNestedScrollView>
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardview"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_15"
+                                android:layout_marginTop="@dimen/dp_30"
+                                android:layout_marginRight="@dimen/dp_15"
+                                app:cardCornerRadius="@dimen/dp_5"
+                                app:cardElevation="@dimen/dp_1"
+                                app:cardPreventCornerOverlap="false"
+                                app:cardUseCompatPadding="false"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/white"
+                                    android:orientation="vertical">
+
+
+                                    <TextView
+                                        android:id="@+id/frag_uc_nickname_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/dp_10"
+                                        android:layout_marginTop="50dp"
+                                        android:text="Lover's Day"
+                                        android:textColor="@color/_323232"
+                                        android:textSize="@dimen/dp_17"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:id="@+id/frag_uc_interest_tv"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/dp_10"
+                                        android:layout_marginTop="@dimen/dp_3"
+
+                                        android:maxLines="2"
+                                        android:text="music、dance、drive、fly~O(∩_∩)O~"
+                                        android:textColor="@color/_aa333333"
+                                        android:textSize="@dimen/dp_13"
+                                        app:layout_constraintLeft_toLeftOf="@+id/frag_uc_nickname_tv"
+                                        app:layout_constraintTop_toBottomOf="@+id/frag_uc_nickname_tv" />
+
+                                    <View
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="@dimen/dp_15"
+                                        app:layout_constraintLeft_toLeftOf="@+id/frag_uc_interest_tv"
+                                        app:layout_constraintTop_toBottomOf="@+id/frag_uc_interest_tv" />
+
+                                    <androidx.constraintlayout.widget.ConstraintLayout
+                                        android:id="@+id/group_night"
+                                        android:layout_width="@dimen/dp_60"
+                                        android:layout_height="@dimen/dp_26"
+                                        android:layout_marginLeft="@dimen/dp_18"
+                                        android:layout_marginTop="@dimen/dp_10"
+                                        android:layout_marginRight="@dimen/dp_15"
+                                        android:background="@drawable/skin_bg"
+                                        app:layout_constraintRight_toLeftOf="@+id/tv_get_skin_path"
+                                        app:layout_constraintTop_toTopOf="parent">
+
+                                        <ImageView
+                                            android:id="@+id/night_img"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:src="@mipmap/night"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintHorizontal_chainStyle="packed"
+                                            app:layout_constraintLeft_toLeftOf="parent"
+                                            app:layout_constraintRight_toLeftOf="@+id/night_tv"
+                                            app:layout_constraintTop_toTopOf="parent" />
+
+                                        <TextView
+                                            android:id="@+id/night_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_3"
+                                            android:includeFontPadding="false"
+                                            android:textColor="@color/_323232"
+                                            android:textSize="@dimen/dp_12"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintLeft_toRightOf="@+id/night_img"
+                                            app:layout_constraintRight_toRightOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent" />
+                                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                    <com.colin.skinlibrary.weiget.SkinTextView
+                                        android:id="@+id/tv_get_skin_path"
+                                        android:layout_width="@dimen/dp_60"
+                                        android:layout_height="@dimen/dp_26"
+                                        android:layout_marginLeft="@dimen/dp_30"
+                                        android:layout_marginTop="@dimen/dp_10"
+                                        android:layout_marginRight="@dimen/dp_15"
+                                        android:background="@drawable/skin_bg"
+                                        android:gravity="center"
+                                        android:text="悼念模式"
+                                        android:textColor="@color/_323232"
+                                        android:textSize="@dimen/dp_12"
+                                        app:isNeedGray="true"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_goneMarginTop="@dimen/dp_15" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <com.colin.skinlibrary.weiget.SkinImageView
+                                android:id="@+id/uc_avater"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_marginLeft="@dimen/dp_12"
+                                android:layout_marginTop="-20dp"
+                                android:elevation="@dimen/dp_3"
+                                app:imageCircleUrl="@{mineViewModel.MMineDetails.headerResult}"
+                                app:isNeedGray="true"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.colin.behavorlayoutlibrary.widget.DisInterceptNestedScrollView>
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_68"
+                        android:alpha="0"
+                        android:background="@color/white"
+                        android:fitsSystemWindows="true"
+                        android:tag="toolbar"
+                        app:layout_collapseMode="pin"
+                        app:popupTheme="@style/Widget.AppCompat.Toolbar" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_68"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        app:layout_collapseMode="pin">
+
+                        <com.colin.skinlibrary.weiget.SkinImageView
+                            android:layout_width="@dimen/dp_50"
+                            android:layout_height="@dimen/dp_50"
+                            android:paddingTop="@dimen/dp_20"
+                            android:paddingRight="@dimen/dp_15"
+                            android:src="@mipmap/icon_setting_black"
+                            app:filterColor="@color/_909090"
+                            app:isNeedGray="true"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <!--        <com.colin.skinlibrary.weiget.SkinImageView-->
+            <!--            android:id="@+id/uc_avater"-->
+            <!--            android:layout_width="70dp"-->
+            <!--            android:layout_height="70dp"-->
+            <!--            android:layout_marginLeft="@dimen/dp_12"-->
+            <!--            app:imageCircleUrl="@{mineViewModel.MMineDetails.headerResult}"-->
+            <!--            app:isNeedGray="true"-->
+            <!--            app:layout_anchor="@+id/middle_layout"-->
+            <!--            app:layout_anchorGravity="top"-->
+            <!--            app:layout_behavior="@string/appbar_circleimageview_behavior" />-->
+
+            <com.colin.behavorlayoutlibrary.widget.DisInterceptNestedScrollView
+                android:id="@+id/scroll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:alpha="0"
-                    android:background="@android:color/white"
-                    android:tag="toolbar"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/Widget.AppCompat.Toolbar" />
+                    android:layout_height="match_parent"
+                    android:background="@color/_f2f2f2">
 
-            </skin.support.design.widget.SkinMaterialCollapsingToolbarLayout>
-        </skin.support.design.widget.SkinMaterialAppBarLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-        <TextView
-            android:id="@+id/tv_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/dp_30"
-            android:text="点击跳转登录页面"
-            android:textColor="@color/_323232"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardviewTab"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginRight="@dimen/dp_15"
+                        app:cardCornerRadius="@dimen/dp_5"
+                        app:cardElevation="@dimen/dp_1"
+                        app:cardPreventCornerOverlap="false"
+                        app:cardUseCompatPadding="false"
+                        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/group_night"
-            android:layout_width="@dimen/dp_60"
-            android:layout_height="@dimen/dp_26"
-            android:layout_marginLeft="@dimen/dp_18"
-            android:layout_marginTop="@dimen/dp_30"
-            android:background="@drawable/skin_bg"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/dp_15"
+                            android:paddingBottom="@dimen/dp_15">
 
-            <ImageView
-                android:id="@+id/night_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/night"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/night_tv"
-                app:layout_constraintTop_toTopOf="parent" />
+                            <com.colin.skinlibrary.weiget.SkinTextView
+                                android:id="@+id/tv_storys"
+                                android:layout_width="@dimen/dp_0"
+                                android:layout_height="wrap_content"
+                                android:drawableTop="@mipmap/mine_buy"
+                                android:drawablePadding="@dimen/dp_5"
+                                android:gravity="center"
+                                android:text="已购故事"
+                                android:textColor="@color/_323232"
+                                android:textSize="@dimen/dp_13"
+                                app:isNeedGray="true"
+                                app:layout_constraintHorizontal_chainStyle="packed"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toLeftOf="@+id/tv_download"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/night_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_3"
-                android:includeFontPadding="false"
-                android:textColor="@color/_323232"
-                android:textSize="@dimen/dp_12"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@+id/night_img"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                            <com.colin.skinlibrary.weiget.SkinTextView
+                                android:id="@+id/tv_download"
+                                android:layout_width="@dimen/dp_0"
+                                android:layout_height="wrap_content"
+                                android:drawableTop="@mipmap/mine_download"
+                                android:drawablePadding="@dimen/dp_5"
+                                android:gravity="center"
+                                android:text="下载管理"
+                                android:textColor="@color/_323232"
+                                android:textSize="@dimen/dp_13"
+                                app:isNeedGray="true"
+                                app:layout_constraintLeft_toRightOf="@+id/tv_storys"
+                                app:layout_constraintRight_toLeftOf="@+id/tv_account"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.colin.skinlibrary.weiget.SkinTextView
-            android:id="@+id/tv_get_skin_path"
-            android:layout_width="@dimen/dp_60"
-            android:layout_height="@dimen/dp_26"
-            android:layout_marginLeft="@dimen/dp_30"
-            android:layout_marginTop="@dimen/dp_30"
-            android:background="@drawable/skin_bg"
-            app:isNeedGray="true"
-            android:gravity="center"
-            android:text="悼念模式"
-            android:textColor="@color/_323232"
-            android:textSize="@dimen/dp_12"
-            app:layout_constraintLeft_toRightOf="@+id/group_night"
-            app:layout_constraintTop_toTopOf="parent" />
+                            <com.colin.skinlibrary.weiget.SkinTextView
+                                android:id="@+id/tv_account"
+                                android:layout_width="@dimen/dp_0"
+                                android:layout_height="wrap_content"
+                                android:drawableTop="@mipmap/mine_account"
+                                android:drawablePadding="@dimen/dp_5"
+                                android:gravity="center"
+                                android:text="我的账户"
+                                android:textColor="@color/_323232"
+                                android:textSize="@dimen/dp_13"
+                                app:isNeedGray="true"
+                                app:layout_constraintLeft_toRightOf="@+id/tv_download"
+                                app:layout_constraintRight_toLeftOf="@+id/tv_task"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <com.colin.skinlibrary.weiget.SkinTextView
+                                android:id="@+id/tv_task"
+                                android:layout_width="@dimen/dp_0"
+                                android:layout_height="wrap_content"
+                                android:drawableTop="@mipmap/mine_task"
+                                android:drawablePadding="@dimen/dp_5"
+                                android:gravity="center"
+                                android:text="每日任务"
+                                android:textColor="@color/_323232"
+                                android:textSize="@dimen/dp_13"
+                                app:isNeedGray="true"
+                                app:layout_constraintLeft_toRightOf="@+id/tv_account"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardviewTabBottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_15"
+                        android:layout_marginRight="@dimen/dp_15"
+                        app:cardCornerRadius="@dimen/dp_5"
+                        app:cardElevation="@dimen/dp_1"
+                        app:cardPreventCornerOverlap="false"
+                        app:cardUseCompatPadding="false"
+                        app:layout_constraintTop_toBottomOf="@+id/cardviewTab">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:paddingLeft="@dimen/dp_15"
+                            android:paddingTop="@dimen/dp_4"
+                            android:paddingRight="@dimen/dp_15"
+                            android:paddingBottom="@dimen/dp_4">
+
+                            <com.colin.skinlibrary.weiget.SkinTextView
+                                android:id="@+id/tv_eyes"
+                                android:layout_width="@dimen/dp_0"
+                                android:layout_height="@dimen/dp_60"
+                                android:drawableLeft="@mipmap/mine_eyes"
+                                android:drawablePadding="@dimen/dp_8"
+                                android:gravity="center_vertical"
+                                android:text="护眼模式"
+                                android:textColor="@color/_323232"
+                                android:textSize="@dimen/dp_15"
+                                app:isNeedGray="true"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <com.colin.skinlibrary.weiget.SkinImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/set_arrow"
+                                app:filterColor="@color/_909090"
+                                app:isNeedGray="true"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_eyes"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/tv_eyes" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp_0_5"
+                                android:background="@color/_f2f2f2"
+                                android:paddingLeft="@dimen/dp_70"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_eyes" />
+
+                            <com.colin.skinlibrary.weiget.SkinTextView
+                                android:id="@+id/tv_order"
+                                android:layout_width="@dimen/dp_0"
+                                android:layout_height="@dimen/dp_60"
+                                android:drawableLeft="@mipmap/mine_order"
+                                android:drawablePadding="@dimen/dp_8"
+                                android:gravity="center_vertical"
+                                android:text="订单管理"
+                                android:textColor="@color/_323232"
+                                android:textSize="@dimen/dp_15"
+                                app:isNeedGray="true"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_eyes" />
+
+                            <com.colin.skinlibrary.weiget.SkinImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/set_arrow"
+                                app:filterColor="@color/_909090"
+                                app:isNeedGray="true"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_order"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/tv_order" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp_0_5"
+                                android:background="@color/_f2f2f2"
+                                android:paddingLeft="@dimen/dp_70"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_order" />
+
+                            <com.colin.skinlibrary.weiget.SkinTextView
+                                android:id="@+id/tv_promote"
+                                android:layout_width="@dimen/dp_0"
+                                android:layout_height="@dimen/dp_60"
+                                android:drawableLeft="@mipmap/mine_promote"
+                                android:drawablePadding="@dimen/dp_8"
+                                android:gravity="center_vertical"
+                                android:text="推广大使"
+                                android:textColor="@color/_323232"
+                                android:textSize="@dimen/dp_15"
+                                app:isNeedGray="true"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_order" />
+
+                            <com.colin.skinlibrary.weiget.SkinImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/set_arrow"
+                                app:filterColor="@color/_909090"
+                                app:isNeedGray="true"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_promote"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/tv_promote" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp_0_5"
+                                android:background="@color/_f2f2f2"
+                                android:paddingLeft="@dimen/dp_70"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_promote" />
+
+                            <com.colin.skinlibrary.weiget.SkinTextView
+                                android:id="@+id/tv_feekback"
+                                android:layout_width="@dimen/dp_0"
+                                android:layout_height="@dimen/dp_60"
+                                android:drawableLeft="@mipmap/mine_feedback"
+                                android:drawablePadding="@dimen/dp_8"
+                                android:gravity="center_vertical"
+                                android:text="推广大使"
+                                android:textColor="@color/_323232"
+                                android:textSize="@dimen/dp_15"
+                                app:isNeedGray="true"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_promote" />
+
+                            <com.colin.skinlibrary.weiget.SkinImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/set_arrow"
+                                app:filterColor="@color/_909090"
+                                app:isNeedGray="true"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_feekback"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/tv_feekback" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.colin.behavorlayoutlibrary.widget.DisInterceptNestedScrollView>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -51,6 +51,8 @@
                 android:background="@color/_f7f7f7"
                 app:cardCornerRadius="@dimen/dp_30"
                 app:cardElevation="@dimen/dp_0"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="false"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="appbar_overscroll_behavior">com.colin.behavorlayoutlibrary.behavior.AppBarLayoutOverScrollViewBehavior</string>
+    <string name="appbar_circleimageview_behavior">com.colin.behavorlayoutlibrary.behavior.CircleImageInUsercBehavior</string>
 </resources>

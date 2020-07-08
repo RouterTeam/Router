@@ -15,4 +15,9 @@ public class ImageBindingAdapter {
     public static void bindDefaultImageUrl(ImageView view, String imageDefaultUrl){
         GlideImageLoader.getInstance().displayImage(view,imageDefaultUrl,view,0,null,null);
     }
+
+    @BindingAdapter("imageCircleUrl")
+    public static void bindCircleImageUrl(ImageView view, Integer imageCircleUrl){
+        GlideImageLoader.getInstance().displayCircleImage(view,imageCircleUrl,view,null,null);
+    }
 }
