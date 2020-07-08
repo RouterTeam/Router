@@ -75,8 +75,8 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseLa
      * 创建ViewModel
      */
     override fun createViewModel(): VM {
-        val fractory = BaseFactory.getInstance(application)
-        fractory.addCreaterListener(application,this)
+        val fractory = BaseFactory.getInstance()
+        fractory.addCreaterListener(this)
         return ViewModelProviders.of(this, fractory).get(onBindViewModel())
     }
 

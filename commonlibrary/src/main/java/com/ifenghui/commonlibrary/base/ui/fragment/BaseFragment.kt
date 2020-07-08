@@ -83,8 +83,8 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseLa
      * 创建ViewModel
      */
     override fun createViewModel(): VM {
-        val fractory = mActivity()?.application?.let { BaseFactory.getInstance(it) }
-        mActivity()?.application?.let { fractory?.addCreaterListener(it,this) }
+        val fractory = BaseFactory.getInstance()
+        fractory.addCreaterListener(this)
         return ViewModelProviders.of(this, fractory).get(onBindViewModel())
     }
 
