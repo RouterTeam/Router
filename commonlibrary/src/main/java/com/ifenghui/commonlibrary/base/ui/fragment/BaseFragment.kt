@@ -9,11 +9,13 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.ifenghui.commonlibrary.R
+import com.ifenghui.commonlibrary.base.factory.BaseFactory
+import com.ifenghui.commonlibrary.base.factory.CreateViewModelInter
 import com.ifenghui.commonlibrary.base.view.IDataBindlingBaseView
 import com.ifenghui.commonlibrary.base.viewmodel.BaseViewModel
 
 abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseLazyFragment(),
-    IDataBindlingBaseView<VM> {
+    IDataBindlingBaseView<VM> , CreateViewModelInter {
     protected var mBinding: V? = null
     protected var mViewModel: VM? = null
 
@@ -81,7 +83,9 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseLa
      * 创建ViewModel
      */
     override fun createViewModel(): VM {
-        return ViewModelProviders.of(this, onBindViewModelFactory()).get(onBindViewModel())
+        val fractory = mActivity()?.application?.let { BaseFactory.getInstance(it) }
+        mActivity()?.application?.let { fractory?.addCreaterListener(it,this) }
+        return ViewModelProviders.of(this, fractory).get(onBindViewModel())
     }
 
     /**

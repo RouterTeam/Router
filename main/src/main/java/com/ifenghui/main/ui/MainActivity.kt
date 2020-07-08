@@ -6,6 +6,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.ifenghui.commonlibrary.application.Constance
 import com.ifenghui.commonlibrary.base.ui.PagerAdapter
@@ -15,6 +16,7 @@ import com.ifenghui.main.BR
 import com.ifenghui.main.R
 import com.ifenghui.main.databinding.ActivityMainBinding
 import com.ifenghui.main.mvvm.factory.MainViewModelFactory
+import com.ifenghui.main.mvvm.model.MainModel
 import com.ifenghui.main.mvvm.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.bottom_navigation
@@ -53,9 +55,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         return BR.mainViewModel
     }
 
-    override fun onBindViewModelFactory(): MainViewModelFactory {
-        return MainViewModelFactory.getInstance(application)
-    }
+//    override fun onBindViewModelFactory(): MainViewModelFactory {
+//        return MainViewModelFactory.getInstance(application)
+//    }
 
     override fun onBindLayout(): Int {
         return R.layout.activity_main
@@ -103,10 +105,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             mMineFragment = iMineProvider?.getMainFragment()
 
         mFragmentList = ArrayList()
-        mHomeFragment?.let { mFragmentList?.add(it)}
-        mMagazineFragment?.let { mFragmentList?.add(it)}
-        mShelfFragment?.let { mFragmentList?.add(it)}
-        mMineFragment?.let { mFragmentList?.add(it)}
+        mHomeFragment?.let { mFragmentList?.add(it) }
+        mMagazineFragment?.let { mFragmentList?.add(it) }
+        mShelfFragment?.let { mFragmentList?.add(it) }
+        mMineFragment?.let { mFragmentList?.add(it) }
         viewpager?.adapter = PagerAdapter(supportFragmentManager, mFragmentList)
         bottom_navigation?.setSwitchViewPager(viewpager)
         bottom_navigation?.postDelayed({
@@ -149,5 +151,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             return true
         }
         return super.onKeyDown(keyCode, event)
+    }
+
+    override fun <T : ViewModel> createViewModel(modelClass: Class<T>): T {
+//        if (modelClass.isAssignableFrom(MainViewModel::class.java))
+            return MainViewModel(application, MainModel(application)) as T
     }
 }

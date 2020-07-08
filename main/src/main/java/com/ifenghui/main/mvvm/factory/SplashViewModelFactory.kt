@@ -14,12 +14,6 @@ class SplashViewModelFactory private constructor(private val mApplication: Appli
         return if (modelClass.isAssignableFrom(SplashViewModel::class.java)) {
             SplashViewModel(mApplication, SplashModel(mApplication)) as T
         } else SplashViewModel(mApplication, SplashModel(mApplication)) as T
-        //        else if (modelClass.isAssignableFrom(NewsListViewModel.class)) {
-        //            return (T) new NewsListViewModel(mApplication, new NewsListModel(mApplication));
-        //        }else if (modelClass.isAssignableFrom(NewsTypeViewModel.class)) {
-        //            return (T) new NewsTypeViewModel(mApplication, new NewsTypeModel(mApplication));
-        //        }
-        //        throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }
 
     companion object {

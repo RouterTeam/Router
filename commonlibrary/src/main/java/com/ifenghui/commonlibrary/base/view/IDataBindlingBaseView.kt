@@ -22,5 +22,5 @@ interface IDataBindlingBaseView<VM: BaseViewModel<*>> {
     /**
      * 工厂模式获取viewModel
      */
-    fun onBindViewModelFactory(): ViewModelProvider.Factory
+//    fun onBindViewModelFactory(): ViewModelProvider.Factory
 }

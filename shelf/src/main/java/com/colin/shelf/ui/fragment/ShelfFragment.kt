@@ -2,11 +2,13 @@ package com.colin.shelf.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.colin.shelf.BR
 import com.colin.shelf.R
 import com.colin.shelf.databinding.FragmentShelfLayoutBinding
 import com.colin.shelf.mvvm.factory.ShelfViewModelFactory
+import com.colin.shelf.mvvm.model.ShelfModel
 import com.colin.shelf.mvvm.viewmodel.ShelfViewModel
 import com.ifenghui.commonlibrary.base.ui.fragment.BaseFragment
 
@@ -24,9 +26,13 @@ class ShelfFragment: BaseFragment<FragmentShelfLayoutBinding, ShelfViewModel>() 
         return BR.shelfViewModel
     }
 
-    override fun onBindViewModelFactory(): ViewModelProvider.Factory {
-        return ShelfViewModelFactory.getInstance(mActivity()?.application!!)
+    override fun <T : ViewModel> createViewModel(modelClass: Class<T>): T {
+        return mActivity()?.application?.let { ShelfViewModel(it, ShelfModel(mActivity()?.application!!)) } as T
     }
+
+//    override fun onBindViewModelFactory(): ViewModelProvider.Factory {
+//        return ShelfViewModelFactory.getInstance(mActivity()?.application!!)
+//    }
 
     companion object {
         private var INSTANCE:ShelfFragment?=null

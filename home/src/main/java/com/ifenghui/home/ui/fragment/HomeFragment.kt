@@ -2,6 +2,7 @@ package com.ifenghui.home.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
@@ -14,6 +15,7 @@ import com.ifenghui.home.BR
 import com.ifenghui.home.R
 import com.ifenghui.home.databinding.FragmentHomeLayoutBinding
 import com.ifenghui.home.mvvm.factory.HomeViewModelFactory
+import com.ifenghui.home.mvvm.model.HomeModel
 import com.ifenghui.home.mvvm.viewmodel.HomeViewModel
 import com.ifenghui.home.ui.adapter.HomeAdapter
 import com.ifenghui.imageloaderlibrary.GlideApp
@@ -49,9 +51,12 @@ class HomeFragment : BaseFragment<FragmentHomeLayoutBinding, HomeViewModel>() {
         return BR.homeViewModel
     }
 
-    override fun onBindViewModelFactory(): ViewModelProvider.Factory {
-        return HomeViewModelFactory.getInstance(mActivity()?.application!!)
+    override fun <T : ViewModel> createViewModel(modelClass: Class<T>): T {
+        return  mActivity()?.application?.let { HomeViewModel(it, HomeModel(mActivity()?.application!!)) } as T
     }
+//    override fun onBindViewModelFactory(): ViewModelProvider.Factory {
+//        return HomeViewModelFactory.getInstance(mActivity()?.application!!)
+//    }
 
     private var homeAdapter: HomeAdapter? = null
 

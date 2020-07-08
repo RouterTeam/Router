@@ -2,11 +2,13 @@ package com.colin.magazine.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.colin.magazine.BR
 import com.colin.magazine.R
 import com.colin.magazine.databinding.FragmentMagazineLayoutBinding
 import com.colin.magazine.mvvm.factory.MagazineViewModelFactory
+import com.colin.magazine.mvvm.model.MagazineModel
 import com.colin.magazine.mvvm.viewmodel.MagazineViewModel
 import com.ifenghui.commonlibrary.base.ui.fragment.BaseFragment
 
@@ -25,9 +27,13 @@ class MagazineFragment : BaseFragment<FragmentMagazineLayoutBinding, MagazineVie
         return BR.magazineViewModel
     }
 
-    override fun onBindViewModelFactory(): ViewModelProvider.Factory {
-        return MagazineViewModelFactory.getInstance(mActivity()?.application!!)
+    override fun <T : ViewModel> createViewModel(modelClass: Class<T>): T {
+        return mActivity()?.application?.let { MagazineViewModel(it, MagazineModel(mActivity()?.application!!)) } as T
     }
+
+//    override fun onBindViewModelFactory(): ViewModelProvider.Factory {
+//        return MagazineViewModelFactory.getInstance(mActivity()?.application!!)
+//    }
 
     companion object {
         private var INSTANCE: MagazineFragment? = null

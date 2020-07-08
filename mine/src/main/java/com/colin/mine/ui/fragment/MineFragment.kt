@@ -2,11 +2,13 @@ package com.colin.mine.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.colin.mine.BR
 import com.colin.mine.R
 import com.colin.mine.databinding.FragmentMineLayoutBinding
 import com.colin.mine.mvvm.factory.MineViewModelFactory
+import com.colin.mine.mvvm.model.MineModel
 import com.colin.mine.mvvm.viewmodel.MineViewModel
 import com.colin.skinlibrary.SkinManager
 import com.ifenghui.commonlibrary.application.Constance.Companion.LOGIN_FRAGMENT_FLAG
@@ -30,10 +32,13 @@ class MineFragment :
         return BR.mineViewModel
     }
 
-
-    override fun onBindViewModelFactory(): ViewModelProvider.Factory {
-        return MineViewModelFactory.getInstance(mActivity()?.application!!)
+    override fun <T : ViewModel> createViewModel(modelClass: Class<T>): T {
+        return  mActivity()?.application?.let { MineViewModel(it, MineModel(mActivity()?.application!!)) } as T
     }
+
+//    override fun onBindViewModelFactory(): ViewModelProvider.Factory {
+//        return MineViewModelFactory.getInstance(mActivity()?.application!!)
+//    }
 
     companion object {
         private var INSTANCE:MineFragment?=null
