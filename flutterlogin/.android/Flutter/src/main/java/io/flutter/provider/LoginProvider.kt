@@ -3,7 +3,7 @@ package io.flutter.provider
 import android.content.Context
 import android.content.Intent
 import com.ifenghui.commonlibrary.provider.IMainProvider
-import io.flutter.facade.LoginActivity
+import io.flutter.facade.FlutterActivity
 
 class LoginProvider:IMainProvider {
 
@@ -12,7 +12,7 @@ class LoginProvider:IMainProvider {
      */
     override fun distribution(context: Context?, flag: String?, vararg objects: Any?) {
         if ("login"==flag){
-            context?.startActivity(Intent(context, LoginActivity::class.java))
+            context?.startActivity(Intent(context, FlutterActivity::class.java))
         }
     }
 }

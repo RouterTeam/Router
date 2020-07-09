@@ -69,12 +69,8 @@
                         android:clipChildren="true"
                         android:clipToPadding="true"
                         android:paddingLeft="@dimen/dp_35"
-                        android:paddingTop="@dimen/dp_4"
                         app:isNeedGray="true"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:nightTextColor="@color/_909090"
-                        app:textColor="@color/_323232"
-                        app:textSize="@dimen/dp_5" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <com.colin.skinlibrary.weiget.SkinImageView
                         android:layout_width="wrap_content"

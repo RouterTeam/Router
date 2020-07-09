@@ -7,7 +7,7 @@
     <application
         android:theme="@style/AppTheme"
         tools:node="merge">
-        <activity android:name="io.flutter.facade.LoginActivity" />
+        <activity android:name="io.flutter.facade.FlutterActivity" />
         <meta-data
             android:name="flutterProjectType"
             android:value="module" />

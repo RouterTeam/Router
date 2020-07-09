@@ -54,9 +54,6 @@ class HomeFragment : BaseFragment<FragmentHomeLayoutBinding, HomeViewModel>() {
     override fun <T : ViewModel> createViewModel(modelClass: Class<T>): T {
         return  mActivity()?.application?.let { HomeViewModel(it, HomeModel(mActivity()?.application!!)) } as T
     }
-//    override fun onBindViewModelFactory(): ViewModelProvider.Factory {
-//        return HomeViewModelFactory.getInstance(mActivity()?.application!!)
-//    }
 
     private var homeAdapter: HomeAdapter? = null
 

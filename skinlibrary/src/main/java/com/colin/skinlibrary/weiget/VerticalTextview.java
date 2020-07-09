@@ -1,6 +1,4 @@
-package com.colin.skinlibrary.weiget;/**
- * Created by xiehehe on 16/7/19.
- */
+package com.colin.skinlibrary.weiget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,10 +7,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
@@ -25,12 +26,9 @@ import java.util.ArrayList;
 import skin.support.widget.SkinCompatSupportable;
 
 /**
- * User: xiehehe
- * Date: 2016-07-19
- * Time: 22:45
- * FIXME
+ *
  */
-public class VerticalTextview extends TextSwitcher implements ViewSwitcher.ViewFactory, SkinCompatSupportable {
+public class VerticalTextview extends TextSwitcher implements ViewSwitcher.ViewFactory {
 
     private static final int FLAG_START_AUTO_SCROLL = 0;
     private static final int FLAG_STOP_AUTO_SCROLL = 1;
@@ -39,7 +37,6 @@ public class VerticalTextview extends TextSwitcher implements ViewSwitcher.ViewF
     private static final int STATE_SCROLL = 3;
 
     private float mTextSize = 16;
-    private int mPadding = 5;
     private int textColor = Color.BLACK;
     private int nightTextColor = Color.BLACK;
     public boolean isNeedGray = false;
@@ -50,16 +47,17 @@ public class VerticalTextview extends TextSwitcher implements ViewSwitcher.ViewF
      * @param padding   padding
      * @param textColor textcolor
      */
-    public void setText(float textSize, int padding, int textColor) {
-        mTextSize = textSize;
-        mPadding = padding;
-        this.textColor = textColor;
-    }
+//    public void setText(float textSize, int padding, int textColor) {
+//        mTextSize = textSize;
+//        mPadding = padding;
+//        this.textColor = textColor;
+//    }
 
     private OnItemClickListener itemClickListener;
     private Context mContext;
     private int currentId = -1;
     private ArrayList<String> textList;
+    private ArrayList<TextView> viewList=new ArrayList();
     private Handler handler;
 
     public VerticalTextview(Context context) {
@@ -149,33 +147,29 @@ public class VerticalTextview extends TextSwitcher implements ViewSwitcher.ViewF
 
     @Override
     public View makeView() {
-        TextView t = new TextView(mContext);
+        TextView t = (TextView) LayoutInflater.from(mContext).inflate(R.layout.item_text,null);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1,-1);
+        t.setLayoutParams(layoutParams);
         t.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
         t.setMaxLines(1);
-        t.setPadding(mPadding, mPadding, mPadding, mPadding);
-        t.setTextColor(getTextColor());
-        t.setTextSize(mTextSize);
-
         t.setClickable(true);
-        t.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (itemClickListener != null && textList.size() > 0 && currentId != -1) {
-                    itemClickListener.onItemClick(currentId % textList.size());
-                }
+        t.setOnClickListener(v -> {
+            if (itemClickListener != null && textList.size() > 0 && currentId != -1) {
+                itemClickListener.onItemClick(currentId % textList.size());
             }
         });
+        viewList.add(t);
         return t;
     }
 
-    private int getTextColor(){
-        if (isNeedGray&&SkinManager.isGragyMode()){
-            return Color.GRAY;
-        }else if (SkinManager.checkIsDefaultMode()){
-            return textColor;
-        }else
-            return nightTextColor;
-    }
+//    private int getTextColor(){
+//        if (isNeedGray&&SkinManager.isGragyMode()){
+//            return Color.GRAY;
+//        }else if (SkinManager.checkIsDefaultMode()){
+//            return textColor;
+//        }else
+//            return nightTextColor;
+//    }
 
     /**
      * set onclick listener
@@ -186,9 +180,16 @@ public class VerticalTextview extends TextSwitcher implements ViewSwitcher.ViewF
         this.itemClickListener = itemClickListener;
     }
 
-    @Override
-    public void applySkin() {
-    }
+//    @Override
+//    public void applySkin() {
+//        if (viewList!=null){
+//            for(TextView textView:viewList){
+//                if (textView!=null){
+//                    textView.setText(getTextColor());
+//                }
+//            }
+//        }
+//    }
 
     /**
      * item click listener
