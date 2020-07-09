@@ -35,7 +35,10 @@ xcuserdata
 Icon?
 .tags*
 
+pubspec.lock
+
 build/
 #.android/
+.android/local.properties
 .ios/
 #.flutter-plugins
