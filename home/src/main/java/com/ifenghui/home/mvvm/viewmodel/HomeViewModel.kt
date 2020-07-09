@@ -74,14 +74,14 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
                 }
             }
 
-        }, { error ->
+        }, { error -> //请求出错
             if (list.size == 0) {
                 postShowErrStatusViewEvent()
             }
-        }, {
+        }, { //请求结束
             if (list.size!=0)
                 postCompleteLoadingViewEvent()
-        }, {
+        }, {//请求开始
            if (list.size==0)
                postShowTransLoadingViewEvent(true)
         }))

@@ -1,4 +1,9 @@
 include ':behavorlayoutlibrary'
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+  settingsDir,
+  'flutterlogin/.android/include_flutter.groovy'
+))
 include ':smartrefreshlibrary'
 include ':spinkitlibrary'
 include ':linkedviewpager'

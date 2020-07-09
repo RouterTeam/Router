@@ -1,7 +1,6 @@
 package com.ifenghui.commonlibrary.base.factory
 
 import android.annotation.SuppressLint
-import android.app.Application
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

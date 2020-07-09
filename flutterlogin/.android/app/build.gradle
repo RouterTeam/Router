@@ -1,0 +1,40 @@
+//def flutterPluginVersion = 'managed'
+
+//apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+apply from: "../../../module.gradle"
+//android {
+//    compileSdkVersion 28
+//
+//    compileOptions {
+//        sourceCompatibility 1.8
+//        targetCompatibility 1.8
+//    }
+//
+//    defaultConfig {
+//        applicationId "com.colin.flutterlogin.host"
+//        minSdkVersion 16
+//        targetSdkVersion 28
+//        versionCode 1
+//        versionName "1.0"
+//        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//    }
+//
+//    buildTypes {
+//        profile {
+//            initWith debug
+//        }
+//        release {
+//            // TODO: Add your own signing config for the release build.
+//            // Signing with the debug keys for now, so `flutter run --release` works.
+//            signingConfig signingConfigs.debug
+//        }
+//    }
+//
+//}
+//buildDir = new File(rootProject.projectDir, "../build/host")
+dependencies {
+    implementation project(':flutter')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':commonlibrary')
+}

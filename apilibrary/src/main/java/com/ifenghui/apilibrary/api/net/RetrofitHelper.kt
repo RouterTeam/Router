@@ -6,6 +6,7 @@ import android.text.TextUtils
 import com.ifenghui.apilibrary.api.CommonService
 import com.ifenghui.apilibrary.api.HomeService
 import com.ifenghui.apilibrary.api.config.AppApi.Companion.OFFICIAL_URL
+import com.ifenghui.apilibrary.api.config.AppApi.Companion.TEST_URL
 import com.ifenghui.apilibrary.api.config.NetConfig
 import com.ifenghui.apilibrary.api.config.NetConfig.Companion.SS_TOKEN
 import com.ifenghui.apilibrary.api.net.BaseInterceptor
@@ -56,6 +57,7 @@ class RetrofitHelper {
         mAppclication=application
         url = NetConfig.getBaseUrl()
         url = OFFICIAL_URL
+//        url = TEST_URL
         initOkHttp()
         initRetrofit()
     }

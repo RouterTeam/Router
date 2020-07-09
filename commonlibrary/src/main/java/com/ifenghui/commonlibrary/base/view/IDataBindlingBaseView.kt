@@ -1,6 +1,5 @@
 package com.ifenghui.commonlibrary.base.view
 
-import androidx.lifecycle.ViewModelProvider
 import com.ifenghui.commonlibrary.base.viewmodel.BaseViewModel
 
 interface IDataBindlingBaseView<VM: BaseViewModel<*>> {
