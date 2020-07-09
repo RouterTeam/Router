@@ -6,7 +6,7 @@ void main() => runApp(chooseWidget(window.defaultRouteName));
 
 Widget chooseWidget(String routeName) {
   switch (routeName) {
-    case "route1":
+    case "login":
       return StudyFeedbackView();
     default:
       return Center(

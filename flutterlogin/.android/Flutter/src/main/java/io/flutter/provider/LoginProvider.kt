@@ -11,8 +11,8 @@ class LoginProvider:IMainProvider {
      * 分发标志到对应的页面
      */
     override fun distribution(context: Context?, flag: String?, vararg objects: Any?) {
-        if ("login"==flag){
-            context?.startActivity(Intent(context, FlutterActivity::class.java))
-        }
+        val intent = Intent(context, FlutterActivity::class.java)
+        intent.putExtra("flag",flag)
+        context?.startActivity(intent)
     }
 }

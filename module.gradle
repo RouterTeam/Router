@@ -29,6 +29,13 @@ android {
         }
     }
 
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+
     buildFeatures{
         dataBinding = true
         // for view binding : viewBinding 也是一种控件绑定的技术，我还是认为dataBinding 更强大
