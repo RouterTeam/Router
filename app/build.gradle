@@ -89,6 +89,12 @@ android {
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/LICENSE'
     }
+
+    lintOptions {
+        abortOnError false
+        disable 'MissingTranslation'
+        checkReleaseBuilds false
+    }
 }
 
 dependencies {
