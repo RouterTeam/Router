@@ -71,7 +71,7 @@ class MineFragment :
 
     override fun bindListener() {
         super.bindListener()
-        mMainView?.uc_avater?.setOnClickListener {
+        mMainView?.tv_feekback?.setOnClickListener {
             ProviderHelper.startAct(LOGIN_FRAGMENT_FLAG,mActivity(),"login",null)
         }
         mMainView?.group_night?.setOnClickListener {

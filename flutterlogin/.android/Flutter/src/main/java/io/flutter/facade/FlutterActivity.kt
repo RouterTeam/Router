@@ -2,6 +2,7 @@ package io.flutter.facade
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.colin.flutterlogin.R
@@ -25,11 +26,18 @@ class FlutterActivity : BaseLazyActivity() {
         var flutterView = Flutter.createView(this, lifecycle, flag)
         var frameLayout = ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         addContentView(flutterView, frameLayout)
-//        flutterView.setBackgroundColor(R.color.white)
     }
 
     private fun changeTitle(flag:String?){
         if ("login"==flag)
             resetToolBarTitle("登录")
+    }
+
+    override fun isTransStatusBar(): Boolean {
+        return true
+    }
+
+    override fun enableToolbar(): Boolean {
+        return false
     }
 }
