@@ -14,6 +14,7 @@ class FlutterActivity : BaseLazyActivity() {
         val flag = intent.getStringExtra("flag")
         changeTitle(flag)
         addFlutterView(flag)
+
     }
 
     override fun onBindLayout(): Int {
