@@ -66,6 +66,21 @@ android {
             //applicationId "com.ifenghui.storyship.a"                //自定义包名
             //versionName "version-a-1.0"                             //自定义versionname
         }
+        huawei {
+            //manifestPlaceholders.put("BAIDU_CHANNEL_VALUE", '_main')//自定义渠道名
+            //applicationId "com.ifenghui.storyship.a"                //自定义包名
+            //versionName "version-a-1.0"                             //自定义versionname
+        }
+        xiaomi {
+            //manifestPlaceholders.put("BAIDU_CHANNEL_VALUE", '_main')//自定义渠道名
+            //applicationId "com.ifenghui.storyship.a"                //自定义包名
+            //versionName "version-a-1.0"                             //自定义versionname
+        }
+        yingyongbao {
+            //manifestPlaceholders.put("BAIDU_CHANNEL_VALUE", '_main')//自定义渠道名
+            //applicationId "com.ifenghui.storyship.a"                //自定义包名
+            //versionName "version-a-1.0"                             //自定义versionname
+        }
     }
 
 //   暂时隐掉
