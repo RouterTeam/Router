@@ -230,6 +230,7 @@ class PhoneManager {
         /**
          * 是否是主进程
          */
+        @JvmStatic
         fun isMainProcess(context: Context): Boolean {
             val pid = Process.myPid()
             val activityManager =

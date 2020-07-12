@@ -6,6 +6,9 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.ifenghui.commonlibrary.application.BaseApplication
+import com.ifenghui.commonlibrary.application.BaseApplication.appVersion
+import com.ifenghui.commonlibrary.application.BaseApplication.channelName
 import com.ifenghui.commonlibrary.application.Constance.Companion.HOME_FRAGMENT_FLAG
 import com.ifenghui.commonlibrary.application.Constance.Companion.MAGAZINE_FRAGMENT_FLAG
 import com.ifenghui.commonlibrary.application.Constance.Companion.MINE_FRAGMENT_FLAG
@@ -77,6 +80,7 @@ class MainActivity2 : BaseLazyActivity() {
             bottom_navigation?.visibility = View.VISIBLE
         }, 2000)
 
+        Toast.makeText(mActivity(),"chanel="+channelName+"--version="+appVersion,Toast.LENGTH_LONG).show()
     }
 
     /**

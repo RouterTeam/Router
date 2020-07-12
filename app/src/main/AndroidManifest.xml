@@ -12,7 +12,9 @@
         android:usesCleartextTraffic="true"
         android:name=".MyApplication"
         android:theme="@style/AppTheme">
-
+        <meta-data
+            android:name="APP_CHANNEL"
+            android:value="${APP_CHANNEL_VALUE}" />
     </application>
 
 </manifest>

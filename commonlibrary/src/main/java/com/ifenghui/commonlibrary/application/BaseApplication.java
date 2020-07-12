@@ -1,18 +1,24 @@
 package com.ifenghui.commonlibrary.application;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
 import com.colin.skinlibrary.SkinManager;
 import com.ifenghui.apilibrary.api.entity.User;
+import com.ifenghui.commonlibrary.utils.PhoneManager;
 import com.ifenghui.commonlibrary.utils.PreferencesManager;
 import com.ifenghui.commonlibrary.utils.RouterManger;
 
 public class BaseApplication extends MultiDexApplication {
     private static Context INSTANCE;
     public static User mCurrentUser;
+    // 渠道名
+    public static String channelName;
+    public static String appVersion= "";
     @Override
     public void onCreate() {
         super.onCreate();
@@ -21,6 +27,24 @@ public class BaseApplication extends MultiDexApplication {
         RouterManger.initRouter(this);
         PreferencesManager.initPreferencesManager(this);
         SkinManager.initSkinManager(this);
+
+        if (PhoneManager.isMainProcess(this)){
+            getAppInfo();
+        }
+    }
+
+    /**
+     * 获取app相关信息
+     */
+    private void getAppInfo(){
+        try {
+            ApplicationInfo appInfo = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+            channelName = appInfo.metaData.getString("APP_CHANNEL");
+            appVersion = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
