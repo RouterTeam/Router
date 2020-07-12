@@ -45,8 +45,14 @@ android {
                     variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath +File.separator+"app"+File.separator + "outputs"+File.separator+"apk")
                     def outputFile = output.outputFile
                     if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                        def fileName = "storyShip_v${defaultConfig.versionName}_${variant.productFlavors[0].name}.apk"
-                        fileName = "storyShip_v${variant.versionName}_${variant.buildType.name}_${BUILD_TIME}_${variant.productFlavors[0].name}.apk"
+                        def timeNow
+                        if ("true" == IS_JENKINS) {
+                            timeNow=BUILD_TIME
+                        }else {
+                            timeNow=getDate()
+                        }
+//                        def fileName = "storyShip_v${defaultConfig.versionName}_${variant.productFlavors[0].name}.apk"
+                        def fileName  = "storyShip_v${variant.versionName}_${variant.buildType.name}_${timeNow}_${variant.productFlavors[0].name}.apk"
                         outputFileName = fileName
                     }
                 }
