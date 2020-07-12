@@ -42,6 +42,7 @@ android {
             //gradle 打包
             android.applicationVariants.all { variant ->
                 variant.outputs.all { output ->
+                    variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath +File.separator+"app"+File.separator + "outputs"+File.separator+"apk")
                     def outputFile = output.outputFile
                     if (outputFile != null && outputFile.name.endsWith('.apk')) {
                         def fileName = "storyShip_v${defaultConfig.versionName}_${variant.productFlavors[0].name}.apk"
