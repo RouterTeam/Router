@@ -46,6 +46,7 @@ android {
                     def outputFile = output.outputFile
                     if (outputFile != null && outputFile.name.endsWith('.apk')) {
                         def fileName = "storyShip_v${defaultConfig.versionName}_${variant.productFlavors[0].name}.apk"
+                        fileName = "storyShip_v${variant.versionName}_${variant.buildType.name}_${BUILD_TIME}_${variant.productFlavors[0].name}.apk"
                         outputFileName = fileName
                     }
                 }
@@ -84,10 +85,10 @@ android {
         }
     }
 
-//   暂时隐掉
-//    productFlavors.all {
-//        flavor -> flavor.manifestPlaceholders = [BAIDU_CHANNEL_VALUE: name]
-//    }
+    //指定渠道
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [BAIDU_CHANNEL_VALUE: name]
+    }
 
     buildFeatures{
         dataBinding = true
@@ -100,17 +101,24 @@ android {
     }
 
     packagingOptions {
+        exclude 'AndroidManifest.xml'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/LICENSE'
+        exclude 'local.properties'
     }
 
     lintOptions {
         abortOnError false
-        disable 'MissingTranslation'
         checkReleaseBuilds false
+        disable 'MissingTranslation' // 防止在发布的时候出现因MissingTranslation导致Build Failed!
     }
+}
+
+//获取当前时间
+def getDate() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("GMT+08:00"))
 }
 
 dependencies {
