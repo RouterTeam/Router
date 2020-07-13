@@ -42,17 +42,19 @@ android {
             //gradle 打包
             android.applicationVariants.all { variant ->
                 variant.outputs.all { output ->
-                    variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath +File.separator+"app"+File.separator + "outputs"+File.separator+"apk")
+                    if ("true" == IS_JENKINS) {//jenkins 自动化打包时 更改apk 输出路径
+                        variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + File.separator + "app" + File.separator + "outputs" + File.separator + "apk")
+                    }
                     def outputFile = output.outputFile
                     if (outputFile != null && outputFile.name.endsWith('.apk')) {
                         def timeNow
                         if ("true" == IS_JENKINS) {
-                            timeNow=BUILD_TIME
-                        }else {
-                            timeNow=getDate()
+                            timeNow = BUILD_TIME
+                        } else {
+                            timeNow = getDate()
                         }
 //                        def fileName = "storyShip_v${defaultConfig.versionName}_${variant.productFlavors[0].name}.apk"
-                        def fileName  = "storyShip_v${variant.versionName}_${variant.buildType.name}_${timeNow}_${variant.productFlavors[0].name}.apk"
+                        def fileName = "storyShip_v${variant.versionName}_${variant.buildType.name}_${timeNow}_${variant.productFlavors[0].name}.apk"
                         outputFileName = fileName
                     }
                 }
@@ -69,26 +71,26 @@ android {
 
     //gradle 多渠道打包
     productFlavors {
-        _main {
-            //manifestPlaceholders.put("APP_CHANNEL_VALUE", '_main')//自定义渠道名
-            //applicationId "com.ifenghui.storyship.a"                //自定义包名
-            //versionName "version-a-1.0"                             //自定义versionname
-        }
+//        _main {
+//            //manifestPlaceholders.put("APP_CHANNEL_VALUE", '_main')//自定义渠道名
+//            //applicationId "com.ifenghui.storyship.a"                //自定义包名
+//            //versionName "version-a-1.0"                             //自定义versionname
+//        }
         huawei {
             //manifestPlaceholders.put("APP_CHANNEL_VALUE", '_main')//自定义渠道名
             //applicationId "com.ifenghui.storyship.a"                //自定义包名
             //versionName "version-a-1.0"                             //自定义versionname
         }
-        xiaomi {
-            //manifestPlaceholders.put("APP_CHANNEL_VALUE", '_main')//自定义渠道名
-            //applicationId "com.ifenghui.storyship.a"                //自定义包名
-            //versionName "version-a-1.0"                             //自定义versionname
-        }
-        yingyongbao {
-            //manifestPlaceholders.put("APP_CHANNEL_VALUE", '_main')//自定义渠道名
-            //applicationId "com.ifenghui.storyship.a"                //自定义包名
-            //versionName "version-a-1.0"                             //自定义versionname
-        }
+//        xiaomi {
+//            //manifestPlaceholders.put("APP_CHANNEL_VALUE", '_main')//自定义渠道名
+//            //applicationId "com.ifenghui.storyship.a"                //自定义包名
+//            //versionName "version-a-1.0"                             //自定义versionname
+//        }
+//        yingyongbao {
+//            //manifestPlaceholders.put("APP_CHANNEL_VALUE", '_main')//自定义渠道名
+//            //applicationId "com.ifenghui.storyship.a"                //自定义包名
+//            //versionName "version-a-1.0"                             //自定义versionname
+//        }
     }
 
     //指定渠道
@@ -96,7 +98,7 @@ android {
         flavor -> flavor.manifestPlaceholders = [APP_CHANNEL_VALUE: name]
     }
 
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
         // for view binding : viewBinding 也是一种控件绑定的技术，我还是认为dataBinding 更强大
         // viewBinding = true

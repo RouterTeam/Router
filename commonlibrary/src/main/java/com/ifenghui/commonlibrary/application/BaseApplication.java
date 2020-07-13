@@ -27,24 +27,6 @@ public class BaseApplication extends MultiDexApplication {
         RouterManger.initRouter(this);
         PreferencesManager.initPreferencesManager(this);
         SkinManager.initSkinManager(this);
-
-        if (PhoneManager.isMainProcess(this)){
-            getAppInfo();
-        }
-    }
-
-    /**
-     * 获取app相关信息
-     */
-    private void getAppInfo(){
-        try {
-            ApplicationInfo appInfo = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
-            channelName = appInfo.metaData.getString("APP_CHANNEL");
-            appVersion = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-
     }
 
     /**

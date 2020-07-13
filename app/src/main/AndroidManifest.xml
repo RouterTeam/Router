@@ -15,6 +15,9 @@
         <meta-data
             android:name="APP_CHANNEL"
             android:value="${APP_CHANNEL_VALUE}" />
+<!--        <meta-data-->
+<!--            android:name="APP_CHANNEL"-->
+<!--            android:value="_test" />-->
     </application>
 
 </manifest>
