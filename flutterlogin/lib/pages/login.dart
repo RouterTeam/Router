@@ -38,7 +38,7 @@ class LoginPage extends StatelessWidget {
 //                    radius: ScreenUtils.screenW(context) / 3,
                     backgroundColor: Colors.white,
                     backgroundImage:
-                    AssetImage(Constant.ASSETS_IMG + 'person_top.png'),
+                    AssetImage(Constant.ASSETS_IMG + 'logoin_close.png'),
                   ),
                   Image.asset(Constant.ASSETS_IMG + 'logoin_close.png'),
                   new Expanded(child: Text("登录/注册")),

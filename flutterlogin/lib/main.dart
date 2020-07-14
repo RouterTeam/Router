@@ -23,39 +23,22 @@ Widget chooseWidget(String routeName) {
     case "login":
       return LoginPage();
     default:
-      return Center(
-        child: Text("Unknown Route"),
-      );
+      return new UnKnowView();
   }
 }
 
-class StudyFeedbackView extends StatelessWidget {
+class UnKnowView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Card(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(),
-        child: Center(
-          child: Text("My Flutter View"),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          print("哈哈");
-        },
-        child: Icon(Icons.add),
-      ),
-    );
+      theme: ThemeData(primaryColor: Colors.white),
+        home: Scaffold(
+          resizeToAvoidBottomPadding: false,
+          body: Center(
+            child: Center(
+              child: Text("没能找到您想要的页面"),
+            )
+          ),
+        ));
   }
 }

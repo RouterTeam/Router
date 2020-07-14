@@ -1,7 +1,6 @@
-//def flutterPluginVersion = 'managed'
+def flutterPluginVersion = 'managed'
 
-//apply plugin: 'com.android.application'
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
 apply from: "../../../module.gradle"
 //android {
 //    compileSdkVersion 28

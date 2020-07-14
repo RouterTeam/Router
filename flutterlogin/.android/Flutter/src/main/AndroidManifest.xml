@@ -1,15 +1,12 @@
 <!-- Generated file. Do not edit. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.colin.flutterlogin">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <application
-        android:theme="@style/AppTheme"
-        tools:node="merge">
-        <activity android:name="io.flutter.facade.FlutterActivity" />
-        <meta-data
-            android:name="flutterProjectType"
-            android:value="module" />
-    </application>
+    package="com.colin.flutterlogin"
+    xmlns:tools="http://schemas.android.com/tools">
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <application tools:node="merge">
+    <meta-data
+      android:name="flutterProjectType"
+      android:value="module" />
+    <activity android:name="io.flutter.facade.FlutterActivity"/>
+  </application>
 </manifest>

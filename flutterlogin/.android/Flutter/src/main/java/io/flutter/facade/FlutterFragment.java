@@ -21,6 +21,7 @@ public class FlutterFragment extends Fragment {
   public static final String ARG_ROUTE = "route";
   private String mRoute = "/";
 
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
