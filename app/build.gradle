@@ -16,10 +16,10 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('storyship.jks')
-            storePassword "vista688"
-            keyAlias "storyship"
-            keyPassword "vista688"
+            storeFile file('colin.jks')
+            storePassword "Colin1024"
+            keyAlias "colin"
+            keyPassword "Colin1024"
 //            Android 7.0 引入一项新的应用签名方案 APK Signature Scheme v2，
 //             它能提供更快的应用安装时间和更多针对未授权 APK 文件更改的保护
 //            v2SigningEnabled false
