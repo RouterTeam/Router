@@ -6,8 +6,6 @@ import 'package:flutterlogin/widgets/EditTextFieldWidget.dart';
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    String hintPhone = '手机号';
-    String hintCode = '请输入验证码';
     return MaterialApp(
         theme: ThemeData(primaryColor: Colors.white),
         home: Scaffold(
@@ -217,17 +215,58 @@ class _LoginView extends State<LoginView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
+//                      Expanded(
+//                        child: Container(
+//                          child:   Row(
+//                            crossAxisAlignment: CrossAxisAlignment.center,
+//                            mainAxisAlignment: MainAxisAlignment.center,
+//                            children: <Widget>[
+//                              SizedBox(
+//                                width: 80,
+//                                child: Divider(
+//                                  //水平分割线
+//                                    height: 0.0,
+//                                    indent: 0.0,
+//                                    color: const Color(0xffc4c4c4)),
+//                              ),
+//                              SizedBox(
+//                                width: 20,
+//                                height: 1,
+//                              ),
+//                              Text(
+//                                "第三方账号登录",
+//                                style: TextStyle(
+//                                    color: const Color(0xffa9a9a9), fontSize: 13),
+//                              ),
+//                              SizedBox(
+//                                width: 20,
+//                                height: 1,
+//                              ),
+//                              SizedBox(
+//                                width: 80,
+//                                child: Divider(
+//                                  //水平分割线
+//                                    height: 0.0,
+//                                    indent: 0.0,
+//                                    color: const Color(0xffc4c4c4)),
+//                              ),
+//                            ],
+//                          ),
+//                        ),
+//                      ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          SizedBox(
-                            width: 80,
-                            child: Divider(
+                          Expanded(
+                            child: SizedBox(
+                              width: 80,
+                              child: Divider(
                                 //水平分割线
-                                height: 0.0,
-                                indent: 0.0,
-                                color: const Color(0xffc4c4c4)),
+                                  height: 0.0,
+                                  indent: 0.0,
+                                  color: const Color(0xffc4c4c4)),
+                            ),
                           ),
                           SizedBox(
                             width: 20,
@@ -242,13 +281,16 @@ class _LoginView extends State<LoginView> {
                             width: 20,
                             height: 1,
                           ),
-                          SizedBox(
-                            width: 80,
-                            child: Divider(
+
+                          Expanded(
+                            child:  SizedBox(
+                              width: 80,
+                              child: Divider(
                                 //水平分割线
-                                height: 0.0,
-                                indent: 0.0,
-                                color: const Color(0xffc4c4c4)),
+                                  height: 0.0,
+                                  indent: 0.0,
+                                  color: const Color(0xffc4c4c4)),
+                            ),
                           ),
                         ],
                       ),

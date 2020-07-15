@@ -1,12 +1,16 @@
 <!-- Generated file. Do not edit. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.colin.flutterlogin"
-    xmlns:tools="http://schemas.android.com/tools">
-  <uses-permission android:name="android.permission.INTERNET"/>
-  <application tools:node="merge">
-    <meta-data
-      android:name="flutterProjectType"
-      android:value="module" />
-    <activity android:name="io.flutter.facade.FlutterActivity"/>
-  </application>
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.colin.flutterlogin">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application tools:node="merge">
+        <meta-data
+            android:name="flutterProjectType"
+            android:value="module" />
+        <activity
+            android:name="io.flutter.facade.FlutterActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/TransparenceTheme" />
+    </application>
 </manifest>
