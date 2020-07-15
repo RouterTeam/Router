@@ -10,7 +10,6 @@ import io.flutter.embedding.android.FlutterView
 
 class FlutterActivity : BaseLazyActivity() {
     override fun onCreateDelay(bundle: Bundle?) {
-
         val flag = intent.getStringExtra("flag")
         changeTitle(flag)
         addFlutterView(flag)
