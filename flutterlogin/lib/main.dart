@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutterlogin/pages/login.dart';
+import 'package:flutterlogin/pages/login_page.dart';
 import 'dart:io';
 import 'dart:ui';
 //程序入口函数

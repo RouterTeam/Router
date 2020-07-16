@@ -25,26 +25,27 @@ if (flutterVersionName == null) {
 
 apply plugin: 'com.android.library'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-apply from: "../../../module.gradle"
+
 group 'com.colin.flutterlogin'
 version '1.0'
 
-//android {
-//    compileSdkVersion 28
-//
-//    defaultConfig {
-//        minSdkVersion 16
-//        targetSdkVersion 28
-//        versionCode flutterVersionCode.toInteger()
-//        versionName flutterVersionName
-//        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-//    }
-//}
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+}
 
 flutter {
     source '../..'
 }
 
 dependencies {
-    implementation project(path: ':commonlibrary')
+    testImplementation 'junit:junit:4.12'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
 }

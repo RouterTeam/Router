@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import io.flutter.view.FlutterView;
 
 /**
@@ -20,7 +19,6 @@ import io.flutter.view.FlutterView;
 public class FlutterFragment extends Fragment {
   public static final String ARG_ROUTE = "route";
   private String mRoute = "/";
-
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
