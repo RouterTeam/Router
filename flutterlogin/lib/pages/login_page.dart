@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterlogin/constant/constant.dart';
 import 'package:flutterlogin/router.dart';
-//import 'package:flutterlogin/router.dart';
 import 'package:flutterlogin/widgets/EditTextFieldWidget.dart';
 
 class LoginPage extends StatelessWidget {
@@ -135,7 +134,6 @@ class _LoginView extends State<LoginView> {
                           margin: EdgeInsets.all(0),
                           hintText: hintPhone,
                           onTab: () {
-//                                Router.push(context, Router.searchPage, hintText);
                           },
                         ),
                       ],
@@ -213,7 +211,7 @@ class _LoginView extends State<LoginView> {
                             color: const Color(0xff5a7cab)),
                       ),
                       onTap: (){
-//                        Router.push(context, Router.passWordLoginPage, "ddddd");
+                        Router.pushNoParams(context, Router.passWordLoginPage);
                       },
                     )
 

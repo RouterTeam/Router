@@ -13,8 +13,7 @@ class Constance {
         const val MAGAZINE_PROVER_PATH="com.colin.magazine.provider.MagazineProvider"
         const val SHELF_PROVER_PATH="com.colin.shelf.provider.ShelfProvider"
         const val MINE_PROVER_PATH="com.colin.mine.provider.MineProvider"
-//        const val LOGIN_PROVER_PATH="com.colin.login.provider.LoginProvider"
-        const val LOGIN_PROVER_PATH="io.flutter.provider.LoginProvider"
+        const val LOGIN_PROVER_PATH="com.colin.login.provider.LoginProvider"
 
         //对应标识
         const val HOME_FRAGMENT_FLAG="home_fragment_flag"

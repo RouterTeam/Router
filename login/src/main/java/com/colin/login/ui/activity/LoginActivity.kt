@@ -11,4 +11,12 @@ class LoginActivity : BaseLazyActivity() {
     override fun onBindLayout(): Int {
         return R.layout.activity_login
     }
+
+    override fun enableToolbar(): Boolean {
+        return false
+    }
+
+    override fun enableTopNav(): Boolean {
+        return true
+    }
 }

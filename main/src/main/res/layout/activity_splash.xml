@@ -20,6 +20,7 @@
             android:layout_height="@dimen/dp_0"
             android:scaleType="fitXY"
             app:layout_constraintDimensionRatio="750:1080"
+            android:onClick="@{()->splashViewModel.itemClick(splashViewModel.mNewsDetails.banner)}"
             android:background="@color/_f7f7f7"
             app:imageDefaultUrl="@{splashViewModel.mNewsDetails.banner}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,4 +27,8 @@ open class SplashViewModel(@NonNull application: Application, model: SplashModel
             Log.e("========","开始")
         }))
     }
+
+    fun itemClick(url :String){
+        Log.e("------","----数据=="+url)
+    }
 }
