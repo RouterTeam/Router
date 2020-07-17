@@ -28,10 +28,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
         return BR.splashViewModel
     }
 
-//    override fun onBindViewModelFactory(): SplashViewModelFactory {
-//        return SplashViewModelFactory.getInstance(application)
-//    }
-
     /**
      * 获取布局
      */
@@ -49,8 +45,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
             PermissionsManager.requestPermission(
                 it, object : Callback<Int>() {
                     override fun call(type: Any?) {
-                        if (type is Int && type == 4){}
-//                            iv_ad_cover?.postDelayed({ finish() }, 3500)
+                        if (type is Int && type == 4)
+                            iv_ad_cover?.postDelayed({ finish() }, 3500)
                     }
                 }, Manifest.permission.WRITE_EXTERNAL_STORAGE,
                  Manifest.permission.READ_EXTERNAL_STORAGE,

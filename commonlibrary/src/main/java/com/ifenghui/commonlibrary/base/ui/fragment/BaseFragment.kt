@@ -37,6 +37,7 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseLa
             mBinding?.setVariable(onBindVariableId(), mViewModel)
             //声明周期的观察者类
             lifecycle.addObserver(mViewModel ?: createViewModel())
+            mBinding?.lifecycleOwner=this
         } catch (e: Exception) {
         } catch (e: Error) {
         }
@@ -91,6 +92,7 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseLa
      */
     override fun onDestroy() {
         super.onDestroy()
+        mViewModel?.let { lifecycle?.removeObserver(it) }
         mBinding?.unbind()
         mViewModel?.onCleared()
     }

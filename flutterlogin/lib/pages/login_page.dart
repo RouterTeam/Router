@@ -13,15 +13,8 @@ class LoginPage extends StatelessWidget {
         home: Scaffold(
           resizeToAvoidBottomPadding: false,
           body:  LoginView(),
-//          appBar: AppBar(
-//            centerTitle:true,
-//            title: Text('登录'),
-//            backgroundColor: Colors.white,
-//          ),
         ));
   }
-
-  void _pushSaved() {}
 }
 
 class LoginView extends StatefulWidget {

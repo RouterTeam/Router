@@ -12,7 +12,6 @@ import com.ifenghui.home.mvvm.model.HomeModel
 class HomeViewModel(@NonNull application: Application, model: HomeModel) :
     BaseViewModel<HomeModel>(application, model) {
     var list: ObservableArrayList<Any> = ObservableArrayList()
-
     /**
      * 获取首页数据
      */

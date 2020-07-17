@@ -1,5 +1,6 @@
 package com.ifenghui.imageloaderlibrary;
 
+import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
@@ -7,6 +8,7 @@ import androidx.databinding.BindingAdapter;
 public class ImageBindingAdapter {
     @BindingAdapter("imageUrl")
     public static void bindImageUrl(ImageView view, String imageUrl){
+        Log.e("-----","ddddddd"+imageUrl+"----"+imageUrl);
         if (imageUrl==null)return;
         GlideImageLoader.getInstance().displayImage(view,imageUrl,view,20,null,null);
     }
@@ -15,6 +17,7 @@ public class ImageBindingAdapter {
     public static void bindDefaultImageUrl(ImageView view, String imageDefaultUrl){
         GlideImageLoader.getInstance().displayImage(view,imageDefaultUrl,view,0,null,null);
     }
+
 
     @BindingAdapter("imageCircleUrl")
     public static void bindCircleImageUrl(ImageView view, Integer imageCircleUrl){

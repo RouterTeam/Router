@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutterlogin/constant/constant.dart';
+import 'package:flutterlogin/widgets/EditTextFieldWidget.dart';
+
+import '../router.dart';
 
 class PasswordLoginPage extends StatelessWidget {
   @override
@@ -9,99 +13,383 @@ class PasswordLoginPage extends StatelessWidget {
         theme: ThemeData(primaryColor: Colors.white),
         home: WillPopScope(
             child: Scaffold(
-          resizeToAvoidBottomPadding: false,
-          body: Text("ddddd"),
-          appBar: AppBar(
-            centerTitle: true,
-            title: Text('登录'),
-            backgroundColor: Colors.white,
-          ),
-        )));
-//        home: Scaffold(
-//          resizeToAvoidBottomPadding: false,
-//          body:  Text("ddddd"),
-//          appBar: AppBar(
-//            centerTitle:true,
-//            title: Text('登录'),
-//            backgroundColor: Colors.white,
-//          ),
-//        ));
+                appBar: AppBar(
+                  centerTitle: true,
+                  title: Text('登录'),
+                  backgroundColor: Colors.white,
+                  leading: IconButton(
+                    icon: Icon(Icons.chevron_left),
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ),
+                resizeToAvoidBottomPadding: false,
+                body: PassWordView())));
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
 
-  final String title;
-
+class PassWordView extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<StatefulWidget> createState() {
+    return _PasswordView();
+  }
 }
-
-class _MyHomePageState extends State<MyHomePage> {
+class _PasswordView extends State<PassWordView> {
+  String hintPhone = '手机号';
+  String hintCode = '请输入验证码';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: RaisedButton(
-            child: Text('打开第二页'),
-            onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => SecondPage()),
-                )),
+      body: Container(
+          color: Colors.white,
+          padding: EdgeInsets.fromLTRB(40.0, 60.0, 40.0, 30.0),
+
+          child: SafeArea(
+            child: Stack(
+              children: <Widget>[
+                Image.asset(Constant.ASSETS_IMG + 'logoin_close.png',
+                    width: 15, height: 15),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      width: 10,
+                      height: 100,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          height: 25,
+                          child: Text(
+                            "登录/注册",
+                            textScaleFactor: 1.0,
+                            textAlign: TextAlign.justify,
+                            style: TextStyle(
+                                color: const Color(0xff323232), //字体颜色
+                                fontSize: 25, //字体大小
+                                height: 1),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 8,
+                          height: 20,
+                        ),
+                        Container(
+                          height: 13,
+                          child: Text("注册领取免费优惠券",
+                              textScaleFactor: 1.0,
+                              textAlign: TextAlign.justify,
+                              style: TextStyle(
+                                  color: const Color(0xffea4c44), //字体颜色
+                                  fontSize: 13, //字体大小
+                                  height: 1)),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 10,
+                      height: 55,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          height: 50,
+                          alignment: AlignmentDirectional.center,
+                          child: Text("+86",
+                              textScaleFactor: 1.0,
+                              textAlign: TextAlign.justify,
+                              style: TextStyle(
+                                  color: const Color(0xff323232), //字体颜色
+                                  fontSize: 16, //字体大小
+                                  height: 1)),
+                        ),
+                        SizedBox(
+                          width: 5,
+                          height: 50,
+                        ),
+                        Image.asset(Constant.ASSETS_IMG + 'login_arrow.png',
+                            width: 5, height: 5),
+                        SizedBox(
+                          width: 10,
+                          height: 50,
+                        ),
+                        SizedBox(
+                          //垂直分割线
+                          width: 1,
+                          height: 20,
+                          child: DecoratedBox(
+                            decoration:
+                            BoxDecoration(color: const Color(0xff323232)),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                          height: 50,
+                        ),
+                        EditTextFieldWidget(
+                          margin: EdgeInsets.all(0),
+                          hintText: hintPhone,
+                          onTab: () {
+                          },
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      //水平分割线
+                        height: 10.0,
+                        indent: 0.0,
+                        color: const Color(0xffc4c4c4)),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        EditTextFieldWidget(
+                          margin: EdgeInsets.all(0),
+                          hintText: hintCode,
+                          onTab: () {},
+                        ),
+                        Container(
+                          height: 30,
+                          width: 95,
+                          alignment: AlignmentDirectional.center,
+                          decoration: BoxDecoration(
+
+                            ///圆角
+                              borderRadius: BorderRadius.circular(7),
+
+                              ///边框颜色、宽
+                              border: Border.all(
+                                  color: const Color(0xffea4c44), width: 1)),
+                          child: Text("发送验证码",
+                              textScaleFactor: 1.0,
+                              textAlign: TextAlign.justify,
+                              style: TextStyle(
+                                  color: const Color(0xffea4c44), //字体颜色
+                                  fontSize: 14, //字体大小
+                                  height: 1)),
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      //水平分割线
+                        height: 0.0,
+                        indent: 0.0,
+                        color: const Color(0xffc4c4c4)),
+                    SizedBox(
+                      width: 10,
+                      height: 35,
+                    ),
+                    Container(
+                      height: 40,
+                      width: MediaQuery.of(context).size.width,
+                      alignment: AlignmentDirectional.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7),
+
+                        ///圆角
+                        color: const Color(0xffea4c44),
+                      ),
+                      child: Text("确认",
+                          textScaleFactor: 1.0,
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                              color: const Color(0xffffffff), //字体颜色
+                              fontSize: 14, //字体大小
+                              height: 1)),
+                    ),
+                    GestureDetector(
+                      child: Text(
+                        "使用密码登录",
+                        textAlign: TextAlign.end,
+                        style: TextStyle(
+                            fontSize: 13,
+                            height: 3,
+                            color: const Color(0xff5a7cab)),
+                      ),
+                      onTap: (){
+                        Router.pushNoParams(context, Router.passWordLoginPage);
+                      },
+                    )
+
+                  ],
+                ),
+                Positioned(
+                  bottom: 0,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width - 80,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: SizedBox(
+                                width: 80,
+                                child: Divider(
+                                  //水平分割线
+                                    height: 0.0,
+                                    indent: 0.0,
+                                    color: const Color(0xffc4c4c4)),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                              height: 1,
+                            ),
+                            Text(
+                              "第三方账号登录",
+                              style: TextStyle(
+                                  color: const Color(0xffa9a9a9), fontSize: 13),
+                            ),
+                            SizedBox(
+                              width: 20,
+                              height: 1,
+                            ),
+                            Expanded(
+                              child: SizedBox(
+                                width: 80,
+                                child: Divider(
+                                  //水平分割线
+                                    height: 0.0,
+                                    indent: 0.0,
+                                    color: const Color(0xffc4c4c4)),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                              height: 120,
+                              width: 70,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Image.asset(
+                                    Constant.ASSETS_IMG + 'huawei_login.png',
+                                    width: 40,
+                                    height: 40,
+                                  ),
+                                  Text(
+                                    "华为",
+                                    style: TextStyle(
+                                        color: const Color(0xff909090),
+                                        fontSize: 13),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: 120,
+                              width: 70,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Image.asset(
+                                    Constant.ASSETS_IMG + 'login_wechat.png',
+                                    width: 40,
+                                    height: 40,
+                                  ),
+                                  Text(
+                                    "微信",
+                                    style: TextStyle(
+                                        color: const Color(0xff909090),
+                                        fontSize: 13),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: 120,
+                              width: 70,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Image.asset(
+                                    Constant.ASSETS_IMG + 'login_weibo.png',
+                                    width: 40,
+                                    height: 40,
+                                  ),
+                                  Text(
+                                    "微博",
+                                    style: TextStyle(
+                                        color: const Color(0xff909090),
+                                        fontSize: 13),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: 120,
+                              width: 70,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Image.asset(
+                                    Constant.ASSETS_IMG + 'login_qq.png',
+                                    width: 40,
+                                    height: 40,
+                                  ),
+                                  Text(
+                                    "QQ",
+                                    style: TextStyle(
+                                        color: const Color(0xff909090),
+                                        fontSize: 13),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Image.asset(
+                              Constant.ASSETS_IMG + 'icon_selected1.png',
+                              alignment: Alignment.centerLeft,
+                              width: 20,
+                              height: 16,
+                            ),
+                            RichText(
+                              text: TextSpan(
+                                  text: " 登录即表示同意 ",
+                                  style: TextStyle(
+                                      fontSize: 13, color: Color(0xff999999)),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text: "《用户协议》",
+                                      style: TextStyle(color: Color(0xff5a7cab)),
+                                    ),
+                                    TextSpan(
+                                      text: "《隐私政策》",
+                                      style: TextStyle(color: Color(0xff5a7cab)),
+                                    )
+                                  ]),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
       ),
     );
   }
-}
-
-class SecondPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () => _showMessage(context, "信息", "返回键被点击，将要返回第一页"),
-      child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.chevron_left),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          title: Text('第二页'),
-        ),
-        body: Center(
-          child: Text('这是第二页'),
-        ),
-      ),
-    );
-  }
-}
-
-Future<void> _showMessage(BuildContext context, String title, String message) {
-  return showDialog<void>(
-    context: context,
-
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text(title),
-        content: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Text(message),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          FlatButton(
-            child: Text('OK'),
-            onPressed: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
 }
