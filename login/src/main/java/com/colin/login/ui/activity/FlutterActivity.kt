@@ -1,14 +1,16 @@
 package com.colin.login.ui.activity
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.colin.login.R
+import com.colin.login.channel.MethodChannelPlugin
 import com.ifenghui.commonlibrary.base.ui.activity.BaseLazyActivity
 import io.flutter.facade.Flutter
 import io.flutter.view.FlutterView
+
+
 @Suppress("DEPRECATION")
 class FlutterActivity : BaseLazyActivity() {
     private var flutterView: FlutterView? = null
@@ -26,7 +28,6 @@ class FlutterActivity : BaseLazyActivity() {
         return R.layout.activity_login
     }
 
-    @SuppressLint("ResourceAsColor")
     private fun addFlutterView(flag: String?) {
         //flag是在flutter代码中定义，用来确定显示哪个flutter view
         flutterView = Flutter.createView(this, lifecycle, flag)
@@ -34,6 +35,7 @@ class FlutterActivity : BaseLazyActivity() {
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
         )
+        MethodChannelPlugin.registerWith(flutterView)
         addContentView(flutterView, frameLayout)
     }
 
@@ -59,4 +61,5 @@ class FlutterActivity : BaseLazyActivity() {
         else
             super.onBackPressed()
     }
+
 }
