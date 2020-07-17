@@ -38,6 +38,7 @@
 
     <!-- 主页面样式 -->
     <style name="MainStyle" parent="AppTheme">
+        <item name="android:windowAnimationStyle">@style/AnimFadeNone</item>
         <item name="android:windowBackground">@drawable/shape_home_bg</item>
     </style>
 

@@ -1,10 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutterlogin/pages/passwordlogin_page.dart';
+import 'package:flutterlogin/pages/forget_page.dart';
+import 'package:flutterlogin/pages/password_page.dart';
 class Router{
   static const homePage = 'app://';
-  static const passWordLoginPage = 'app://PasswordLoginPage';
+  static const passwordPage = 'app://PasswordPage';
+  static const forgetPage = 'app://ForgetPage';
 
 
   Widget _getPage(String url, dynamic params) {
@@ -12,8 +14,10 @@ class Router{
 //      return WebViewPage(url, params: params);
     }else {
       switch (url) {
-        case passWordLoginPage:
-          return PasswordLoginPage();
+        case passwordPage:
+          return PasswordPage();
+        case forgetPage:
+          return ForgetPage();
       }
     }
     return null;

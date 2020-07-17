@@ -2,21 +2,24 @@ package com.colin.login.ui.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.colin.login.R
 import com.ifenghui.commonlibrary.base.ui.activity.BaseLazyActivity
 import io.flutter.facade.Flutter
 import io.flutter.view.FlutterView
-
+@Suppress("DEPRECATION")
 class FlutterActivity : BaseLazyActivity() {
     private var flutterView: FlutterView? = null
     override fun onCreateDelay(bundle: Bundle?) {
-
+        showLoadingTipsView()
         val flag = intent.getStringExtra("flag")
         changeTitle(flag)
         addFlutterView(flag)
-
+        Handler().postDelayed({
+            hideAllTipsView()
+        },800)
     }
 
     override fun onBindLayout(): Int {

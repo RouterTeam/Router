@@ -13,7 +13,7 @@ class LoginActivity : BaseLazyActivity() {
     }
 
     override fun enableToolbar(): Boolean {
-        return false
+        return true
     }
 
     override fun enableTopNav(): Boolean {

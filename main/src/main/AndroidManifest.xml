@@ -1,15 +1,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ifenghui.main">
 
     <application
         android:allowBackup="true"
+        tools:replace="android:allowBackup"
+        android:resizeableActivity="true"
+        android:supportsRtl="true"
+        android:largeHeap="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.MainActivity2"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="sensorPortrait"
-            android:theme="@style/MainStyle">
+            android:alwaysRetainTaskState="true"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/TransparenceTheme">
+
+        </activity>
+        <activity android:name=".ui.StartTranceActivity"
+            android:theme="@style/MainStyle"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="sensorPortrait"
+            android:alwaysRetainTaskState="true"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

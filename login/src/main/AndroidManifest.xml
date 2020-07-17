@@ -4,11 +4,11 @@
     <application
         android:allowBackup="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ui.activity.LoginActivity"
-            android:theme="@style/TransparenceTheme" />
+        <activity android:name=".ui.activity.LoginActivity" />
         <activity
             android:name=".ui.activity.FlutterActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensorPortrait"
             android:theme="@style/TransparenceTheme" />
     </application>
 </manifest>

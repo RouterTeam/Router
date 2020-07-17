@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutterlogin/constant/constant.dart';
 import 'package:flutterlogin/router.dart';
 import 'package:flutterlogin/widgets/EditTextFieldWidget.dart';
@@ -12,7 +13,7 @@ class LoginPage extends StatelessWidget {
         theme: ThemeData(primaryColor: Colors.white),
         home: Scaffold(
           resizeToAvoidBottomPadding: false,
-          body:  LoginView(),
+          body: LoginView(),
         ));
   }
 }
@@ -35,12 +36,16 @@ class _LoginView extends State<LoginView> {
       body: Container(
           color: Colors.white,
           padding: EdgeInsets.fromLTRB(40.0, 60.0, 40.0, 30.0),
-
           child: SafeArea(
             child: Stack(
               children: <Widget>[
-                Image.asset(Constant.ASSETS_IMG + 'logoin_close.png',
-                    width: 15, height: 15),
+                GestureDetector(
+                  child: Image.asset(Constant.ASSETS_IMG + 'logoin_close.png',
+                      width: 15, height: 15),
+                  onTap: () {
+                    SystemNavigator.pop();
+                  },
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -116,7 +121,7 @@ class _LoginView extends State<LoginView> {
                           height: 20,
                           child: DecoratedBox(
                             decoration:
-                            BoxDecoration(color: const Color(0xff323232)),
+                                BoxDecoration(color: const Color(0xff323232)),
                           ),
                         ),
                         SizedBox(
@@ -126,13 +131,12 @@ class _LoginView extends State<LoginView> {
                         EditTextFieldWidget(
                           margin: EdgeInsets.all(0),
                           hintText: hintPhone,
-                          onTab: () {
-                          },
+                          onTab: () {},
                         ),
                       ],
                     ),
                     Divider(
-                      //水平分割线
+                        //水平分割线
                         height: 10.0,
                         indent: 0.0,
                         color: const Color(0xffc4c4c4)),
@@ -151,7 +155,7 @@ class _LoginView extends State<LoginView> {
                           alignment: AlignmentDirectional.center,
                           decoration: BoxDecoration(
 
-                            ///圆角
+                              ///圆角
                               borderRadius: BorderRadius.circular(7),
 
                               ///边框颜色、宽
@@ -168,7 +172,7 @@ class _LoginView extends State<LoginView> {
                       ],
                     ),
                     Divider(
-                      //水平分割线
+                        //水平分割线
                         height: 0.0,
                         indent: 0.0,
                         color: const Color(0xffc4c4c4)),
@@ -203,11 +207,10 @@ class _LoginView extends State<LoginView> {
                             height: 3,
                             color: const Color(0xff5a7cab)),
                       ),
-                      onTap: (){
-                        Router.pushNoParams(context, Router.passWordLoginPage);
+                      onTap: () {
+                        Router.pushNoParams(context, Router.passwordPage);
                       },
                     )
-
                   ],
                 ),
                 Positioned(
@@ -225,7 +228,7 @@ class _LoginView extends State<LoginView> {
                               child: SizedBox(
                                 width: 80,
                                 child: Divider(
-                                  //水平分割线
+                                    //水平分割线
                                     height: 0.0,
                                     indent: 0.0,
                                     color: const Color(0xffc4c4c4)),
@@ -248,7 +251,7 @@ class _LoginView extends State<LoginView> {
                               child: SizedBox(
                                 width: 80,
                                 child: Divider(
-                                  //水平分割线
+                                    //水平分割线
                                     height: 0.0,
                                     indent: 0.0,
                                     color: const Color(0xffc4c4c4)),
@@ -264,7 +267,8 @@ class _LoginView extends State<LoginView> {
                               height: 120,
                               width: 70,
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   Image.asset(
@@ -285,7 +289,8 @@ class _LoginView extends State<LoginView> {
                               height: 120,
                               width: 70,
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   Image.asset(
@@ -306,7 +311,8 @@ class _LoginView extends State<LoginView> {
                               height: 120,
                               width: 70,
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   Image.asset(
@@ -327,7 +333,8 @@ class _LoginView extends State<LoginView> {
                               height: 120,
                               width: 70,
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   Image.asset(
@@ -364,11 +371,13 @@ class _LoginView extends State<LoginView> {
                                   children: <TextSpan>[
                                     TextSpan(
                                       text: "《用户协议》",
-                                      style: TextStyle(color: Color(0xff5a7cab)),
+                                      style:
+                                          TextStyle(color: Color(0xff5a7cab)),
                                     ),
                                     TextSpan(
                                       text: "《隐私政策》",
-                                      style: TextStyle(color: Color(0xff5a7cab)),
+                                      style:
+                                          TextStyle(color: Color(0xff5a7cab)),
                                     )
                                   ]),
                             )
@@ -380,8 +389,7 @@ class _LoginView extends State<LoginView> {
                 )
               ],
             ),
-          )
-      ),
+          )),
     );
   }
 }
