@@ -134,7 +134,6 @@ dependencies {
     implementation project(path: ':commonlibrary')
     implementation project(path: ':main')
     implementation project(path: ':login')
-    implementation project(path: ':flutter')
     if (isNeedHomeModule.toBoolean()) {
         implementation project(path: ':home')
     }
