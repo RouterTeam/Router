@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 class EditTextFieldWidget extends StatelessWidget {
   final ValueChanged<String> onSubmitted;
+  final ValueChanged<String> onChange;
   final VoidCallback onTab;
   final String hintText;
   final EdgeInsetsGeometry margin;
 
   EditTextFieldWidget(
-      {Key key, this.hintText, this.onSubmitted, this.onTab, this.margin})
+      {Key key, this.hintText, this.onSubmitted,this.onChange, this.onTab, this.margin})
       : super(key: key);
 
   @override
@@ -24,6 +25,7 @@ class EditTextFieldWidget extends StatelessWidget {
         child: TextField(
           onSubmitted: onSubmitted,
           onTap: onTab,
+          onChanged: onChange,
           cursorColor: Color.fromARGB(255, 192, 191, 191),
           decoration: InputDecoration(
 //            contentPadding: const EdgeInsets.only(top: 8.0),

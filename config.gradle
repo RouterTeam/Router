@@ -19,6 +19,7 @@ ext {
     versions = [
             supportSdkVersion             : '1.0.0',
             appcompatSdkVersion           : '1.1.0',
+            materialSdkVersion            : '1.1.0',
             recyclerviewSdkVersion        : '1.1.0',
             dagger2SdkVersion             : "2.6",
             rxlifecycleSdkVersion         : "0.6.1",
@@ -36,14 +37,14 @@ ext {
             rxjavaSdkVersion              : '2.2.19',
             gsonSdkVersion                : '2.9.0',
             retrofitSdkVersion            : '2.9.0',
-            logginginterceptorSdkVersion  : '4.7.2',
+            logginginterceptorSdkVersion  : '4.8.0',
             rxbindingSdkVersion           : '2.2.0',
             jacksonSdkVersion             : '2.9.0',
             arouterSdkVersion             : "1.4.1",
             arouterCompilderSdkVersion    : "1.2.2",
             lottieSdkVersion              : '3.4.1',
             mmkvSdkVersion                : '1.1.2',
-            rxpermissionsSdkVersion       : '0.9.5@aar',
+            rxpermissionsSdkVersion       : '0.9.5',
             skinSdkVersion                : '4.0.4',
 
     ]
@@ -51,7 +52,7 @@ ext {
 
     dependencies = [
             "appcompat-v7"                  : "androidx.appcompat:appcompat:${versions["appcompatSdkVersion"]}",
-            "material"                      : "com.google.android.material:material:${versions["supportSdkVersion"]}",
+            "material"                      : "com.google.android.material:material:${versions["materialSdkVersion"]}",
             "support-v4"                    : "androidx.legacy:legacy-support-v4:${versions["supportSdkVersion"]}",
             "recyclerview"                  : "androidx.recyclerview:recyclerview:${versions["recyclerviewSdkVersion"]}",
             "cardview"                      : "androidx.cardview:cardview:${versions["supportSdkVersion"]}",

@@ -1,15 +1,12 @@
 package com.ifenghui.commonlibrary.application;
 
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
 
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
 import com.colin.skinlibrary.SkinManager;
 import com.ifenghui.apilibrary.api.entity.User;
-import com.ifenghui.commonlibrary.utils.PhoneManager;
 import com.ifenghui.commonlibrary.utils.PreferencesManager;
 import com.ifenghui.commonlibrary.utils.RouterManger;
 
