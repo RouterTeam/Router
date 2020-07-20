@@ -32,12 +32,25 @@ public class MethodChannelPlugin implements MethodChannel.MethodCallHandler {
     }
     @Override
     public void onMethodCall(MethodCall methodCall, MethodChannel.Result result) {
+        Object arguments = methodCall.arguments;
         switch (methodCall.method) {
-            case "send"://返回的方法名
+            case "onBackProgress"://返回的方法名
                 //给flutter端的返回值
                 result.success("MethodChannelPlugin收到：" + methodCall.arguments);
                 if (activity instanceof FlutterActivity) {
                     activity.onBackPressed();
+                }
+                break;
+            case "onToast":
+                Toast.makeText(activity,(String)methodCall.arguments,Toast.LENGTH_LONG).show();
+                break;
+            case "loadingTips":
+                if (activity instanceof FlutterActivity) {
+                    if ((Boolean) arguments){
+                        ((FlutterActivity) activity).showLoadingTipsView();
+                    }else {
+                        ((FlutterActivity) activity).hideAllTipsView();
+                    }
                 }
                 break;
             default:

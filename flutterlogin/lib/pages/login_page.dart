@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterlogin/constant/constant.dart';
+import 'package:flutterlogin/http/http_api.dart';
 import 'package:flutterlogin/router.dart';
+import 'package:flutterlogin/widgets/CountDownWidget.dart';
 import 'package:flutterlogin/widgets/EditTextFieldWidget.dart';
 
 class LoginPage extends StatelessWidget {
@@ -55,9 +57,8 @@ class _LoginView extends State<LoginView> {
   String _resultContent = "";
 
   //flutter调用native的相应方法
-  void _sendToNative() {
-    Future<String> future =
-        _methodChannel.invokeMethod("send", "_controller.text");
+  void _sendToNative(String method, String tips) {
+    Future<String> future = _methodChannel.invokeMethod(method, tips);
     future.then((message) {
       setState(() {
         //message是native返回的数据
@@ -80,8 +81,7 @@ class _LoginView extends State<LoginView> {
                   child: Image.asset(Constant.ASSETS_IMG + 'logoin_close.png',
                       width: 15, height: 15),
                   onTap: () {
-//                    SystemNavigator.pop();
-                    _sendToNative();
+                    _sendToNative("onBackProgress", "");
                   },
                 ),
                 Column(
@@ -191,26 +191,16 @@ class _LoginView extends State<LoginView> {
                             hintCode = str;
                           },
                         ),
-                        Container(
-                          height: 30,
-                          width: 95,
-                          alignment: AlignmentDirectional.center,
-                          decoration: BoxDecoration(
-
-                              ///圆角
-                              borderRadius: BorderRadius.circular(7),
-
-                              ///边框颜色、宽
-                              border: Border.all(
-                                  color: const Color(0xffea4c44), width: 1)),
-                          child: Text("发送验证码",
-                              textScaleFactor: 1.0,
-                              textAlign: TextAlign.justify,
-                              style: TextStyle(
-                                  color: const Color(0xffea4c44), //字体颜色
-                                  fontSize: 14, //字体大小
-                                  height: 1)),
-                        ),
+                        CountDownWidget(chargeCodePhone: () {
+                          return hintPhone.isEmpty;
+                        }, onCountDownFinishCallBack: (bool isFinish) {
+                          if (isFinish) {
+                          } else {
+                            if (hintPhone.isEmpty) {
+                              _sendToNative("onToast", "请输入手机号");
+                            }
+                          }
+                        }),
                       ],
                     ),
                     Divider(
@@ -242,18 +232,16 @@ class _LoginView extends State<LoginView> {
                                 height: 1)),
                       ),
                       onTap: () {
-//                        if (hintPhone.isEmpty) {
-//                          Fluttertoast.showToast(
-//                              msg: "网络连接错误",
-//                              toastLength: Toast.LENGTH_SHORT,
-//                              gravity: ToastGravity.BOTTOM,
-//                              timeInSecForIos: 1,
-//                              backgroundColor:Color(0xff9E9E9E) ,
-//                              textColor: Colors.white);
+                        if (hintPhone.isEmpty) {
+                          _sendToNative("onToast", "请输入手机号");
+                          return;
+                        }
 
-//                          return;
-//                        }
-                        print(hintPhone);
+                        if (hintCode.isEmpty) {
+                          _sendToNative("onToast", "请输入验证码");
+                          return;
+                        }
+                        _loginSubmit(hintPhone);
                       },
                     ),
                     GestureDetector(
@@ -450,18 +438,13 @@ class _LoginView extends State<LoginView> {
           )),
     );
   }
-}
 
-class CountDownWidget extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _CountDownWidget();
-  }
-}
+  _loginSubmit(String phone) {
+    _sendToNative("onToast", "请输入验证码");
+    API.login(phone,(String data) {
 
-class _CountDownWidget extends State<CountDownWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return null;
+    }, (String error) {
+      print('error==='+error);
+    });
   }
 }
