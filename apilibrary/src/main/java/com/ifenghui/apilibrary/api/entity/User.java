@@ -6,5 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class User {
     public int id;
     public String nick;
+    public String phone;
     public String token;
+    public String avatarUrl;
 }

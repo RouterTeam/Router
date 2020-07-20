@@ -13,7 +13,6 @@ public class MyApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         mCurrentUser=new User();
-        mCurrentUser.nick="Colin";
         if (PhoneManager.isMainProcess(this)){
             getAppInfo();
         }

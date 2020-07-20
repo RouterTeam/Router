@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutterlogin/bean/UserResult.dart';
 import 'package:flutterlogin/constant/constant.dart';
 import 'package:flutterlogin/http/http_api.dart';
 import 'package:flutterlogin/router.dart';
@@ -31,7 +34,7 @@ class _LoginView extends State<LoginView> {
   String hintPhone = '';
   String hintCode = '';
   MethodChannel _methodChannel = MethodChannel("MethodChannelPlugin");
-
+  bool isLoging=false;
   @override
   void initState() {
     // ignore: missing_return
@@ -57,7 +60,7 @@ class _LoginView extends State<LoginView> {
   String _resultContent = "";
 
   //flutter调用native的相应方法
-  void _sendToNative(String method, String tips) {
+  void _sendToNative(String method, [ dynamic tips ]) {
     Future<String> future = _methodChannel.invokeMethod(method, tips);
     future.then((message) {
       setState(() {
@@ -232,6 +235,7 @@ class _LoginView extends State<LoginView> {
                                 height: 1)),
                       ),
                       onTap: () {
+                        if(isLoging) return;
                         if (hintPhone.isEmpty) {
                           _sendToNative("onToast", "请输入手机号");
                           return;
@@ -440,11 +444,20 @@ class _LoginView extends State<LoginView> {
   }
 
   _loginSubmit(String phone) {
-    _sendToNative("onToast", "请输入验证码");
+    isLoging=true;
+    _sendToNative("loadingTips", 'true');
     API.login(phone,(String data) {
-
+      /*将字符串转成json  返回的是键值对的形式*/
+      Map<String, dynamic> news = jsonDecode(data);
+      var userResult = UserResult.fromJson(news);
+      print('result='+userResult.msg);
+      FocusScope.of(context).requestFocus(FocusNode());
+      _sendToNative("onLoginSuccess", userResult.user.toJson());
+      isLoging=false;
     }, (String error) {
       print('error==='+error);
+      _sendToNative("loadingTips", 'false');
+      isLoging=false;
     });
   }
 }

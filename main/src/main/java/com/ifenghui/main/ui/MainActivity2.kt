@@ -6,7 +6,6 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.ifenghui.commonlibrary.application.BaseApplication
 import com.ifenghui.commonlibrary.application.BaseApplication.appVersion
 import com.ifenghui.commonlibrary.application.BaseApplication.channelName
 import com.ifenghui.commonlibrary.application.Constance.Companion.HOME_FRAGMENT_FLAG
@@ -16,6 +15,7 @@ import com.ifenghui.commonlibrary.application.Constance.Companion.SHELF_FRAGMENT
 import com.ifenghui.commonlibrary.base.ui.PagerAdapter
 import com.ifenghui.commonlibrary.base.ui.activity.BaseLazyActivity
 import com.ifenghui.commonlibrary.provider.ProviderHelper
+import com.ifenghui.commonlibrary.utils.SoftInputHelper
 import com.ifenghui.main.R
 import kotlinx.android.synthetic.main.activity_main2.*
 import java.util.*
@@ -80,7 +80,11 @@ class MainActivity2 : BaseLazyActivity() {
             bottom_navigation?.visibility = View.VISIBLE
         }, 2000)
 
-        Toast.makeText(mActivity(),"chanel="+channelName+"--version="+appVersion,Toast.LENGTH_LONG).show()
+        Toast.makeText(
+            mActivity(),
+            "chanel=" + channelName + "--version=" + appVersion,
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     /**
@@ -118,5 +122,13 @@ class MainActivity2 : BaseLazyActivity() {
             return true
         }
         return super.onKeyDown(keyCode, event)
+    }
+
+    /**
+     * 获取焦点
+     */
+    override fun onResume() {
+        super.onResume()
+        SoftInputHelper.hideOrShowKeyboard(mRootView,false,500)
     }
 }

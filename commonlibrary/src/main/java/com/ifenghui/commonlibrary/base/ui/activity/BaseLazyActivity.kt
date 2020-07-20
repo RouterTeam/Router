@@ -212,11 +212,18 @@ abstract class BaseLazyActivity : RxAppCompatActivity(), IBaseView, TipsViewMana
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun <T> onEvent(event: BaseEvent<T>) = try {
-       Log.e("----","mActivity="+mActivity)
+       onEventMain(event)
     } catch (e: Exception) {
     } catch (e: Error) {
     }
 
+
+    /**
+     * 处理 event事件
+     */
+    open fun <T>onEventMain(event: BaseEvent<T>){
+
+    }
     /**
      * 关闭页面
      */

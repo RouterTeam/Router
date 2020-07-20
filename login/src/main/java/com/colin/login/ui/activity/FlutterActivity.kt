@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.colin.login.R
 import com.colin.login.channel.MethodChannelPlugin
 import com.ifenghui.commonlibrary.base.ui.activity.BaseLazyActivity
+import com.ifenghui.commonlibrary.utils.SoftInputHelper
 import io.flutter.facade.Flutter
 import io.flutter.view.FlutterView
 
@@ -60,6 +61,11 @@ class FlutterActivity : BaseLazyActivity() {
             flutterView?.popRoute()
         else
             super.onBackPressed()
+    }
+
+    override fun finish() {
+        SoftInputHelper.hideOrShowKeyboard(mRootView,false,0)
+        super.finish()
     }
 
 }

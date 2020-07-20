@@ -22,5 +22,9 @@ class Constance {
         const val MINE_FRAGMENT_FLAG="mine_fragment_flag"
         const val LOGIN_FRAGMENT_FLAG="login_fragment_flag"
 
+
+
+        //eventbus post标示
+        const val REFRESH_USER_CODE=1000001
     }
 }

@@ -183,9 +183,16 @@ abstract class BaseLazyFragment : Fragment(), IBaseView, TipsViewManagerInterf {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun <T> onEvent(event: BaseEvent<T>) = try {
-        Log.e("----", "mFragment=" + mFragment)
+        onEventMain(event)
     } catch (e: Exception) {
     } catch (e: Error) {
+    }
+
+    /**
+     * 处理 event事件
+     */
+    open fun <T>onEventMain(event: BaseEvent<T>){
+
     }
 
     /**

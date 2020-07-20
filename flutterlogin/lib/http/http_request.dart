@@ -42,8 +42,8 @@ class HttpRequest{
       } else {
         if (successCallback != null) {
 //          var data = json.decode(response.toString()); //对数据进行Json转化
-          successCallback(response.toString());
           print("data = " + response.toString());
+          successCallback(response.toString());
         }
       }
     } catch (exception) {

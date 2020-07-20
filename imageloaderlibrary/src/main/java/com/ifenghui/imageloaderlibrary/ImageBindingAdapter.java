@@ -1,6 +1,5 @@
 package com.ifenghui.imageloaderlibrary;
 
-import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
@@ -8,19 +7,21 @@ import androidx.databinding.BindingAdapter;
 public class ImageBindingAdapter {
     @BindingAdapter("imageUrl")
     public static void bindImageUrl(ImageView view, String imageUrl){
-        Log.e("-----","ddddddd"+imageUrl+"----"+imageUrl);
-        if (imageUrl==null)return;
+        if (view==null)return;
         GlideImageLoader.getInstance().displayImage(view,imageUrl,view,20,null,null);
     }
 
     @BindingAdapter("imageDefaultUrl")
     public static void bindDefaultImageUrl(ImageView view, String imageDefaultUrl){
+        if (view==null)return;
         GlideImageLoader.getInstance().displayImage(view,imageDefaultUrl,view,0,null,null);
     }
 
 
     @BindingAdapter("imageCircleUrl")
-    public static void bindCircleImageUrl(ImageView view, Integer imageCircleUrl){
-        GlideImageLoader.getInstance().displayCircleImage(view,imageCircleUrl,view,null,null);
+    public static void bindCircleImageUrl(ImageView view, Object imageCircleUrl){
+        int defaultSrc=R.mipmap.header;
+        if (view==null)return;
+        GlideImageLoader.getInstance().displayCircleImage(view,imageCircleUrl==null ? defaultSrc : imageCircleUrl,view,null,null);
     }
 }
