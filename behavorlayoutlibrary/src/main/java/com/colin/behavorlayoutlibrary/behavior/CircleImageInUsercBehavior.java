@@ -12,8 +12,6 @@ import androidx.core.view.ViewCompat;
 import com.colin.behavorlayoutlibrary.widget.DisInterceptNestedScrollView;
 
 /**
- * @author stefan 邮箱：648701906@qq.com
- *         <p></p>
  * @describe 在app中，这个类用于头像的行为 具体使用在Strings.xml中的引用
  */
 public class CircleImageInUsercBehavior extends CoordinatorLayout.Behavior<ImageView> {

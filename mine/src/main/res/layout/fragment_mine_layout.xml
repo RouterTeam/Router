@@ -38,7 +38,8 @@
                     android:background="@color/transparent"
                     android:clipChildren="false"
                     android:clipToPadding="false"
-                    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+                    app:contentScrim="?attr/colorPrimary"
+                    app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed|snap">
 
                     <com.colin.behavorlayoutlibrary.widget.DisInterceptNestedScrollView
                         android:layout_width="match_parent"
@@ -53,8 +54,7 @@
                             android:id="@+id/user_head_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:tag="overScroll">
+                            android:orientation="vertical">
 
                             <com.colin.mine.widget.Gradient
                                 android:id="@+id/gradient"
@@ -93,9 +93,9 @@
                                 android:layout_marginLeft="@dimen/dp_15"
                                 android:layout_marginTop="@dimen/dp_30"
                                 android:layout_marginRight="@dimen/dp_15"
+                                android:paddingBottom="@dimen/dp_2"
                                 app:cardCornerRadius="@dimen/dp_5"
                                 app:cardElevation="@dimen/dp_1"
-                                android:paddingBottom="@dimen/dp_2"
                                 app:cardPreventCornerOverlap="false"
                                 app:cardUseCompatPadding="false"
                                 app:layout_constraintTop_toTopOf="parent">
@@ -104,8 +104,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@color/white"
-                                    android:paddingBottom="@dimen/dp_2"
-                                    android:orientation="vertical">
+                                    android:orientation="vertical"
+                                    android:paddingBottom="@dimen/dp_2">
 
 
                                     <TextView
@@ -257,7 +257,6 @@
             <!--            app:layout_anchor="@+id/middle_layout"-->
             <!--            app:layout_anchorGravity="top"-->
             <!--            app:layout_behavior="@string/appbar_circleimageview_behavior" />-->
-
             <com.colin.behavorlayoutlibrary.widget.DisInterceptNestedScrollView
                 android:id="@+id/scroll"
                 android:layout_width="match_parent"
@@ -526,7 +525,6 @@
                                 app:layout_constraintBottom_toBottomOf="@id/tv_login"
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/tv_login" />
-
 
 
                         </androidx.constraintlayout.widget.ConstraintLayout>

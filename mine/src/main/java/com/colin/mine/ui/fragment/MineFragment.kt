@@ -58,7 +58,6 @@ class MineFragment :
      * 初始化数据
      */
     override fun onCreateDelay(bundle: Bundle?) {
-//        TextUtils
         mViewModel?.getMineData(null)
         setNightText(!SkinManager.checkIsDefaultMode())
         val list2: MutableList<Int> = ArrayList()
