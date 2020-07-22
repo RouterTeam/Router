@@ -273,7 +273,7 @@ class _LoginView extends State<LoginView> {
                             color: const Color(0xff5a7cab)),
                       ),
                       onTap: () {
-                        Router.pushAndDisplay(context, Router.passwordPage,hintPhone,(String result){
+                        Router.pushAndResult(context, Router.passwordPage,hintPhone,(String result){
                           _sendToNative("onToast", result);
                         });
                       },
