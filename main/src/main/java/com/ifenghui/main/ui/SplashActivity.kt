@@ -39,7 +39,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
      * 初始化
      */
     override fun onCreateDelay(bundle: Bundle?) {
-        super.onCreateDelay(bundle)
         mViewModel?.getSplashData()
         mActivity()?.let {
             PermissionsManager.requestPermission(

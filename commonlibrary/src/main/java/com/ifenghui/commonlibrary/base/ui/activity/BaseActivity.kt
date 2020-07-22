@@ -1,7 +1,7 @@
 @file:Suppress("DEPRECATION")
 
 package com.ifenghui.commonlibrary.base.ui.activity
-import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
@@ -19,7 +19,8 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseLa
     /**
      * 初始化数据
      */
-    override fun onCreateDelay(bundle: Bundle?) {
+    override fun initContentView(mContentView: View?) {
+        super.initContentView(mContentView)
         initViewDataBinding()
         initBaseViewObservable()
     }

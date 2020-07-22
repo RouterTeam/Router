@@ -20,7 +20,15 @@ class RecyclerViewManagerUtils {
          * 设置网格样式
          */
         fun setGridLayoutManager(recyclerView:RecyclerView?,mContext:Context?,spaceCount:Int){
-            val gridLayoutManager = WrapHeightGridLayoutManager(mContext, spaceCount)
+            val gridLayoutManager = object :WrapHeightGridLayoutManager(mContext, spaceCount){
+                override fun canScrollHorizontally(): Boolean {
+                    return false
+                }
+
+                override fun canScrollVertically(): Boolean {
+                    return super.canScrollVertically()
+                }
+            }
             recyclerView?.layoutManager=gridLayoutManager
         }
     }

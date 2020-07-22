@@ -79,16 +79,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
-
     /**
      * 初始化
      */
     override fun onCreateDelay(bundle: Bundle?) {
-        super.onCreateDelay(bundle)
         if (bundle != null) {
             mHomeFragment = supportFragmentManager.getFragment(bundle, "Home")
             mMagazineFragment = supportFragmentManager.getFragment(bundle, "Magazine")
