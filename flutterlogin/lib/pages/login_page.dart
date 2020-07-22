@@ -8,6 +8,7 @@ import 'package:flutterlogin/bean/UserResult.dart';
 import 'package:flutterlogin/constant/constant.dart';
 import 'package:flutterlogin/http/http_api.dart';
 import 'package:flutterlogin/router.dart';
+import 'package:flutterlogin/router.dart' as prefix0;
 import 'package:flutterlogin/widgets/CountDownWidget.dart';
 import 'package:flutterlogin/widgets/EditTextFieldWidget.dart';
 
@@ -272,7 +273,9 @@ class _LoginView extends State<LoginView> {
                             color: const Color(0xff5a7cab)),
                       ),
                       onTap: () {
-                        Router.push(context, Router.passwordPage,hintPhone);
+                        Router.pushAndDisplay(context, Router.passwordPage,hintPhone,(String result){
+                          _sendToNative("onToast", result);
+                        });
                       },
                     )
                   ],

@@ -23,7 +23,7 @@ class PasswordPage extends StatelessWidget {
                   backgroundColor: Colors.white,
                   leading: IconButton(
                     icon: Icon(Icons.chevron_left),
-                    onPressed: () => Navigator.of(context).pop(),
+                    onPressed: () => Navigator.of(context).pop("返回数据"),
                   ),
                 ),
                 resizeToAvoidBottomPadding: false,
