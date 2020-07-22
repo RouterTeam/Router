@@ -1,9 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutterlogin/constant/constant.dart';
 import 'package:flutterlogin/widgets/EditTextFieldWidget.dart';
 
+// ignore: must_be_immutable
 class ForgetPage extends StatelessWidget {
+  String phone;
+
+  ForgetPage(this.phone, {Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,14 +28,18 @@ class ForgetPage extends StatelessWidget {
                   ),
                 ),
                 resizeToAvoidBottomPadding: false,
-                body:ForgetView())));
+                body: ForgetView(phone))));
   }
 }
 
 class ForgetView extends StatefulWidget {
+  String phone = '';
+
+  ForgetView(this.phone);
+
   @override
   State<StatefulWidget> createState() {
-    return _ForgetView();
+    return _ForgetView(phone);
   }
 }
 
@@ -37,6 +47,18 @@ class _ForgetView extends State<ForgetView> {
   String hintPhone = '手机号';
   String hintCode = '请输入验证码';
   String hintPassword = '请输入4~20位密码';
+  String phone = '';
+
+  //1:申请变量
+  var defaultText = new TextEditingController();
+
+  _ForgetView(this.phone);
+
+  @override
+  void initState() {
+    super.initState();
+    defaultText.text = phone;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +67,9 @@ class _ForgetView extends State<ForgetView> {
       body: Container(
           color: Colors.white,
           padding: EdgeInsets.fromLTRB(40.0, 60.0, 40.0, 30.0),
-
           child: SafeArea(
             child: Stack(
               children: <Widget>[
-
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -89,7 +109,7 @@ class _ForgetView extends State<ForgetView> {
                           height: 20,
                           child: DecoratedBox(
                             decoration:
-                            BoxDecoration(color: const Color(0xff323232)),
+                                BoxDecoration(color: const Color(0xff323232)),
                           ),
                         ),
                         SizedBox(
@@ -99,13 +119,15 @@ class _ForgetView extends State<ForgetView> {
                         EditTextFieldWidget(
                           margin: EdgeInsets.all(0),
                           hintText: hintPhone,
-                          onTab: () {
-                          },
+                          defaultText: defaultText,
+                          inputFormatter:[//只允许输入数字
+                            WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),WhitelistingTextInputFormatter.digitsOnly],
+                          onTab: () {},
                         ),
                       ],
                     ),
                     Divider(
-                      //水平分割线
+                        //水平分割线
                         height: 10.0,
                         indent: 0.0,
                         color: const Color(0xffc4c4c4)),
@@ -116,6 +138,8 @@ class _ForgetView extends State<ForgetView> {
                         EditTextFieldWidget(
                           margin: EdgeInsets.all(0),
                           hintText: hintCode,
+                          inputFormatter: [//只允许输入数字
+                            WhitelistingTextInputFormatter.digitsOnly],
                           onTab: () {},
                         ),
                         Container(
@@ -124,7 +148,7 @@ class _ForgetView extends State<ForgetView> {
                           alignment: AlignmentDirectional.center,
                           decoration: BoxDecoration(
 
-                            ///圆角
+                              ///圆角
                               borderRadius: BorderRadius.circular(7),
 
                               ///边框颜色、宽
@@ -141,7 +165,7 @@ class _ForgetView extends State<ForgetView> {
                       ],
                     ),
                     Divider(
-                      //水平分割线
+                        //水平分割线
                         height: 0.0,
                         indent: 0.0,
                         color: const Color(0xffc4c4c4)),
@@ -152,12 +176,14 @@ class _ForgetView extends State<ForgetView> {
                         EditTextFieldWidget(
                           margin: EdgeInsets.all(0),
                           hintText: hintPassword,
+                          inputFormatter: [//只允许输入字母 数字
+                            WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),WhitelistingTextInputFormatter.digitsOnly],
                           onTab: () {},
                         ),
                       ],
                     ),
                     Divider(
-                      //水平分割线
+                        //水平分割线
                         height: 0.0,
                         indent: 0.0,
                         color: const Color(0xffc4c4c4)),
@@ -187,8 +213,7 @@ class _ForgetView extends State<ForgetView> {
                 ),
               ],
             ),
-          )
-      ),
+          )),
     );
   }
 }

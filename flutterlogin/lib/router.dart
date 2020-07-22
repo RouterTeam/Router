@@ -16,9 +16,9 @@ class Router{
     }else {
       switch (url) {
         case passwordPage:
-          return PasswordPage();
+          return PasswordPage(params);
         case forgetPage:
-          return ForgetPage();
+          return ForgetPage(params);
       }
     }
     return null;
@@ -32,8 +32,9 @@ class Router{
   }
 
   Router.push(BuildContext context, String url, dynamic params) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return _getPage(url, params);
-    }));
+//    Navigator.push(context, MaterialPageRoute(builder: (context) {
+//      return _getPage(url, params);
+//    }));
+    Navigator.push(context, SlidePageRouteBuilder(_getPage(url, params)));
   }
 }

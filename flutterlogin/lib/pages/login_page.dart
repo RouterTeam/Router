@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutterlogin/StringUtils.dart';
 import 'package:flutterlogin/bean/UserResult.dart';
 import 'package:flutterlogin/constant/constant.dart';
 import 'package:flutterlogin/http/http_api.dart';
@@ -172,6 +173,7 @@ class _LoginView extends State<LoginView> {
                         EditTextFieldWidget(
                           margin: EdgeInsets.all(0),
                           hintText: '手机号',
+                          inputFormatter: [WhitelistingTextInputFormatter.digitsOnly],
                           onChange: (str) {
                             hintPhone = str;
                           },
@@ -190,6 +192,7 @@ class _LoginView extends State<LoginView> {
                         EditTextFieldWidget(
                           margin: EdgeInsets.all(0),
                           hintText: '请输入验证码',
+                          inputFormatter: [WhitelistingTextInputFormatter.digitsOnly] ,
                           onChange: (str) {
                             hintCode = str;
                           },
@@ -201,6 +204,12 @@ class _LoginView extends State<LoginView> {
                           } else {
                             if (hintPhone.isEmpty) {
                               _sendToNative("onToast", "请输入手机号");
+                           //  Scaffold.of(context).showSnackBar(SnackBar(content:Text('请输入手机号')));//SnackBar方式提示 感觉有点丑
+                              return;
+                            }
+                            if(!StringUtils.checkPhone(hintPhone)){
+                              _sendToNative("onToast", "请输入正确的手机号");
+                              return;
                             }
                           }
                         }),
@@ -241,6 +250,11 @@ class _LoginView extends State<LoginView> {
                           return;
                         }
 
+                        if(!StringUtils.checkPhone(hintPhone)){
+                          _sendToNative("onToast", "请输入正确的手机号");
+                          return;
+                        }
+
                         if (hintCode.isEmpty) {
                           _sendToNative("onToast", "请输入验证码");
                           return;
@@ -258,7 +272,7 @@ class _LoginView extends State<LoginView> {
                             color: const Color(0xff5a7cab)),
                       ),
                       onTap: () {
-                        Router.pushNoParams(context, Router.passwordPage);
+                        Router.push(context, Router.passwordPage,hintPhone);
                       },
                     )
                   ],

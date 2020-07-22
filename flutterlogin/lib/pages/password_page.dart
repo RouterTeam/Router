@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutterlogin/constant/constant.dart';
 import 'package:flutterlogin/widgets/EditTextFieldWidget.dart';
@@ -6,6 +7,8 @@ import 'package:flutterlogin/widgets/EditTextFieldWidget.dart';
 import '../router.dart';
 
 class PasswordPage extends StatelessWidget {
+  String phone='' ;
+  PasswordPage(this.phone,{ Key key}): super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,21 +27,32 @@ class PasswordPage extends StatelessWidget {
                   ),
                 ),
                 resizeToAvoidBottomPadding: false,
-                body: PassWordView())));
+                body: PassWordView(phone))));
   }
 }
 
 class PassWordView extends StatefulWidget {
+  String phone='' ;
+  PassWordView(this.phone,{ Key key}): super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return _PasswordView();
+    return _PasswordView(phone);
   }
 }
 
 class _PasswordView extends State<PassWordView> {
   String hintPhone = '手机号';
   String hintCode = '请输入4～20位密码';
+  String phone='' ;
+  //1:申请变量
+  var defaultText= new TextEditingController();
+  _PasswordView(this.phone);
 
+  @override
+  void initState() {
+    super.initState();
+    defaultText.text=phone;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,6 +111,8 @@ class _PasswordView extends State<PassWordView> {
                         EditTextFieldWidget(
                           margin: EdgeInsets.all(0),
                           hintText: hintPhone,
+                          inputFormatter: [WhitelistingTextInputFormatter.digitsOnly],
+                          defaultText: defaultText,
                           onTab: () {},
                         ),
                       ],
@@ -113,6 +129,8 @@ class _PasswordView extends State<PassWordView> {
                         EditTextFieldWidget(
                           margin: EdgeInsets.all(0),
                           hintText: hintCode,
+                          inputFormatter: [//只允许输入字母 数字
+                            WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),WhitelistingTextInputFormatter.digitsOnly],
                           onTab: () {},
                         ),
                       ],
@@ -154,7 +172,7 @@ class _PasswordView extends State<PassWordView> {
                             color: const Color(0xff5a7cab)),
                       ),
                       onTap: () {
-                        Router.pushNoParams(context, Router.forgetPage);
+                        Router.push(context, Router.forgetPage,phone);
                       },
                     )
                   ],
