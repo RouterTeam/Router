@@ -3,6 +3,7 @@ package com.ifenghui.imageloaderlibrary
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
@@ -18,6 +20,7 @@ import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 import com.ifenghui.imageloaderlibrary.progress.OnProgressListener
 import com.ifenghui.imageloaderlibrary.progress.ProgressManager
+import jp.wasabeef.glide.transformations.BlurTransformation
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 
 /**
@@ -30,13 +33,12 @@ class GlideImageLoader : ImageLoader {
 
     //Glide实现渐入动画效果
     private val crossFade = DrawableTransitionOptions.withCrossFade(500)
-
+    private val bitmapCrossFade=BitmapTransitionOptions.withCrossFade(500)
     private val defaultOptions: RequestOptions = RequestOptions().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).useAnimationPool(true)
     private val centerCropOptions: RequestOptions = RequestOptions().centerCrop().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).useAnimationPool(true)
     private val centerInsideOptions: RequestOptions = RequestOptions().centerInside().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate().useAnimationPool(true)
     private val fitCenterOptions: RequestOptions = RequestOptions().fitCenter().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate().useAnimationPool(true)
     private val circleCropOptions: RequestOptions = RequestOptions().circleCrop().placeholder(R.mipmap.image_loading).error(R.mipmap.image_loading).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate().useAnimationPool(true)
-//    private val circleCropOptions: RequestOptions = RequestOptions().circleCrop().diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate()
 
     /**
      * 单例方式获取
@@ -56,6 +58,27 @@ class GlideImageLoader : ImageLoader {
                 }
             }
             return INSTANCE ?: GlideImageLoader()
+        }
+    }
+
+    /**
+     * 获取glide with
+     */
+    private fun <CONTEXT> getGlideWith(context: CONTEXT):GlideRequests?{
+        return when (context) {
+            is Fragment -> {
+                GlideApp.with(context)
+            }
+            is Activity -> {
+                GlideApp.with(context)
+            }
+            is View -> {
+                GlideApp.with(context)
+            }
+            is Context -> {
+                GlideApp.with(context)
+            }
+            else -> null
         }
     }
 
@@ -83,9 +106,31 @@ class GlideImageLoader : ImageLoader {
     }
 
     /**
+     * 获取GlideRequest
+     */
+    private fun <CONTEXT, RES> getBitmapGlideRequest(context: CONTEXT, url: RES?): GlideRequest<Bitmap>? {
+        var with = when (context) {
+            is Fragment -> {
+                GlideApp.with(context)
+            }
+            is Activity -> {
+                GlideApp.with(context)
+            }
+            is View -> {
+                GlideApp.with(context)
+            }
+            is Context -> {
+                GlideApp.with(context)
+            }
+            else -> null
+        }
+        return with?.asBitmap()?.load(url)?.thumbnail(0.1f)?.transition(bitmapCrossFade)
+    }
+
+    /**
      * 设置展示方式
      */
-    private fun resetDisplay(scaleType: ImageView.ScaleType?, needCircleCrop: Boolean, requestBuilder: GlideRequest<Drawable>?): GlideRequest<Drawable>? {
+    private fun <T>resetDisplay(scaleType: ImageView.ScaleType?, needCircleCrop: Boolean, requestBuilder: GlideRequest<T>?): GlideRequest<T>? {
         val option =
             if (needCircleCrop)
                 circleCropOptions
@@ -104,13 +149,13 @@ class GlideImageLoader : ImageLoader {
                         defaultOptions
                     }
                 }
-        return requestBuilder?.apply(option)
+        return requestBuilder?.apply(option)?.apply(RequestOptions.bitmapTransform(BlurTransformation()))
     }
 
     /**
      * 添加圆角
      */
-    private fun resetCorner(cornerDp: Int, requestBuilder: GlideRequest<Drawable>?): GlideRequest<Drawable>? {
+    private fun <T>resetCorner(cornerDp: Int, requestBuilder: GlideRequest<T>?): GlideRequest<T>? {
         if (cornerDp != 0)//添加圆角
             return requestBuilder?.transform(RoundedCornersTransformation(cornerDp, 0))
         return requestBuilder
@@ -119,28 +164,27 @@ class GlideImageLoader : ImageLoader {
     /**
      * 指定图片大小
      */
-    private fun resetWidthAndHeight(width: Int, height: Int, requestBuilder: GlideRequest<Drawable>?): GlideRequest<Drawable>? {
-//        Log.e("--------","width="+width+"---height="+height)
+    private fun <T>resetWidthAndHeight(width: Int, height: Int, requestBuilder: GlideRequest<T>?): GlideRequest<T>? {
         return requestBuilder?.override(if (width == 0) defaultViewWidth else width, if (height == 0) defaultViewHeight else height)
     }
 
     /**
      * 添加监听
      */
-    private fun <RES> addGlideListeners(url: RES?, imageListener: ImageLoaderListener?, onProgressListener: OnProgressListener?, requestBuilder: GlideRequest<Drawable>?): GlideRequest<Drawable>? {
+    private fun <RES,T> addGlideListeners(url: RES?, imageListener: ImageLoaderListener?, onProgressListener: OnProgressListener?, requestBuilder: GlideRequest<T>?): GlideRequest<T>? {
         if (imageListener != null || onProgressListener != null) {
             if (onProgressListener != null && url is String)
                 ProgressManager.addListener(url, onProgressListener)
             //监听图片加载
-            return requestBuilder?.listener(object : RequestListener<Drawable> {
-                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+            return requestBuilder?.listener(object : RequestListener<T> {
+                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<T>?, isFirstResource: Boolean): Boolean {
                     imageListener?.onRequestFailed()
                     if (onProgressListener != null && url is String)
                         removeProcessListener(url)
                     return false
                 }
 
-                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                override fun onResourceReady(resource: T?, model: Any?, target: Target<T>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
                     imageListener?.onRequestSuccess(resource)
                     if (onProgressListener != null && url is String)
                         removeProcessListener(url)
@@ -163,6 +207,8 @@ class GlideImageLoader : ImageLoader {
     }
 
 
+    
+    
     /**
      * 加载图片
      */
@@ -170,9 +216,11 @@ class GlideImageLoader : ImageLoader {
         try {
             if (imageView != null) {
                 //添加监听
-                var requestBuilder = addGlideListeners(url, imageListener, onProgressListener, getGlideRequest(context, url))
+//                var requestBuilder = addGlideListeners(url, imageListener, onProgressListener, getGlideRequest(context, url))
+                var requestBuilder =  addGlideListeners(url, imageListener, onProgressListener, getBitmapGlideRequest(context,url))
                 //设置展示方式
                 requestBuilder = resetDisplay(imageView.scaleType, needCircleCrop, requestBuilder)
+
                 //添加圆角
                 requestBuilder = resetCorner(cornerDp, requestBuilder)
                 //指定图片大小
@@ -192,10 +240,24 @@ class GlideImageLoader : ImageLoader {
     }
 
     /**
+     * 高斯模糊显示图片
+     */
+    override fun <CONTEXT, RES> displayImageWithBlur(context: CONTEXT, url: RES?, imageView: ImageView?,cornerRadiousDp: Int,blurRadiousDp: Int,imageListener: ImageLoaderListener?,onProgressListener: OnProgressListener?) {
+
+    }
+
+    /**
      * CircleCrop方式加载
      */
     override fun <CONTEXT, RES> displayCircleImage(context: CONTEXT, url: RES?, imageView: ImageView?, imageListener: ImageLoaderListener?, onProgressListener: OnProgressListener?) {
         displayDefaultImage(context, url, imageView, true, 0, imageListener, onProgressListener)
+    }
+
+    /**
+     * 高斯模糊显示头像圆图
+     */
+    override fun <CONTEXT, RES> displayCircleImageWithBlur( context: CONTEXT,url: RES?,imageView: ImageView?, blurRadiousDp: Int,imageListener: ImageLoaderListener?,onProgressListener: OnProgressListener?) {
+
     }
 
     /**

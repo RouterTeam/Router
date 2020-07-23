@@ -1,7 +1,6 @@
 package com.ifenghui.imageloaderlibrary
-import android.graphics.drawable.Drawable
 
-interface ImageLoaderListener {
-    fun onRequestSuccess(resource: Drawable?): Boolean
+interface ImageLoaderListener  {
+    fun <T>onRequestSuccess(resource: T?): Boolean
     fun onRequestFailed(): Boolean
 }

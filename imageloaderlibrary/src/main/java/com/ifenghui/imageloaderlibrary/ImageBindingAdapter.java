@@ -1,11 +1,14 @@
 package com.ifenghui.imageloaderlibrary;
 
+import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+
+import org.jetbrains.annotations.Nullable;
 
 //"http://5b0988e595225.cdn.sohucs.com/images/20171202/a1cc52d5522f48a8a2d6e7426b13f82b.gif";
 public class ImageBindingAdapter {
@@ -20,7 +23,7 @@ public class ImageBindingAdapter {
     @BindingAdapter("imageDefaultUrl")
     public static void bindDefaultImageUrl(ImageView view, Object imageDefaultUrl){
         if (view==null)return;
-        GlideImageLoader.getInstance().displayImage(view.getContext(),imageDefaultUrl,view,0,null,null);
+        GlideImageLoader.getInstance().displayImage(view.getContext(), imageDefaultUrl, view, 0, null, null);
     }
 
 
