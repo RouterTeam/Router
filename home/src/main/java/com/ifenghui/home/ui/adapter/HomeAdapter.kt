@@ -12,9 +12,9 @@ import org.greenrobot.eventbus.EventBus
 import java.util.*
 
 class HomeAdapter(context: Context?) : BaseBindAdapter<Any, ViewDataBinding>(context) {
-
+    private var drawables: ArrayList<Int>?=null
     /**
-     *
+     * 获取item Type
      */
     override fun getItemType(position: Int): Int {
         val item = datas[position]
@@ -26,6 +26,9 @@ class HomeAdapter(context: Context?) : BaseBindAdapter<Any, ViewDataBinding>(con
         return super.getItemType(position)
     }
 
+    /**
+     * 获取item布局资源
+     */
     override fun getItemLayout(viewType: Int): Int {
         return when (viewType) {
             1 -> R.layout.item_home_title_layout
@@ -37,6 +40,9 @@ class HomeAdapter(context: Context?) : BaseBindAdapter<Any, ViewDataBinding>(con
         }
     }
 
+    /**
+     * 获取 item 的SpanSize
+     */
     override fun getCustomerSpanSize(position: Int): Int {
         val item = datas[position]
         if (item is HomeTitle) return 6
@@ -47,6 +53,9 @@ class HomeAdapter(context: Context?) : BaseBindAdapter<Any, ViewDataBinding>(con
         return super.getCustomerSpanSize(position)
     }
 
+    /**
+     * 绑定数据
+     */
     override fun onBindItem(binding: ViewDataBinding?, item: Any?, position: Int) {
         when (binding) {
             is ItemHomeRecommentLayoutBinding -> {
@@ -68,19 +77,21 @@ class HomeAdapter(context: Context?) : BaseBindAdapter<Any, ViewDataBinding>(con
             }
 
             is ItemHomeBannerLayoutBinding -> {
+                if (drawables==null){
+                    var drawables = ArrayList<Int>()
+                    drawables.add(R.mipmap.banner_bg1)
+                    drawables.add(R.mipmap.banner_bg2)
+                    drawables.add(R.mipmap.banner_bg3)
+                    drawables.add(R.mipmap.banner_bg4)
+                    var drawablePre = ArrayList<Int>()
+                    drawablePre.add(R.mipmap.banner_pre1)
+                    drawablePre.add(R.mipmap.banner_pre2)
+                    drawablePre.add(R.mipmap.banner_pre3)
+                    drawablePre.add(R.mipmap.banner_pre4)
+                    binding.viewpager.setViewPagerData(drawables, drawablePre)
+                    binding.homeBanner = item as HomeResult.BannerItemGroup
+                }
 
-                var drawables = ArrayList<Int>()
-                drawables.add(R.mipmap.banner_bg1)
-                drawables.add(R.mipmap.banner_bg2)
-                drawables.add(R.mipmap.banner_bg3)
-                drawables.add(R.mipmap.banner_bg4)
-                var drawablePre = ArrayList<Int>()
-                drawablePre.add(R.mipmap.banner_pre1)
-                drawablePre.add(R.mipmap.banner_pre2)
-                drawablePre.add(R.mipmap.banner_pre3)
-                drawablePre.add(R.mipmap.banner_pre4)
-                binding.viewpager.setViewPagerData(drawables, drawablePre)
-                binding.homeBanner = item as HomeResult.BannerItemGroup
                 binding.viewpager.startImageCycle()
             }
         }

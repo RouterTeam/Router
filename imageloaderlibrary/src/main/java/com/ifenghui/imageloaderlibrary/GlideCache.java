@@ -21,7 +21,8 @@ public class GlideCache extends AppGlideModule {
 
     @Override
     public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder) {
-        super.applyOptions(context, builder);
+//        super.applyOptions(context, builder);
+
         //通过builder.setXXX进行配置.
         long diskCacheSizeBytes = 1024 * 1024 * 500; // 500 MB
         //手机app路径

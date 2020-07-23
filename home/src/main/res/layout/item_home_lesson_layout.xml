@@ -12,6 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:padding="@dimen/dp_3">
         <androidx.cardview.widget.CardView
             android:id="@+id/card_lesson"
@@ -28,6 +30,7 @@
                 android:id="@+id/ivCover"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="centerCrop"
                 app:isNeedGray="true"
                 app:imageDefaultUrl="@{homeLesson.imgPath}"/>
         </androidx.cardview.widget.CardView>

@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_10"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:padding="@dimen/dp_3">
         <androidx.cardview.widget.CardView
             android:id="@+id/card_story"
@@ -22,6 +24,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:cardCornerRadius="@dimen/dp_5"
             app:cardPreventCornerOverlap="false"
+            android:layout_margin="@dimen/dp_0"
             app:cardUseCompatPadding="false"
             app:cardElevation="@dimen/dp_2"
             app:layout_constraintDimensionRatio="214:272">

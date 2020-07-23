@@ -1,6 +1,7 @@
 package com.ifenghui.commonlibrary.base.ui.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -16,22 +17,31 @@ public abstract class BaseBindAdapter<T,B extends ViewDataBinding> extends BaseA
     public BaseBindAdapter(Context context) {
         super(context);
     }
-
+    int viewholdercount=0;
     @Override
     public BaseViewHolder OncreateViewHolder(ViewGroup viewGroup, int viewType) {
         B binding = DataBindingUtil.inflate(LayoutInflater.from(getmContext()), this.getItemLayout(viewType), viewGroup, false);
+        onViewHolderInit(binding);
+        viewholdercount++;
         return new BaseViewHolder(binding.getRoot());
     }
-
+    int bindviewholdercount=0;
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
+        bindviewholdercount++;
         if (position>=getHeaderCount()&&position<(getHeaderCount()+getCount())){
             B binding = DataBindingUtil.getBinding(holder.itemView);
-            this.onBindItem(binding, this.datas.get(position),position - getHeaderCount());
+            int itemPosition=position - getHeaderCount();
+            this.onBindItem(binding, this.datas.get(itemPosition),itemPosition);
         }else {
             super.onBindViewHolder(holder, position);
         }
     }
+
+    /**
+     * viewholder  init 数据使用
+     */
+    protected void onViewHolderInit(B binding){}
 
     /**
      * 获取item布局资源

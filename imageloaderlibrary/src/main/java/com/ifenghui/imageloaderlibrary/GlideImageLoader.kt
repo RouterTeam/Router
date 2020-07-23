@@ -31,11 +31,11 @@ class GlideImageLoader : ImageLoader {
     //Glide实现渐入动画效果
     private val crossFade = DrawableTransitionOptions.withCrossFade(500)
 
-    private val defaultOptions: RequestOptions = RequestOptions().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate()
-    private val centerCropOptions: RequestOptions = RequestOptions().centerCrop().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate()
-    private val centerInsideOptions: RequestOptions = RequestOptions().centerInside().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate()
-    private val fitCenterOptions: RequestOptions = RequestOptions().fitCenter().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate()
-    private val circleCropOptions: RequestOptions = RequestOptions().circleCrop().placeholder(R.mipmap.image_loading).error(R.mipmap.image_loading).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate()
+    private val defaultOptions: RequestOptions = RequestOptions().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).useAnimationPool(true)
+    private val centerCropOptions: RequestOptions = RequestOptions().centerCrop().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).useAnimationPool(true)
+    private val centerInsideOptions: RequestOptions = RequestOptions().centerInside().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate().useAnimationPool(true)
+    private val fitCenterOptions: RequestOptions = RequestOptions().fitCenter().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate().useAnimationPool(true)
+    private val circleCropOptions: RequestOptions = RequestOptions().circleCrop().placeholder(R.mipmap.image_loading).error(R.mipmap.image_loading).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate().useAnimationPool(true)
 //    private val circleCropOptions: RequestOptions = RequestOptions().circleCrop().diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate()
 
     /**
@@ -78,8 +78,8 @@ class GlideImageLoader : ImageLoader {
             }
             else -> null
         }
-//        return with?.asDrawable()?.load(url)?.thumbnail(0.05f)?.transition(crossFade)
-        return with?.asDrawable()?.load(url)?.transition(crossFade)
+        return with?.asDrawable()?.load(url)?.thumbnail(0.1f)?.transition(crossFade)
+//        return with?.asDrawable()?.load(url)?.transition(crossFade)
     }
 
     /**
@@ -218,5 +218,13 @@ class GlideImageLoader : ImageLoader {
                     removeProcessListener(url)
             }
         })
+    }
+    //内存缓存清理（主线程）
+    fun clearMemoryCache(context: Context?) {
+        GlideApp.get(context!!).clearMemory()
+    }
+    //磁盘缓存清理（子线程）
+    fun clearFileCache(context: Context?) {
+        Thread(Runnable { GlideApp.get(context!!).clearDiskCache() }).start()
     }
 }
