@@ -18,6 +18,10 @@
 <!--        <meta-data-->
 <!--            android:name="APP_CHANNEL"-->
 <!--            android:value="_test" />-->
+
+<!--            AppGlide 不需要这样配置-->
+<!--        <meta-data android:name="com.ifenghui.imageloaderlibrary.GlideCache"-->
+<!--            android:value="AppGlideModule"/>-->
     </application>
 
 </manifest>
