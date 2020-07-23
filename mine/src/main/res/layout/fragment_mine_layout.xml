@@ -405,6 +405,7 @@
                                 android:paddingLeft="@dimen/dp_70"
                                 app:layout_constraintTop_toBottomOf="@+id/tv_eyes" />
 
+
                             <com.colin.skinlibrary.weiget.SkinTextView
                                 android:id="@+id/tv_order"
                                 android:layout_width="@dimen/dp_0"

@@ -1,17 +1,15 @@
 package com.ifenghui.home.ui.adapter
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
-import com.colin.linkedviewpager.LinkedViewPager
 import com.ifenghui.apilibrary.api.entity.*
 import com.ifenghui.commonlibrary.base.event.BaseEvent
 import com.ifenghui.commonlibrary.base.ui.adapter.BaseBindAdapter
 import com.ifenghui.home.R
 import com.ifenghui.home.databinding.*
 import org.greenrobot.eventbus.EventBus
-import java.util.ArrayList
+import java.util.*
 
 class HomeAdapter(context: Context?) : BaseBindAdapter<Any, ViewDataBinding>(context) {
 
