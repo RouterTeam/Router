@@ -47,7 +47,7 @@ interface ImageLoader {
     /**
      * 添加drable 加载进度监听
      */
-    fun <CONTEXT,RES>displayWithDrableAndProgressListener(context: CONTEXT, url: RES?,onProgressListener: OnProgressListener??):ImageLoader?
+    fun <CONTEXT,RES>displayWithDrableAndProgressListener(context: CONTEXT, url: RES?,onProgressListener: OnProgressListener?):ImageLoader?
 
     /**
      * 添加bitmap 加载监听
@@ -57,7 +57,7 @@ interface ImageLoader {
     /**
      * 添加bitmap 加载进度监听
      */
-    fun <CONTEXT,RES>displayWithBitmapAndProgressListener(context: CONTEXT, url: RES?,onProgressListener: OnProgressListener??):ImageLoader?
+    fun <CONTEXT,RES>displayWithBitmapAndProgressListener(context: CONTEXT, url: RES?,onProgressListener: OnProgressListener?):ImageLoader?
 
     /**
      * 指定大小
