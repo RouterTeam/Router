@@ -38,6 +38,7 @@ class GlideImageLoader : ImageLoader {
     //Glide实现渐入动画效果
     private val crossFade = DrawableTransitionOptions.withCrossFade(CROSS_TIME)
     private val bitmapCrossFade=BitmapTransitionOptions.withCrossFade(CROSS_TIME)
+
     private val defaultOptions: RequestOptions = RequestOptions().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).useAnimationPool(true)
 //    private val centerCropOptions: RequestOptions = RequestOptions().centerCrop().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).useAnimationPool(true)
 //    private val centerInsideOptions: RequestOptions = RequestOptions().centerInside().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate().useAnimationPool(true)
