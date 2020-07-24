@@ -20,8 +20,8 @@ public class ImageBindingAdapter {
     @BindingAdapter("imageDefaultUrl")
     public static void bindDefaultImageUrl(ImageView view, Object imageDefaultUrl){
         if (view==null)return;
-//        GlideImageLoader.getInstance().displayWithBitmap(view,imageDefaultUrl).resetTargetSize(view.getWidth(),view.getHeight()).intoTargetView(view);
-        GlideImageLoader.getInstance().displayWithBlur(view,imageDefaultUrl,20).intoTargetView(view);
+        GlideImageLoader.getInstance().displayWithBitmap(view,imageDefaultUrl).resetTargetSize(view.getWidth(),view.getHeight()).intoTargetView(view);
+//        GlideImageLoader.getInstance().displayWithBlur(view,imageDefaultUrl,20).intoTargetView(view);
     }
 
 
