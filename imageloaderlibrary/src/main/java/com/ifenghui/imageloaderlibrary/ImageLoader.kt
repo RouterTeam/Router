@@ -59,6 +59,8 @@ interface ImageLoader {
      */
     fun <CONTEXT,RES>displayWithBitmapAndProgressListener(context: CONTEXT, url: RES?,onProgressListener: OnProgressListener?):ImageLoader?
 
+    fun resetScaleType(scaleType:ScaleTypeMenu):ImageLoader?
+
     /**
      * 指定大小
      */

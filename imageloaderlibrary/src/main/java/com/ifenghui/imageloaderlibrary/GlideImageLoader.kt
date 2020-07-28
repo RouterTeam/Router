@@ -14,12 +14,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.load.resource.gif.GifDrawableTransformation
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.target.Target
-import com.bumptech.glide.request.transition.Transition
+import com.bumptech.glide.request.transition.BitmapTransitionFactory
+import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 import com.ifenghui.imageloaderlibrary.progress.OnProgressListener
 import com.ifenghui.imageloaderlibrary.progress.ProgressManager
 import jp.wasabeef.glide.transformations.BlurTransformation
@@ -30,20 +29,23 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation
  */
 @Suppress("DEPRECATION")
 class GlideImageLoader : ImageLoader {
+    //动画时间
     private val CROSS_TIME=500
 
+    //view默认宽高
     private val defaultViewWidth = 423
     private val defaultViewHeight = 537
 
     //Glide实现渐入动画效果
-    private val crossFade = DrawableTransitionOptions.withCrossFade(CROSS_TIME)
-    private val bitmapCrossFade=BitmapTransitionOptions.withCrossFade(CROSS_TIME)
-
-    private val defaultOptions: RequestOptions = RequestOptions().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA)
-//    private val centerCropOptions: RequestOptions = RequestOptions().centerCrop().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).useAnimationPool(true)
-//    private val centerInsideOptions: RequestOptions = RequestOptions().centerInside().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate().useAnimationPool(true)
-//    private val fitCenterOptions: RequestOptions = RequestOptions().fitCenter().placeholder(R.mipmap.item_default).error(R.mipmap.item_default).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate().useAnimationPool(true)
-    private val circleCropOptions: RequestOptions = RequestOptions().circleCrop().placeholder(R.mipmap.image_loading).error(R.mipmap.image_loading).diskCacheStrategy(DiskCacheStrategy.DATA)
+    private val drawableCrossFadeFactory: DrawableCrossFadeFactory =DrawableCrossFadeFactory.Builder(CROSS_TIME).setCrossFadeEnabled(true).build()
+    private val drawableCrossFade = DrawableTransitionOptions().crossFade(drawableCrossFadeFactory)
+    private val bitmapCrossFade=BitmapTransitionOptions().crossFade(drawableCrossFadeFactory)
+    //Glide ScaleType样式
+    private val defaultOptions: RequestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.DATA)
+    private val centerCropOptions: RequestOptions = RequestOptions().centerCrop().diskCacheStrategy(DiskCacheStrategy.DATA)
+    private val centerInsideOptions: RequestOptions = RequestOptions().centerInside().diskCacheStrategy(DiskCacheStrategy.DATA)
+    private val fitCenterOptions: RequestOptions = RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.DATA)
+    private val circleCropOptions: RequestOptions = RequestOptions().circleCrop().diskCacheStrategy(DiskCacheStrategy.RESOURCE)
 
     private var REQUESTINSTANCE:GlideRequest<*>?=null
 
@@ -92,11 +94,19 @@ class GlideImageLoader : ImageLoader {
         }
     }
 
+//    private fun <CONTEXT>getDrableRequest(context: CONTEXT):GlideRequest<*>?{
+//        REQUESTINSTANCE= getGlideWith(context)?.asDrawable()
+//        resetPlaceHolder(R.mipmap.item_default,R.mipmap.item_default)
+//        return REQUESTINSTANCE
+//    }
+
     /**
      * drable 的方式获取资源
      */
     override fun <CONTEXT, RES> displayWithDrable(context: CONTEXT, url: RES?): ImageLoader? {
-        REQUESTINSTANCE= getGlideWith(context)?.asDrawable()?.load(url)?.transition(crossFade)?.apply(defaultOptions)
+        REQUESTINSTANCE= getGlideWith(context)?.asDrawable()?.load(url)?.transition(drawableCrossFade)
+        resetPlaceHolder(R.mipmap.item_default,R.mipmap.item_default)
+        resetScaleType(ScaleTypeMenu.Default)
         return INSTANCE
     }
 
@@ -104,7 +114,9 @@ class GlideImageLoader : ImageLoader {
      * bitmap 的方式获取资源
      */
     override fun <CONTEXT, RES> displayWithBitmap(context: CONTEXT, url: RES?): ImageLoader? {
-        REQUESTINSTANCE= getGlideWith(context)?.asBitmap()?.load(url)?.transition(bitmapCrossFade)?.apply(defaultOptions)
+        REQUESTINSTANCE= getGlideWith(context)?.asBitmap()?.load(url)?.transition(bitmapCrossFade)
+        resetPlaceHolder(R.mipmap.item_default,R.mipmap.item_default)
+        resetScaleType(ScaleTypeMenu.Default)
         return INSTANCE
     }
 
@@ -112,7 +124,8 @@ class GlideImageLoader : ImageLoader {
      * bitmap 的方式获取资源
      */
     override fun <CONTEXT, RES> displayCircleWithBitmap(context: CONTEXT, url: RES?): ImageLoader? {
-        REQUESTINSTANCE= getGlideWith(context)?.asBitmap()?.load(url)?.transition(bitmapCrossFade)?.apply(circleCropOptions)
+        displayWithBitmap(context,url)
+        resetScaleType(ScaleTypeMenu.CircleCrop)
         return INSTANCE
     }
 
@@ -120,14 +133,19 @@ class GlideImageLoader : ImageLoader {
      * drable 的方式获取资源
      */
     override fun <CONTEXT, RES> displayCircleWithDrable(context: CONTEXT, url: RES?): ImageLoader? {
-        REQUESTINSTANCE= getGlideWith(context)?.asDrawable()?.load(url)?.transition(crossFade)?.apply(circleCropOptions)
+//        transition(DrawableTransitionOptions.with(drawableCrossFadeFactory))
+//        REQUESTINSTANCE= getGlideWith(context)?.asDrawable()?.load(url)?.transition(drawableCrossFade)?.placeholder(R.mipmap.item_default)?.error(R.mipmap.item_default)?.apply(circleCropOptions)
+        displayWithDrable(context,url)
+        resetScaleType(ScaleTypeMenu.CircleCrop)
         return INSTANCE
     }
     /**
      * 高斯模糊的方式加载
      */
     override fun <CONTEXT, RES> displayWithBlur(context: CONTEXT, url: RES?,blurRadius:Int): ImageLoader? {
-        REQUESTINSTANCE= getGlideWith(context)?.asBitmap()?.load(url)?.transition(bitmapCrossFade)?.transform(BlurTransformation(blurRadius))?.apply(defaultOptions)
+//        REQUESTINSTANCE= getGlideWith(context)?.asBitmap()?.load(url)?.transition(bitmapCrossFade)?.transform(BlurTransformation(blurRadius))?.apply(defaultOptions)
+        displayWithBitmap(context,url)
+        REQUESTINSTANCE=REQUESTINSTANCE?.transform(BlurTransformation(blurRadius))
         return INSTANCE
     }
 
@@ -135,8 +153,10 @@ class GlideImageLoader : ImageLoader {
      * 高斯模糊加圆角的方式加载
      */
     override fun <CONTEXT, RES> displayWithBlurRound(context: CONTEXT, url: RES?, blurRadius: Int, roundRadius: Int): ImageLoader? {
-        REQUESTINSTANCE= getGlideWith(context)?.asBitmap()?.load(url)?.transition(bitmapCrossFade)?.transform(MultiTransformation(
-            BlurTransformation(blurRadius),RoundedCornersTransformation(roundRadius, 0)))
+//        REQUESTINSTANCE= getGlideWith(context)?.asBitmap()?.load(url)?.transition(bitmapCrossFade)?.transform(MultiTransformation(
+//            BlurTransformation(blurRadius),RoundedCornersTransformation(roundRadius, 0)))
+        displayWithBitmap(context,url)
+        REQUESTINSTANCE=REQUESTINSTANCE?.transform(MultiTransformation(BlurTransformation(blurRadius),RoundedCornersTransformation(roundRadius, 0)))
         return INSTANCE
     }
 
@@ -144,7 +164,9 @@ class GlideImageLoader : ImageLoader {
      * 添加drable 加载监听
      */
     override fun <CONTEXT, RES> displayWithDrableAndLoaderListener(context: CONTEXT, url: RES?,imageListener: ImageLoaderListener<Drawable>?): ImageLoader? {
-        REQUESTINSTANCE= getGlideWith(context)?.asDrawable()?.load(url)?.transition(crossFade)?.addListener(object :RequestListener<Drawable>{
+
+        displayWithDrable(context,url)
+        REQUESTINSTANCE= (REQUESTINSTANCE as GlideRequest<Drawable>)?.addListener(object :RequestListener<Drawable>{
             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
                 imageListener?.onRequestFailed()
                 return false
@@ -164,7 +186,8 @@ class GlideImageLoader : ImageLoader {
     override fun <CONTEXT, RES> displayWithDrableAndProgressListener(context: CONTEXT, url: RES?, onProgressListener: OnProgressListener?): ImageLoader? {
         if (onProgressListener != null && url is String)
                 ProgressManager.addListener(url, onProgressListener)
-        REQUESTINSTANCE= getGlideWith(context)?.asDrawable()?.load(url)?.transition(crossFade)?.addListener(object :RequestListener<Drawable>{
+        displayWithDrable(context,url)
+        REQUESTINSTANCE= (REQUESTINSTANCE as GlideRequest<Drawable>)?.addListener(object :RequestListener<Drawable>{
             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
                 if (onProgressListener != null && url is String)
                         removeProcessListener(url)
@@ -184,7 +207,8 @@ class GlideImageLoader : ImageLoader {
      * 添加bitmap 加载监听
      */
     override fun <CONTEXT, RES> displayWithBitmapAndLoaderListener(context: CONTEXT, url: RES?, imageListener: ImageLoaderListener<Bitmap>?): ImageLoader? {
-        REQUESTINSTANCE= getGlideWith(context)?.asBitmap()?.load(url)?.transition(bitmapCrossFade)?.addListener(object :RequestListener<Bitmap>{
+        displayWithBitmap(context,url)
+        REQUESTINSTANCE= (REQUESTINSTANCE as GlideRequest<Bitmap>)?.addListener(object :RequestListener<Bitmap>{
             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>?, isFirstResource: Boolean): Boolean {
                 imageListener?.onRequestFailed()
                 return false
@@ -204,7 +228,8 @@ class GlideImageLoader : ImageLoader {
     override fun <CONTEXT, RES> displayWithBitmapAndProgressListener(context: CONTEXT, url: RES?, onProgressListener: OnProgressListener?): ImageLoader? {
         if (onProgressListener != null && url is String)
             ProgressManager.addListener(url, onProgressListener)
-        REQUESTINSTANCE= getGlideWith(context)?.asBitmap()?.load(url)?.transition(bitmapCrossFade)?.addListener(object :RequestListener<Bitmap>{
+        displayWithBitmap(context,url)
+        REQUESTINSTANCE= (REQUESTINSTANCE as GlideRequest<Bitmap>)?.addListener(object :RequestListener<Bitmap>{
             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>?, isFirstResource: Boolean): Boolean {
                 if (onProgressListener != null && url is String)
                     removeProcessListener(url)
@@ -217,6 +242,20 @@ class GlideImageLoader : ImageLoader {
                 return false
             }
         })
+        return INSTANCE
+    }
+
+    /**
+     * 设置展示方式
+     */
+    override fun resetScaleType(scaleType: ScaleTypeMenu): ImageLoader? {
+        REQUESTINSTANCE=when(scaleType){
+            ScaleTypeMenu.Default->REQUESTINSTANCE?.apply(defaultOptions)
+            ScaleTypeMenu.CenterCrop->REQUESTINSTANCE?.apply(centerCropOptions)
+            ScaleTypeMenu.CenterInside->REQUESTINSTANCE?.apply(centerInsideOptions)
+            ScaleTypeMenu.FitCenter->REQUESTINSTANCE?.apply(fitCenterOptions)
+            ScaleTypeMenu.CircleCrop->REQUESTINSTANCE?.apply(circleCropOptions)
+        }
         return INSTANCE
     }
 
