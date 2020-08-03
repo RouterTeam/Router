@@ -18,9 +18,6 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
     fun getHomeData() {
         accept(mModel.getHomeData()?.subscribe({ model ->
 
-            if (model.status?.code != 1) {
-
-            }
 
             //添加banner 数据
             if (model.ads!=null){

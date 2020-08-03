@@ -5,6 +5,7 @@ import android.app.Application
 import android.text.TextUtils
 import com.ifenghui.apilibrary.api.CommonService
 import com.ifenghui.apilibrary.api.HomeService
+import com.ifenghui.apilibrary.api.ShelfService
 import com.ifenghui.apilibrary.api.config.AppApi.Companion.OFFICIAL_URL
 import com.ifenghui.apilibrary.api.config.AppApi.Companion.TEST_URL
 import com.ifenghui.apilibrary.api.config.NetConfig
@@ -117,5 +118,12 @@ class RetrofitHelper {
      */
     fun getHomeService(): HomeService? {
         return retrofit?.create(HomeService::class.java)
+    }
+
+    /**
+     * 创建一个书架服务
+     */
+    fun getShelfService(): ShelfService? {
+        return retrofit?.create(ShelfService::class.java)
     }
 }

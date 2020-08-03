@@ -30,7 +30,6 @@ dependencies {
 
     api project(path: ':apilibrary')
     api project(path: ':skinlibrary')
-//    api project(path: ':imageloaderlibrary')
     api project(path: ':spinkitlibrary')
     api project(path: ':smartrefreshlibrary')
 }
