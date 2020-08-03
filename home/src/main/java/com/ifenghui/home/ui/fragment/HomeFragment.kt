@@ -3,10 +3,6 @@ package com.ifenghui.home.ui.fragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.OnScrollListener
-import com.bumptech.glide.Glide
 import com.colin.linkedviewpager.LinkedViewPager
 import com.ifenghui.commonlibrary.base.ui.fragment.BaseFragment
 import com.ifenghui.commonlibrary.utils.ObservableListUtil
@@ -14,11 +10,9 @@ import com.ifenghui.commonlibrary.utils.RecyclerViewManagerUtils
 import com.ifenghui.home.BR
 import com.ifenghui.home.R
 import com.ifenghui.home.databinding.FragmentHomeLayoutBinding
-import com.ifenghui.home.mvvm.factory.HomeViewModelFactory
 import com.ifenghui.home.mvvm.model.HomeModel
 import com.ifenghui.home.mvvm.viewmodel.HomeViewModel
 import com.ifenghui.home.ui.adapter.HomeAdapter
-import com.ifenghui.imageloaderlibrary.GlideApp
 import kotlinx.android.synthetic.main.fragment_home_layout.*
 
 

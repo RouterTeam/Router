@@ -46,6 +46,7 @@ ext {
             mmkvSdkVersion                : '1.1.2',
             rxpermissionsSdkVersion       : '0.9.5',
             skinSdkVersion                : '4.0.4',
+            imageLoaderSdkVersion         : '1.0.0',
 
     ]
 
@@ -79,6 +80,9 @@ ext {
             "glide-transformations"         : "jp.wasabeef:glide-transformations:${versions["glidetransformationsSdkVersion"]}",
             "glidekapt"                     : "com.github.bumptech.glide:compiler:${versions["glideSdkVersion"]}",
             "glideokhttp3"                  : "com.github.bumptech.glide:okhttp3-integration:${versions["glideSdkVersion"]}",
+
+            //图片处理库封装
+            "imageloader"                   : "com.github.colinlibrary:ImageLoader:${versions["imageLoaderSdkVersion"]}",
             //超过64K解决方法
             "multidex"                      : "androidx.multidex:multidex:${versions["multidexSdkVersion"]}",
             //Kotlin库

@@ -5,8 +5,11 @@ import android.content.Context;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
+import com.colin.library.DiskCacheMenu;
+import com.colin.library.GlideImageLoader;
 import com.colin.skinlibrary.SkinManager;
 import com.ifenghui.apilibrary.api.entity.User;
+import com.ifenghui.commonlibrary.R;
 import com.ifenghui.commonlibrary.utils.PreferencesManager;
 import com.ifenghui.commonlibrary.utils.RouterManger;
 
@@ -24,6 +27,18 @@ public class BaseApplication extends MultiDexApplication {
         RouterManger.initRouter(this);
         PreferencesManager.initPreferencesManager(this);
         SkinManager.initSkinManager(this);
+        initImageLoader();
+    }
+
+    /**
+     * image loader 初始化
+     */
+    private void initImageLoader(){
+        GlideImageLoader.apply(DiskCacheMenu.RESOURCE)
+                .apply(R.mipmap.item_default, R.mipmap.item_default)
+                .apply(600)
+                .apply(1025 * 1024 * 10L);
+//              .apply("cachpath");
     }
 
     /**

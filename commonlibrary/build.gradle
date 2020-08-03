@@ -26,9 +26,11 @@ dependencies {
     api rootProject.ext.dependencies["arouter-api"]
     api rootProject.ext.dependencies["mmkv"]
     api rootProject.ext.dependencies["rxpermissions"]
+    api rootProject.ext.dependencies["imageloader"]
+
     api project(path: ':apilibrary')
     api project(path: ':skinlibrary')
-    api project(path: ':imageloaderlibrary')
+//    api project(path: ':imageloaderlibrary')
     api project(path: ':spinkitlibrary')
     api project(path: ':smartrefreshlibrary')
 }
