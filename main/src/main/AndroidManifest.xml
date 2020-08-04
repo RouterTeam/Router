@@ -16,7 +16,7 @@
             android:screenOrientation="sensorPortrait"
             android:alwaysRetainTaskState="true"
             android:windowSoftInputMode="stateHidden"
-            android:theme="@style/TransparenceTheme">
+           >
 
         </activity>
         <activity android:name=".ui.StartTranceActivity"

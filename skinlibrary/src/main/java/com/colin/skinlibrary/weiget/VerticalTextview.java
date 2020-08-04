@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -36,9 +37,9 @@ public class VerticalTextview extends TextSwitcher implements ViewSwitcher.ViewF
     private static final int STATE_PAUSE = 2;
     private static final int STATE_SCROLL = 3;
 
-    private float mTextSize = 16;
-    private int textColor = Color.BLACK;
-    private int nightTextColor = Color.BLACK;
+//    private float mTextSize = 16;
+//    private int textColor = Color.BLACK;
+//    private int nightTextColor = Color.BLACK;
     public boolean isNeedGray = false;
     private int mScrollState = STATE_PAUSE;
 
@@ -68,23 +69,24 @@ public class VerticalTextview extends TextSwitcher implements ViewSwitcher.ViewF
     public VerticalTextview(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.VerticalTestView);
-        textColor = typedArray.getColor(R.styleable.VerticalTestView_textColor, 0x50000000);
-        nightTextColor = typedArray.getColor(R.styleable.VerticalTestView_nightTextColor, 0x50000000);
+//        textColor = typedArray.getColor(R.styleable.VerticalTestView_textColor, 0x50000000);
+//        nightTextColor = typedArray.getColor(R.styleable.VerticalTestView_nightTextColor, 0x50000000);
         isNeedGray = typedArray.getBoolean(R.styleable.VerticalTestView_isNeedGray, false);
 
-        mTextSize = typedArray.getDimensionPixelSize(R.styleable.VerticalTestView_textSize, 0);
+//        mTextSize = typedArray.getDimensionPixelSize(R.styleable.VerticalTestView_textSize, 0);
         mContext = context;
         textList = new ArrayList<String>();
     }
 
     public void setAnimTime(long animDuration) {
         setFactory(this);
-        Animation in = new TranslateAnimation(0, 0, animDuration, 0);
+        int toYDelta=150;
+        Animation in = new TranslateAnimation(0, 0, toYDelta, 0);
         in.setDuration(animDuration);
-        in.setInterpolator(new AccelerateInterpolator());
-        Animation out = new TranslateAnimation(0, 0, 0, -animDuration);
+        in.setInterpolator(new LinearInterpolator());
+        Animation out = new TranslateAnimation(0, 0, 0, -toYDelta);
         out.setDuration(animDuration);
-        out.setInterpolator(new AccelerateInterpolator());
+        out.setInterpolator(new LinearInterpolator());
         setInAnimation(in);
         setOutAnimation(out);
     }

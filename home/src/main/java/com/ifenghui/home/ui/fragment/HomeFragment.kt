@@ -78,7 +78,7 @@ class HomeFragment : BaseFragment<FragmentHomeLayoutBinding, HomeViewModel>() {
         hotList.add("小狐狸饿坏了")
         mBinding?.tvVertical?.setTextList(hotList)
         mBinding?.tvVertical?.setTextStillTime(4000)//设置停留时长间隔
-        mBinding?.tvVertical?.setAnimTime(600)//设置进入和退出的时间间隔
+        mBinding?.tvVertical?.setAnimTime(450)//设置进入和退出的时间间隔
 
     }
 

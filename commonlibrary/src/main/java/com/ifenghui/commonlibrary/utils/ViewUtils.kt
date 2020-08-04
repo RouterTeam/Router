@@ -5,8 +5,9 @@ import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
 
-class ResideViewUtils {
+class ViewUtils {
     companion object{
+        @JvmStatic
         fun resideViewWidthAndHeight(view: View?, aspect:Float,type:Int){
             view?.let { it->
 
@@ -24,7 +25,10 @@ class ResideViewUtils {
             }
         }
 
-        // 根据当前设备，将dp转为px
+        /**
+         * 根据当前设备，将dp转为px
+         */
+        @JvmStatic
         fun dip2px(context: Context, size: Float): Int {
             try {
                 val r = context.resources
@@ -39,6 +43,10 @@ class ResideViewUtils {
             return 0
         }
 
+        /**
+         * 获取屏幕宽度
+         */
+        @JvmStatic
         fun getScreenWidth(context: Context): Int {
             return try {
                 val wm = context
@@ -49,7 +57,10 @@ class ResideViewUtils {
             }
         }
 
-        // 获取屏幕高度
+        /**
+         * 获取屏幕高度
+         */
+        @JvmStatic
         fun getScreenHeight(context: Context): Int {
             return try {
                 val wm = context
