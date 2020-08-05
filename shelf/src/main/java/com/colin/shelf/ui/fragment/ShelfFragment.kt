@@ -2,6 +2,7 @@ package com.colin.shelf.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.colin.shelf.BR
 import com.colin.shelf.R
@@ -9,8 +10,8 @@ import com.colin.shelf.databinding.FragmentShelfLayoutBinding
 import com.colin.shelf.mvvm.model.ShelfModel
 import com.colin.shelf.mvvm.viewmodel.ShelfViewModel
 import com.colin.shelf.ui.adapter.ShelfAdapter
+import com.colin.shelf.widget.RecycleViewDivider
 import com.ifenghui.commonlibrary.base.ui.fragment.BaseFragment
-import com.ifenghui.commonlibrary.utils.ObservableListUtil
 import com.ifenghui.commonlibrary.utils.RecyclerViewManagerUtils
 
 class ShelfFragment: BaseFragment<FragmentShelfLayoutBinding, ShelfViewModel>() {
@@ -51,16 +52,15 @@ class ShelfFragment: BaseFragment<FragmentShelfLayoutBinding, ShelfViewModel>() 
      * 初始化书架
      */
     override fun onCreateDelay(bundle: Bundle?) {
-        mViewModel?.getShelfData(1)
-        RecyclerViewManagerUtils.setGridLayoutManager(mBinding?.recyclerView, mActivity(), 2)
+
+        RecyclerViewManagerUtils.setGridLayoutManager(mBinding?.recyclerView, mActivity(), 4)
+        mBinding?.recyclerView?.addItemDecoration(object :RecycleViewDivider(mActivity(),0,R.mipmap.bookcase_bg,0,0){})
         shelfAdapter = ShelfAdapter(mActivity())
-        shelfAdapter?.setDatas(mViewModel?.list)
-        mViewModel?.list?.addOnListChangedCallback(
-            ObservableListUtil.getListChangedCallback(
-                shelfAdapter
-            )
-        )
+        mViewModel?.listData?.observe(this, Observer {
+            shelfAdapter?.setDatas(mViewModel?.listData?.value)
+        })
         mBinding?.recyclerView?.adapter = shelfAdapter
+        mViewModel?.getShelfData(1)
     }
 
 }

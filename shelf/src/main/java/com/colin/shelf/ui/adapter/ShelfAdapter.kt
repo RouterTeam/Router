@@ -37,7 +37,7 @@ class ShelfAdapter(context: Context?) : BaseBindAdapter<Any, ViewDataBinding>(co
     }
 
     override fun getCustomerSpanSize(position: Int): Int {
-        if (position==0) return 2
+        if (position==0) return 3
         return super.getCustomerSpanSize(position)
     }
 }

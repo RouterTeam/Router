@@ -4,6 +4,8 @@ import android.app.Application
 import android.util.Log
 import androidx.annotation.NonNull
 import androidx.databinding.ObservableArrayList
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.ifenghui.apilibrary.api.entity.HomeResult
 import com.ifenghui.apilibrary.api.entity.HomeTitle
 import com.ifenghui.commonlibrary.base.viewmodel.BaseViewModel
@@ -11,17 +13,20 @@ import com.ifenghui.home.mvvm.model.HomeModel
 
 class HomeViewModel(@NonNull application: Application, model: HomeModel) :
     BaseViewModel<HomeModel>(application, model) {
-    var list: ObservableArrayList<Any> = ObservableArrayList()
+//    var list: ObservableArrayList<Any> = ObservableArrayList()
+    var listData: MutableLiveData <ArrayList<Any>> = MutableLiveData()
     /**
      * 获取首页数据
      */
     fun getHomeData() {
         accept(mModel.getHomeData()?.subscribe({ model ->
 
-
+            if (listData?.value==null)
+                listData?.value= ArrayList()
             //添加banner 数据
             if (model.ads!=null){
-                list.add(model.ads)
+//                listData?.value?.
+                listData?.value?.add(model.ads)
             }
 
 
@@ -35,14 +40,14 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
             if (model.newStoryGroup != null) {
                 model.newStoryGroup.forEach { item ->
                     addTitle(item, true)
-                    list.addAll(item.storys)
+                    listData?.value?.addAll(item.storys)
                 }
             }
 
             //添加课程数据
             if (model.lessonIndex != null) {
                 addTitle(model.lessonIndex, false)
-                list.addAll(model.lessonIndex.lessonList)
+                listData?.value?.addAll(model.lessonIndex.lessonList)
 
             }
 
@@ -50,7 +55,7 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
             if (model.classicAndCreateGroup != null) {
                 model.classicAndCreateGroup.forEach { item ->
                     addTitle(item, true)
-                    list.addAll(item.storys)
+                    listData?.value?.addAll(item.storys)
                 }
             }
 
@@ -58,7 +63,7 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
             if (model.emotionAndHumourGroup != null) {
                 model.emotionAndHumourGroup.forEach { item ->
                     addTitle(item, true)
-                    list.addAll(item.storys)
+                    listData?.value?.addAll(item.storys)
                 }
             }
 
@@ -66,19 +71,19 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
             if (model.traditionCultureGroup != null) {
                 model.traditionCultureGroup.forEach { item ->
                     addTitle(item, true)
-                    list.addAll(item.storys)
+                    listData?.value?.addAll(item.storys)
                 }
             }
 
         }, { error -> //请求出错
-            if (list.size == 0) {
+            if (listData?.value?.size == 0) {
                 postShowErrStatusViewEvent()
             }
         }, { //请求结束
-            if (list.size!=0)
+            if (listData?.value?.size!=0)
                 postCompleteLoadingViewEvent()
         }, {//请求开始
-           if (list.size==0)
+//           if (list.size==0)
                postShowTransLoadingViewEvent(true)
         }))
     }
@@ -93,7 +98,7 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
         title.targetType = group?.targetType ?: 0
         title.targetValue = group?.targetValue ?: 0
         title.isNeedMore = isNeedMore
-        list.add(title)
+        listData?.value?.add(title)
     }
 
 }

@@ -1,7 +1,9 @@
 package com.ifenghui.home.ui.fragment
 
+import android.database.Observable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.colin.linkedviewpager.LinkedViewPager
 import com.ifenghui.commonlibrary.base.ui.fragment.BaseFragment
@@ -58,12 +60,15 @@ class HomeFragment : BaseFragment<FragmentHomeLayoutBinding, HomeViewModel>() {
         mViewModel?.getHomeData()
         RecyclerViewManagerUtils.setGridLayoutManager(mBinding?.recyclerView, mActivity(), 6)
         homeAdapter = HomeAdapter(mActivity())
-        homeAdapter?.setDatas(mViewModel?.list)
-        mViewModel?.list?.addOnListChangedCallback(
-            ObservableListUtil.getListChangedCallback(
-                homeAdapter
-            )
-        )
+
+        mViewModel?.listData?.observe(this, Observer {
+            homeAdapter?.setDatas(mViewModel?.listData?.value)
+        })
+//        mViewModel?.list?.addOnListChangedCallback(
+//            ObservableListUtil.getListChangedCallback(
+//                homeAdapter
+//            )
+//        )
         mBinding?.recyclerView?.adapter = homeAdapter
 
         mBinding?.smartrefreshlayout?.setOnRefreshListener {

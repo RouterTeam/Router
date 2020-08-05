@@ -3,6 +3,8 @@ package com.ifenghui.commonlibrary.utils;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.colin.library.GlideImageLoader;
 
@@ -29,5 +31,13 @@ public class ImageBindingAdapter {
             imageCircleUrl="http://5b0988e595225.cdn.sohucs.com/images/20171202/a1cc52d5522f48a8a2d6e7426b13f82b.gif";
         GlideImageLoader.getInstance().displayCircleWithDrawable(view,imageCircleUrl).intoTargetView(view);
 //        GlideImageLoader.getInstance().displayWithBlurRound(view,imageCircleUrl==null ? defaultSrc : imageCircleUrl,20,1000).intoTargetView(view);
+    }
+
+    /**
+     * 设置网格样式
+     */
+    @BindingAdapter("gridespaceCount")
+    public static void setGridLayoutManager(RecyclerView recyclerView, int spaceCount) {
+        recyclerView.setLayoutManager(new GridLayoutManager(recyclerView.getContext(), spaceCount));
     }
 }

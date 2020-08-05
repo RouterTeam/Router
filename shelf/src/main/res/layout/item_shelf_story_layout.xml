@@ -25,7 +25,7 @@
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="false"
             app:cardElevation="@dimen/dp_2"
-            app:layout_constraintDimensionRatio="1035:633">
+            app:layout_constraintDimensionRatio="214:272">
             <com.colin.skinlibrary.weiget.SkinImageView
                 android:id="@+id/ivCover"
                 android:layout_width="match_parent"

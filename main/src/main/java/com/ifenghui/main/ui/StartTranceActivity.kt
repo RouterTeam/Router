@@ -10,9 +10,6 @@ class StartTranceActivity :BaseLazyActivity() {
         super.onCreate(savedInstanceState)
     }
     override fun onCreateDelay(bundle: Bundle?) {
-//        mRootView?.postDelayed({
-//            finish()
-//        },2000)
     }
 
     override fun onBindLayout(): Int {
