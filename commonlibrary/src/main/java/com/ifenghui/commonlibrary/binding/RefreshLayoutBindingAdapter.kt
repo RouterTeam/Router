@@ -12,12 +12,12 @@ object RefreshLayoutBindingAdapter {
      * 绑定刷新事件
      */
     @JvmStatic
-    @BindingAdapter("app:bind_refreshlistener")
+    @BindingAdapter("bind_refreshlistener")
     fun bindRefreshListener(
         refreshLayout: SmartRefreshLayout,
         refreshListener: InverseBindingListener
     ) {
-        refreshLayout?.setOnRefreshListener {
+        refreshLayout.setOnRefreshListener {
             refreshListener?.onChange()
         }
     }
@@ -27,13 +27,13 @@ object RefreshLayoutBindingAdapter {
      * 绑定加载更多事件
      */
     @JvmStatic
-    @BindingAdapter("app:bind_loadmorelistener")
+    @BindingAdapter("bind_loadmorelistener")
     fun bindLoadMoreListener(
         refreshLayout: SmartRefreshLayout,
         refreshListener: InverseBindingListener
     ) {
-        refreshLayout?.setOnLoadMoreListener {
-            refreshListener?.onChange()
+        refreshLayout.setOnLoadMoreListener {
+            refreshListener.onChange()
         }
     }
 
@@ -42,9 +42,9 @@ object RefreshLayoutBindingAdapter {
      * 绑定刷新完成事件
      */
     @JvmStatic
-    @BindingAdapter("app:bind_refreshcompletelistener")
+    @BindingAdapter("bind_refreshcompletelistener")
     fun bindRefreshCompleteListener(refreshLayout: SmartRefreshLayout, isComplete: Boolean) {
-        if (isComplete == true)
+        if (isComplete)
             refreshLayout.finishRefresh()
     }
 
@@ -52,23 +52,20 @@ object RefreshLayoutBindingAdapter {
      * 绑定加载更多完成事件
      */
     @JvmStatic
-    @BindingAdapter("app:bind_loadmorecompletelistener")
-    fun bindLoadMoreCompleteListener(
-        refreshLayout: SmartRefreshLayout,
-        loadMoreMenu: LoadMoreMenu?
-    ) {
+    @BindingAdapter("bind_loadmorecompletelistener")
+    fun bindLoadMoreCompleteListener(refreshLayout: SmartRefreshLayout, loadMoreMenu: LoadMoreMenu?) {
         when (loadMoreMenu) {
-            HAS_MORE -> refreshLayout?.finishLoadMore()
+            HAS_MORE -> refreshLayout.finishLoadMore()
             NO_MORE -> {
                 //没有更多数据（上拉加载功能将显示没有更多数据）
                 Toast.makeText(
-                    refreshLayout?.context,
+                    refreshLayout.context,
                     "数据全部加载完毕",
                     Toast.LENGTH_SHORT
                 ).show()
-                refreshLayout?.finishLoadMoreWithNoMoreData()//将不会再次触发加载更多事件
+                refreshLayout.finishLoadMoreWithNoMoreData()//将不会再次触发加载更多事件
             }
-            FAILD -> refreshLayout?.finishLoadMore(false)
+            FAILD -> refreshLayout.finishLoadMore(false)
         }
     }
 }

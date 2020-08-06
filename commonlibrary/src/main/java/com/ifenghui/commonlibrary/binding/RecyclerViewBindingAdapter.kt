@@ -10,8 +10,8 @@ object RecyclerViewBindingAdapter {
      * 绑定滚动事件
      */
     @JvmStatic
-    @BindingAdapter("app:bind_scrollchangelistener")
-    fun bindRecyclerViewScrollListener(recyclerView: RecyclerView,scrollListener:ScrollListener){
+    @BindingAdapter("bind_scrollchangelistener")
+    fun bindRecyclerViewScrollListener(recyclerView: RecyclerView?,scrollListener:ScrollListener?){
         recyclerView?.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)

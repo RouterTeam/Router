@@ -1,6 +1,5 @@
 package com.ifenghui.commonlibrary.binding;
 
-import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
@@ -32,7 +31,7 @@ public class ImageBindingAdapter {
     @BindingAdapter("imageBlurUrl")
     public static void bindBlurImageUrl(ImageView view, Object imageCircleUrl) {
         if (view == null) return;
-        GlideImageLoader.getInstance().displayWithBlur(view, imageCircleUrl,25).intoTargetView(view);
+        GlideImageLoader.getInstance().displayWithBlur(view, imageCircleUrl, 25).intoTargetView(view);
     }
 
     /**

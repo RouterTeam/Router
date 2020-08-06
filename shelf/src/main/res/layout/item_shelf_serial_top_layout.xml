@@ -38,6 +38,6 @@
         <View
             android:layout_width="match_parent"
             app:layout_constraintTop_toBottomOf="@+id/ivCover"
-            android:layout_height="@dimen/dp_20"/>
+            android:layout_height="@dimen/dp_40"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
