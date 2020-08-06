@@ -12,6 +12,10 @@ android {
         flavorDimensions "versionCode"
         // dex突破65535的限制 (超过64K解决方法)manifestPlaceholders
         multiDexEnabled true
+
+        vectorDrawables.useSupportLibrary = true
+        renderscriptTargetApi 25
+        renderscriptSupportModeEnabled true    // Enable RS suppor
     }
 
     signingConfigs {

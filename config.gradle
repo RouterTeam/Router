@@ -18,8 +18,8 @@ ext {
     //version配置
     versions = [
             supportSdkVersion             : '1.0.0',
-            appcompatSdkVersion           : '1.1.0',
-            materialSdkVersion            : '1.1.0',
+            appcompatSdkVersion           : '1.2.0',
+            materialSdkVersion            : '1.2.0',
             recyclerviewSdkVersion        : '1.1.0',
             dagger2SdkVersion             : "2.6",
             rxlifecycleSdkVersion         : "0.6.1",
@@ -28,7 +28,7 @@ ext {
             glidetransformationsSdkVersion: '4.0.1',
             multidexSdkVersion            : "2.0.1",
             kotlinSdkVersion              : "1.3.72",
-            ktxSdkVersion                 : "1.3.0",
+            ktxSdkVersion                 : '1.3.1',
             lifecycleKtxSdkVersion        : "2.2.0",
             constraintlayoutSdkVersion    : "1.1.3",
             eventbusSdkVersion            : '3.2.0',
@@ -47,6 +47,7 @@ ext {
             rxpermissionsSdkVersion       : '0.9.5',
             skinSdkVersion                : '4.0.4',
             imageLoaderSdkVersion         : '1.0.0',
+            realtimeBlurViewSdkVersion    : '1.0.6',
 
     ]
 
@@ -105,5 +106,7 @@ ext {
             "skin-support-design"           : "skin.support:skin-support-design:${versions["skinSdkVersion"]}",
             "skin-support-cardview"         : "skin.support:skin-support-cardview:${versions["skinSdkVersion"]}",
             "skin-support-constraint-layout": "skin.support:skin-support-constraint-layout:${versions["skinSdkVersion"]}",
+            //动态高斯模糊库
+            "realtimeblurview"              : "com.github.mmin18:realtimeblurview:${versions["realtimeBlurViewSdkVersion"]}",
     ]
 }

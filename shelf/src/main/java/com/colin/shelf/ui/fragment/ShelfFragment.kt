@@ -53,14 +53,19 @@ class ShelfFragment: BaseFragment<FragmentShelfLayoutBinding, ShelfViewModel>() 
      */
     override fun onCreateDelay(bundle: Bundle?) {
 
-        RecyclerViewManagerUtils.setGridLayoutManager(mBinding?.recyclerView, mActivity(), 4)
+        RecyclerViewManagerUtils.setGridLayoutManager(mBinding?.recyclerView, mActivity(), 2)
         mBinding?.recyclerView?.addItemDecoration(object :RecycleViewDivider(mActivity(),0,R.mipmap.bookcase_bg,0,0){})
         shelfAdapter = ShelfAdapter(mActivity())
         mViewModel?.listData?.observe(this, Observer {
             shelfAdapter?.setDatas(mViewModel?.listData?.value)
         })
         mBinding?.recyclerView?.adapter = shelfAdapter
-        mViewModel?.getShelfData(1)
+        mViewModel?.getShelfData(1,true)
     }
 
+
+    override fun onReloadData() {
+        super.onReloadData()
+        mViewModel?.getShelfData(1,true)
+    }
 }

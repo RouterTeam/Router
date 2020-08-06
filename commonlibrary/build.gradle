@@ -14,8 +14,6 @@ dependencies {
     api rootProject.ext.dependencies["recyclerview"]
     // RxJava and retrofit
 
-
-
     // other
     //skinlibrary 中已引用此处可以省略
     //api rootProject.ext.dependencies["rxlifecycle"]
@@ -27,6 +25,7 @@ dependencies {
     api rootProject.ext.dependencies["mmkv"]
     api rootProject.ext.dependencies["rxpermissions"]
     api rootProject.ext.dependencies["imageloader"]
+    api rootProject.ext.dependencies["realtimeblurview"]
 
     api project(path: ':apilibrary')
     api project(path: ':skinlibrary')

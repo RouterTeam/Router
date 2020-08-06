@@ -1,13 +1,11 @@
 package com.ifenghui.home.ui.fragment
 
-import android.database.Observable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.colin.linkedviewpager.LinkedViewPager
 import com.ifenghui.commonlibrary.base.ui.fragment.BaseFragment
-import com.ifenghui.commonlibrary.utils.ObservableListUtil
 import com.ifenghui.commonlibrary.utils.RecyclerViewManagerUtils
 import com.ifenghui.home.BR
 import com.ifenghui.home.R
@@ -57,7 +55,7 @@ class HomeFragment : BaseFragment<FragmentHomeLayoutBinding, HomeViewModel>() {
      * 初始化数据
      */
     override fun onCreateDelay(bundle: Bundle?) {
-        mViewModel?.getHomeData()
+        mViewModel?.getHomeData(true)
         RecyclerViewManagerUtils.setGridLayoutManager(mBinding?.recyclerView, mActivity(), 6)
         homeAdapter = HomeAdapter(mActivity())
 
@@ -90,8 +88,8 @@ class HomeFragment : BaseFragment<FragmentHomeLayoutBinding, HomeViewModel>() {
     /**
      * 绑定事件
      */
-    override fun bindListener() {
-        super.bindListener()
+//    override fun bindListener() {
+//        super.bindListener()
 //        mBinding?.recyclerView?.addOnScrollListener(object :OnScrollListener(){
 //            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
 //                super.onScrollStateChanged(recyclerView, newState)
@@ -102,14 +100,14 @@ class HomeFragment : BaseFragment<FragmentHomeLayoutBinding, HomeViewModel>() {
 //                }
 //            }
 //        })
-    }
+//    }
 
     /**
      * 重新加载数据
      */
     override fun onReloadData() {
         super.onReloadData()
-        mViewModel?.getHomeData()
+        mViewModel?.getHomeData(true)
     }
 
     /**

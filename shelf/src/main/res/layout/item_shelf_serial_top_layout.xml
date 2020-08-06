@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="serialStory"
+            type="com.ifenghui.apilibrary.api.entity.SerialStory" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-25dp"
+        android:layout_marginRight="-25dp"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+        <com.colin.skinlibrary.weiget.SkinImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            app:imageBlurUrl="@{serialStory.banner}"
+            app:isNeedGray="true"
+            android:scaleY="-1"
+            android:elevation="-1dp"
+            app:layout_constraintBottom_toTopOf="@+id/ivCover"
+            android:layout_marginBottom="-1dp"
+            app:layout_constraintDimensionRatio="280:204"/>
+        <com.colin.skinlibrary.weiget.SkinImageView
+            android:id="@+id/ivCover"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            android:scaleType="centerCrop"
+            app:imageDefaultUrl="@{serialStory.banner}"
+            app:isNeedGray="true"
+            app:layout_constraintDimensionRatio="280:204"
+            app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivCover"
+            android:layout_height="@dimen/dp_20"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

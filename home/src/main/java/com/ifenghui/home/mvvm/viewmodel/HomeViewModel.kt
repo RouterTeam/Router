@@ -1,31 +1,41 @@
 package com.ifenghui.home.mvvm.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.annotation.NonNull
-import androidx.databinding.ObservableArrayList
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ifenghui.apilibrary.api.entity.HomeResult
 import com.ifenghui.apilibrary.api.entity.HomeTitle
 import com.ifenghui.commonlibrary.base.viewmodel.BaseViewModel
+import com.ifenghui.commonlibrary.binding.listenener.InverseBindingListener
 import com.ifenghui.home.mvvm.model.HomeModel
 
 class HomeViewModel(@NonNull application: Application, model: HomeModel) :
     BaseViewModel<HomeModel>(application, model) {
-//    var list: ObservableArrayList<Any> = ObservableArrayList()
-    var listData: MutableLiveData <ArrayList<Any>> = MutableLiveData()
+    //    var list: ObservableArrayList<Any> = ObservableArrayList()
+    var listData: MutableLiveData<ArrayList<Any>> = MutableLiveData()
+    val refreshing: MutableLiveData<InverseBindingListener> = MutableLiveData()
+    val refreshStatus: MutableLiveData<Boolean> = MutableLiveData()
+
+    init {
+        refreshing.value = object :
+            InverseBindingListener {
+            override fun onChange() {
+                getHomeData(false)
+            }
+        }
+    }
+
     /**
      * 获取首页数据
      */
-    fun getHomeData() {
+    fun getHomeData(isNeedLoading: Boolean) {
         accept(mModel.getHomeData()?.subscribe({ model ->
 
-            if (listData?.value==null)
-                listData?.value= ArrayList()
+            if (listData?.value == null)
+                listData?.value = ArrayList()
+            listData?.value?.clear()
             //添加banner 数据
-            if (model.ads!=null){
-//                listData?.value?.
+            if (model.ads != null) {
                 listData?.value?.add(model.ads)
             }
 
@@ -76,17 +86,21 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
             }
 
         }, { error -> //请求出错
-            if (listData?.value?.size == 0) {
+            if (listData?.value?.size == 0)
                 postShowErrStatusViewEvent()
-            }
         }, { //请求结束
-            if (listData?.value?.size!=0)
+            if (listData?.value?.size != 0)
                 postCompleteLoadingViewEvent()
+            refreshStatus.value = true
         }, {//请求开始
-//           if (list.size==0)
-               postShowTransLoadingViewEvent(true)
+            if (isNeedLoading && listData?.value?.size == 0) {
+                postShowTransLoadingViewEvent(true)
+            } else {
+                refreshStatus.value = false
+            }
         }))
     }
+
 
     /**
      * 添加title

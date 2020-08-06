@@ -22,7 +22,16 @@
             android:layout_marginTop="@dimen/dp_15"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/container_top"
-            app:srlEnablePureScrollMode="true">
+            app:srlEnableFooterFollowWhenLoadFinished="true"
+            app:bind_refreshlistener="@{homeViewModel.refreshing}"
+            app:bind_refreshcompletelistener="@{homeViewModel.refreshStatus}"
+            app:srlEnableScrollContentWhenLoaded="true">
+
+            <com.colin.smartrefreshlibrary.smartrefresh.layout.header.ClassicsHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/dp_2"
+                app:srlClassicsSpinnerStyle="Translate" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -42,17 +51,18 @@
             android:layout_height="@dimen/dp_50"
             android:background="@color/white"
             app:layout_constraintTop_toTopOf="parent">
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_15"
                 android:layout_marginRight="@dimen/dp_15"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:background="@color/_f7f7f7"
                 app:cardCornerRadius="@dimen/dp_30"
                 app:cardElevation="@dimen/dp_0"
                 app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="false"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
