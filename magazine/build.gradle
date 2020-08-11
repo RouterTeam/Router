@@ -1,4 +1,4 @@
-if (isNeedShelfModule.toBoolean()) {
+if (isNeedMagazineModule.toBoolean()) {
     apply plugin: 'com.android.library'
 } else {
     apply plugin: 'com.android.application'
@@ -23,6 +23,10 @@ android {
     defaultConfig {
         if (!isNeedMagazineModule.toBoolean()) {
             applicationId rootProject.ext.android["magazineApplicationId"]
+            //版本名后面添加一句话，意思就是flavor dimension 它的维度就是该版本号，这样维度就是都是统一的了
+            flavorDimensions "versionCode"
+            // dex突破65535的限制 (超过64K解决方法)manifestPlaceholders
+            multiDexEnabled true
         }
     }
 }

@@ -1,14 +1,11 @@
 package com.colin.mine.ui.fragment
 
 import android.os.Bundle
-import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.colin.mine.BR
 import com.colin.mine.R
 import com.colin.mine.databinding.FragmentMineLayoutBinding
-import com.colin.mine.mvvm.factory.MineViewModelFactory
 import com.colin.mine.mvvm.model.MineModel
 import com.colin.mine.mvvm.viewmodel.MineViewModel
 import com.colin.skinlibrary.SkinManager

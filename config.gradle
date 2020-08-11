@@ -7,7 +7,7 @@ ext {
             homeApplicationId    : "com.colin.storyship.home",
             magazineApplicationId: "com.colin.storyship.magazine",
             shelfApplicationId   : "com.colin.storyship.shelf",
-            minefApplicationId   : "com.colin.storyship.mine",
+            mineApplicationId    : "com.colin.storyship.mine",
             minSdkVersion        : 19,
             targetSdkVersion     : 30,
             versionCode          : 1,

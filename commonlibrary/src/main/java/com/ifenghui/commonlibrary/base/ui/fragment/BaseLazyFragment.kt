@@ -79,11 +79,7 @@ abstract class BaseLazyFragment : Fragment(), IBaseView, TipsViewManagerInterf {
     /**
      * 填充页面view时调用
      */
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         try {
             if (mMainView == null) {
                 mMainView = inflater.inflate(R.layout.fragment_common_root_layout, container, false)
