@@ -75,7 +75,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
      * 跳转至闪屏页面
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        startActivity(SplashActivity::class.java, null, false)
         super.onCreate(savedInstanceState)
     }
 

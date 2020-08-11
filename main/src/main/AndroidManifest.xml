@@ -4,37 +4,51 @@
 
     <application
         android:allowBackup="true"
-        tools:replace="android:allowBackup"
+        android:largeHeap="true"
         android:resizeableActivity="true"
         android:supportsRtl="true"
-        android:largeHeap="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:allowBackup">
         <activity
             android:name=".ui.MainActivity2"
+            android:alwaysRetainTaskState="true"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="sensorPortrait"
-            android:alwaysRetainTaskState="true"
-            android:windowSoftInputMode="stateHidden"
-           >
-
-        </activity>
-        <activity android:name=".ui.StartTranceActivity"
             android:theme="@style/MainStyle"
+            android:windowSoftInputMode="stateHidden">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+                <activity android:name=".ui.StartTranceActivity"
+                    android:theme="@style/MainStyle"
+                    android:configChanges="keyboardHidden|orientation|screenSize"
+                    android:launchMode="singleTop"
+                    android:screenOrientation="sensorPortrait"
+                    android:alwaysRetainTaskState="true"
+                    android:windowSoftInputMode="stateHidden">
+                    <intent-filter>
+                        <action android:name="android.intent.action.MAIN" />
+
+                        <category android:name="android.intent.category.LAUNCHER" />
+                    </intent-filter>
+                </activity>
+        <activity
+            android:name=".ui.SplashActivity"
+            android:alwaysRetainTaskState="true"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="sensorPortrait"
-            android:alwaysRetainTaskState="true"
+            android:theme="@style/MainStyle"
             android:windowSoftInputMode="stateHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
-        <activity
-            android:name=".ui.SplashActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/StartStyle" />
     </application>
 </manifest>

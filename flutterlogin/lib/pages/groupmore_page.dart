@@ -91,10 +91,10 @@ class _MyGridView extends State<MyGridView> {
         child: RefreshIndicator(
           child: GridView.count(
             crossAxisCount: 3,
-            physics: const AlwaysScrollableScrollPhysics(),
+//            physics: const AlwaysScrollableScrollPhysics(),
             padding: EdgeInsets.fromLTRB(13.0, 5.0, 13.0, 3.0),
             //宽高比
-            childAspectRatio: 426 / 601,
+            childAspectRatio: 426 / 611,
             mainAxisSpacing: 6,
             children: allStory.map((Story city) {
               return _getGridViewItemUI(context, city);

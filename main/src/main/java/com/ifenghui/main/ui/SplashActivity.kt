@@ -45,7 +45,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
                 it, object : Callback<Int>() {
                     override fun call(type: Any?) {
                         if (type is Int && type == 4)
-                            iv_ad_cover?.postDelayed({ finish() }, 3500)
+                            iv_ad_cover?.postDelayed({
+//                                startActivity(MainActivity2::class.java, null, false)
+                                finish()
+                            }, 3500)
                     }
                 }, Manifest.permission.WRITE_EXTERNAL_STORAGE,
                  Manifest.permission.READ_EXTERNAL_STORAGE,

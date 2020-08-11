@@ -1,28 +1,16 @@
 package com.ifenghui.main.ui
 
+import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.ifenghui.commonlibrary.base.ui.activity.BaseLazyActivity
 import com.ifenghui.main.R
 
-class StartTranceActivity :BaseLazyActivity() {
+class StartTranceActivity :AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        startActivity(MainActivity2::class.java, null, false)
+        startActivity(Intent(this,MainActivity2::class.java))
+        finish()
         super.onCreate(savedInstanceState)
-    }
-    override fun onCreateDelay(bundle: Bundle?) {
-    }
-
-    override fun onBindLayout(): Int {
-//        return R.layout.activity_start
-        return 0
-    }
-
-    override fun enableToolbar(): Boolean {
-        return false
-    }
-
-    override fun isTransStatusBar(): Boolean {
-        return true
     }
 
     /**
