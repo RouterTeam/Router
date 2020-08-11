@@ -28,8 +28,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.colin.skinlibrary.weiget.SkinTextView
+            android:id="@+id/tv_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dp_30"
+            android:paddingLeft="@dimen/dp_30"
             app:layout_constraintBottom_toBottomOf="@+id/tv_title"
             app:viewVisibility="@{homeTitle.isNeedMore}"
             app:isNeedGray="true"

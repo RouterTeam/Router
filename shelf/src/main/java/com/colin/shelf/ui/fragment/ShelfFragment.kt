@@ -68,4 +68,10 @@ class ShelfFragment: BaseFragment<FragmentShelfLayoutBinding, ShelfViewModel>() 
         super.onReloadData()
         mViewModel?.getShelfData(1,true)
     }
+
+
+    override fun refreshMainData() {
+        super.refreshMainData()
+        shelfAdapter?.notifyDataSetChanged()
+    }
 }

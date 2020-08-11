@@ -8,7 +8,6 @@ import 'package:flutterlogin/bean/UserResult.dart';
 import 'package:flutterlogin/constant/constant.dart';
 import 'package:flutterlogin/http/http_api.dart';
 import 'package:flutterlogin/router.dart';
-import 'package:flutterlogin/router.dart' as prefix0;
 import 'package:flutterlogin/widgets/CountDownWidget.dart';
 import 'package:flutterlogin/widgets/EditTextFieldWidget.dart';
 
@@ -74,7 +73,7 @@ class _LoginView extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    _sendToNative("loadingTips", 'false');
     return Scaffold(
       body: Container(
           color: Colors.white,

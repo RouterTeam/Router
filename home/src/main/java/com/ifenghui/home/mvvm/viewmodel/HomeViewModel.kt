@@ -110,7 +110,7 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
         title.name = group?.name
         title.content = group?.content
         title.targetType = group?.targetType ?: 0
-        title.targetValue = group?.targetValue ?: 0
+        title.targetValue = group?.id ?: 0
         title.isNeedMore = isNeedMore
         listData?.value?.add(title)
     }

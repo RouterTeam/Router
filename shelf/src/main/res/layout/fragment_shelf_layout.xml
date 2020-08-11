@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:alpha="@{shelfViewModel.topViewAlpha}"
             app:layout_constraintTop_toTopOf="parent">
-            <com.github.mmin18.widget.RealtimeBlurView
+            <com.colin.library.widget.RealtimeBlurView
                 android:id="@+id/blurView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"

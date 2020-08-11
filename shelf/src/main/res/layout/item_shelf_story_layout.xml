@@ -24,6 +24,7 @@
                 android:layout_height="@dimen/dp_0"
                 app:layout_constraintTop_toTopOf="parent"
                 android:scaleType="fitXY"
+                app:isNeedGray="true"
                 android:src="@mipmap/book_bg"
                 app:layout_constraintDimensionRatio="214:272"/>
 

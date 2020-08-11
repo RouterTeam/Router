@@ -17,12 +17,9 @@ class FlutterActivity : BaseLazyActivity() {
     private var flutterView: FlutterView? = null
     override fun onCreateDelay(bundle: Bundle?) {
         showLoadingTipsView()
-        val flag = intent.getStringExtra("flag")
-        changeTitle(flag)
-        addFlutterView(flag)
-        Handler().postDelayed({
-            hideAllTipsView()
-        },800)
+        intent.getStringExtra("flag")?.let { it ->
+            addFlutterView(it)
+        }
     }
 
     override fun onBindLayout(): Int {
@@ -38,11 +35,6 @@ class FlutterActivity : BaseLazyActivity() {
         )
         MethodChannelPlugin.registerWith(flutterView)
         addContentView(flutterView, frameLayout)
-    }
-
-    private fun changeTitle(flag: String?) {
-        if ("login" == flag)
-            resetToolBarTitle("登录")
     }
 
     override fun isTransStatusBar(): Boolean {
@@ -64,7 +56,7 @@ class FlutterActivity : BaseLazyActivity() {
     }
 
     override fun finish() {
-        SoftInputHelper.hideOrShowKeyboard(mRootView,false,0)
+        SoftInputHelper.hideOrShowKeyboard(mRootView, false, 0)
         super.finish()
     }
 

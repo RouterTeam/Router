@@ -4,8 +4,10 @@ import android.content.Context
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import com.ifenghui.apilibrary.api.entity.*
+import com.ifenghui.commonlibrary.application.Constance
 import com.ifenghui.commonlibrary.base.event.BaseEvent
 import com.ifenghui.commonlibrary.base.ui.adapter.BaseBindAdapter
+import com.ifenghui.commonlibrary.provider.ProviderHelper
 import com.ifenghui.home.R
 import com.ifenghui.home.databinding.*
 import org.greenrobot.eventbus.EventBus
@@ -67,6 +69,9 @@ class HomeAdapter(context: Context?) : BaseBindAdapter<Any, ViewDataBinding>(con
             }
             is ItemHomeTitleLayoutBinding -> {
                 binding.homeTitle = item as HomeTitle?
+                binding.tvMore?.setOnClickListener {
+                    ProviderHelper.startAct(Constance.LOGIN_FRAGMENT_FLAG,getmContext(),"group_more/${item?.targetValue}/${item?.name}",null)
+                }
             }
             is ItemStoryLayoutBinding -> {
                 binding.storyItem = item as Story?

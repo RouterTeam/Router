@@ -12,9 +12,8 @@ android {
         flavorDimensions "versionCode"
         // dex突破65535的限制 (超过64K解决方法)manifestPlaceholders
         multiDexEnabled true
-
-        vectorDrawables.useSupportLibrary = true
-        renderscriptTargetApi 25
+        renderscriptTargetApi 19
+//        vectorDrawables.useSupportLibrary = true
         renderscriptSupportModeEnabled true    // Enable RS suppor
     }
 
@@ -111,7 +110,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
+    //此处添加你要过滤的文件
     packagingOptions {
         exclude 'AndroidManifest.xml'
         exclude 'META-INF/LICENSE.txt'
@@ -119,6 +118,9 @@ android {
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/LICENSE'
         exclude 'local.properties'
+        exclude 'META-INF/atomicfu.kotlin_module'
+        exclude 'META-INF/library_release.kotlin_module'
+        exclude 'META-INF/xxx'
     }
 
     lintOptions {

@@ -46,8 +46,8 @@ ext {
             mmkvSdkVersion                : '1.1.2',
             rxpermissionsSdkVersion       : '0.9.5',
             skinSdkVersion                : '4.0.4',
-            imageLoaderSdkVersion         : '1.0.0',
-            realtimeBlurViewSdkVersion    : '1.0.6',
+            imageLoaderSdkVersion         : '1.0.10',
+            blurViewSdkVersion            : '1.0.0',
 
     ]
 
@@ -107,6 +107,6 @@ ext {
             "skin-support-cardview"         : "skin.support:skin-support-cardview:${versions["skinSdkVersion"]}",
             "skin-support-constraint-layout": "skin.support:skin-support-constraint-layout:${versions["skinSdkVersion"]}",
             //动态高斯模糊库
-            "realtimeblurview"              : "com.github.mmin18:realtimeblurview:${versions["realtimeBlurViewSdkVersion"]}",
+            "realtimeblurview"              : "com.github.colinlibrary:MyRealTimeBlurView:${versions["blurViewSdkVersion"]}",
     ]
 }

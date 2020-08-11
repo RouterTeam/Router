@@ -47,7 +47,7 @@ public class MethodChannelPlugin implements MethodChannel.MethodCallHandler {
     @Override
     public void onMethodCall(MethodCall methodCall, MethodChannel.Result result) {
         Object arguments = methodCall.arguments;
-        Log.e("--------", arguments + "");
+//        Log.e("--------", arguments + "");
         switch (methodCall.method) {
             case "onLoginSuccess":
                 result.success("MethodChannelPlugin收到：" + methodCall.arguments);
