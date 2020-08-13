@@ -1,5 +1,6 @@
 @file:Suppress("DEPRECATION")
 package com.ifenghui.commonlibrary.base.ui.fragment
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.ifenghui.commonlibrary.R
 import com.ifenghui.commonlibrary.base.factory.BaseFactory
 import com.ifenghui.commonlibrary.base.factory.CreateViewModelInter
+import com.ifenghui.commonlibrary.base.ui.activity.BaseActivity
+import com.ifenghui.commonlibrary.base.ui.activity.BaseLazyActivity
 import com.ifenghui.commonlibrary.base.view.IDataBindlingBaseView
 import com.ifenghui.commonlibrary.base.viewmodel.BaseViewModel
 
@@ -70,11 +73,12 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseLa
             ?.observe(this, Observer { showErrStatusView() })
         mViewModel!!.getUC()!!.getStartActivityEvent()!!.observe(
             this,
-            Observer<Map<String, Any>?> {
-                //                    val clz =
-                //                        params[BaseViewModel.ParameterField.CLASS] as Class<*>?
-                //                    val bundle = params[BaseViewModel.ParameterField.BUNDLE] as Bundle?
-                //                    startActivity(clz, bundle)
+            Observer { params->
+                params?.get(BaseViewModel.ParameterField.CLASS)
+                val clz = params?.get(BaseViewModel.ParameterField.CLASS) as Class<*>?
+                val bundle = params?.get(BaseViewModel.ParameterField.BUNDLE) as Bundle?
+                val isNeedResult=params?.get(BaseViewModel.ParameterField.ISNEED_RESULT) as Boolean
+                clz?.let { (mActivity() as BaseLazyActivity)?.startActivity(it, bundle,isNeedResult) }
             })
         mViewModel?.getUC()?.getFinishActivityEvent()?.observe(this, Observer { finishActivity() })
         mViewModel?.getUC()?.getOnBackPressedEvent()?.observe(this, Observer { onBackPressed() })

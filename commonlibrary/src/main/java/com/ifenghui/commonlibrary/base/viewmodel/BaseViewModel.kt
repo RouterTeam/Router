@@ -136,13 +136,14 @@ abstract class BaseViewModel<M : BaseModel?>( application: Application, var mMod
         mUIChangeLiveData?.getCompleteLoadingEvent()?.call()
     }
 
-    open fun postStartActivityEvent(clz: Class<*>, bundle: Bundle?) {
-//        val params: MutableMap<String, Any> = HashMap()
-//        params[BaseViewModel.ParameterField.CLASS] = clz
-//        if (bundle != null) {
-//            params[BaseViewModel.ParameterField.BUNDLE] = bundle
-//        }
-//        mUIChangeLiveData!!.startActivityEvent!!.postValue(params)
+    open fun postStartActivityEvent(clz: Class<*>, bundle: Bundle?,isNeedResult:Boolean) {
+        val params: MutableMap<String, Any> = HashMap()
+        params[ParameterField.CLASS] = clz
+        params[ParameterField.ISNEED_RESULT]=isNeedResult
+        if (bundle != null) {
+            params[ParameterField.BUNDLE] = bundle
+        }
+        mUIChangeLiveData?.getStartActivityEvent()?.postValue(params)
     }
 
 
@@ -165,4 +166,10 @@ abstract class BaseViewModel<M : BaseModel?>( application: Application, var mMod
         mModel?.onCleared()
     }
 
+    object ParameterField {
+        var CLASS = "CLASS"
+        var ISNEED_RESULT="ISNEED_RESULT"
+        var CANONICAL_NAME = "CANONICAL_NAME"
+        var BUNDLE = "BUNDLE"
+    }
 }

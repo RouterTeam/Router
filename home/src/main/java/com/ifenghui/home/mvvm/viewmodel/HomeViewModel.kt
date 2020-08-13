@@ -7,7 +7,9 @@ import com.ifenghui.apilibrary.api.entity.HomeResult
 import com.ifenghui.apilibrary.api.entity.HomeTitle
 import com.ifenghui.commonlibrary.base.viewmodel.BaseViewModel
 import com.ifenghui.commonlibrary.binding.listenener.InverseBindingListener
+import com.ifenghui.home.R
 import com.ifenghui.home.mvvm.model.HomeModel
+import com.ifenghui.home.ui.activity.TouchStorysActivity
 
 class HomeViewModel(@NonNull application: Application, model: HomeModel) :
     BaseViewModel<HomeModel>(application, model) {
@@ -15,6 +17,7 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
     var listData: MutableLiveData<ArrayList<Any>> = MutableLiveData()
     val refreshing: MutableLiveData<InverseBindingListener> = MutableLiveData()
     val refreshStatus: MutableLiveData<Boolean> = MutableLiveData()
+    val storyFly:MutableLiveData<Int> = MutableLiveData()
 
     init {
         refreshing.value = object :
@@ -23,6 +26,7 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
                 getHomeData(false)
             }
         }
+        storyFly.value= R.mipmap.home_story_fly
     }
 
     /**
@@ -113,6 +117,13 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
         title.targetValue = group?.id ?: 0
         title.isNeedMore = isNeedMore
         listData?.value?.add(title)
+    }
+
+    /**
+     *
+     */
+    fun touchStoryClick(){
+        postStartActivityEvent(TouchStorysActivity::class.java,null,false)
     }
 
 }

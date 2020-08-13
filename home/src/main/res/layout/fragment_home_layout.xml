@@ -53,10 +53,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_15"
                 android:layout_marginRight="@dimen/dp_15"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/iv_story_flg"
                 android:background="@color/_f7f7f7"
                 app:cardCornerRadius="@dimen/dp_30"
                 app:cardElevation="@dimen/dp_0"
@@ -94,6 +96,16 @@
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
+            <com.colin.skinlibrary.weiget.SkinImageView
+                android:id="@+id/iv_story_flg"
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="@dimen/dp_44"
+                android:layout_marginRight="@dimen/dp_15"
+                android:onClick="@{()->homeViewModel.touchStoryClick()}"
+                app:layout_constraintTop_toTopOf="parent"
+                imageDefaultUrl="@{homeViewModel.storyFly}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

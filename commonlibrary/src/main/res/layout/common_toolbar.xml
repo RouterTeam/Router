@@ -11,7 +11,7 @@
         android:id="@+id/iv_toolbar_back"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:paddingRight="@dimen/dp_30"
+        android:paddingRight="@dimen/dp_50"
         app:filterColor="@color/_909090"
         android:src="@mipmap/black_back" />
 

@@ -1,6 +1,8 @@
 @file:Suppress("DEPRECATION")
 
 package com.ifenghui.commonlibrary.base.ui.activity
+
+import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -38,7 +40,7 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseLa
             mBinding?.setVariable(onBindVariableId(), mViewModel)
             //声明周期的观察者类
             lifecycle.addObserver(mViewModel ?: createViewModel())
-            mBinding?.lifecycleOwner=this
+            mBinding?.lifecycleOwner = this
 
         } catch (e: Exception) {
 
@@ -64,11 +66,12 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseLa
             ?.observe(this, Observer { showErrStatusView() })
         mViewModel!!.getUC()!!.getStartActivityEvent()!!.observe(
             this,
-            Observer<Map<String, Any>?> {
-                //                    val clz =
-                //                        params[BaseViewModel.ParameterField.CLASS] as Class<*>?
-                //                    val bundle = params[BaseViewModel.ParameterField.BUNDLE] as Bundle?
-                //                    startActivity(clz, bundle)
+            Observer { params->
+                params?.get(BaseViewModel.ParameterField.CLASS)
+                val clz = params?.get(BaseViewModel.ParameterField.CLASS) as Class<*>?
+                val bundle = params?.get(BaseViewModel.ParameterField.BUNDLE) as Bundle?
+                val isNeedResult=params?.get(BaseViewModel.ParameterField.ISNEED_RESULT) as Boolean
+                clz?.let { startActivity(it, bundle,isNeedResult) }
             })
         mViewModel?.getUC()?.getFinishActivityEvent()?.observe(this, Observer { finish() })
         mViewModel?.getUC()?.getOnBackPressedEvent()?.observe(this, Observer { onBackPressed() })

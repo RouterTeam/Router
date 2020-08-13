@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="touchViewModel"
+            type="com.ifenghui.home.mvvm.viewmodel.TouchStorysViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:bind_scrollbylistener="@{touchViewModel.scrollBy}"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:overScrollMode="never" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            android:layout_marginBottom="@dimen/dp_50"
+            android:layout_marginRight="@dimen/dp_50"
+            bind_startlistener="@{touchViewModel.startTrans}"
+            android:rotation="45"
+            android:src="@mipmap/moyimo_star"/>
+        <ImageView
+            android:id="@+id/iv_ship"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="@dimen/dp_100"
+            android:layout_width="@dimen/dp_280"
+            android:layout_height="@dimen/dp_243"
+            bind_transylistener="@{touchViewModel.planTrany}"
+            bind_rotationlistener="@{touchViewModel.planRotation}"
+            android:onClick="@{()->touchViewModel.dealTouchingClick()}"
+            android:scaleX="@{touchViewModel.shipScale}"
+            android:scaleY="@{touchViewModel.shipScale}"
+            bind_resourcelistener="@{touchViewModel.shipResource}"
+            bind_framelistener="@{touchViewModel.shipFrame}"
+            android:src="@mipmap/moyimo_frame1"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_ship"
+            app:layout_constraintRight_toRightOf="@+id/iv_ship"
+            bind_transylistener="@{touchViewModel.planTrany}"
+            app:layout_constraintTop_toTopOf="@+id/iv_ship"
+            android:alpha="@{touchViewModel.shipAlpha}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_ship"
+            android:src="@mipmap/moyimo_frame5"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,7 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ifenghui.home" >
+    package="com.ifenghui.home">
+
     <application
         android:allowBackup="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.activity.TouchStorysActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 </manifest>

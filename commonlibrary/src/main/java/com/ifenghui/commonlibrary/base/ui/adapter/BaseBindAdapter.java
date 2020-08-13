@@ -32,7 +32,7 @@ public abstract class BaseBindAdapter<T,B extends ViewDataBinding> extends BaseA
         if (position>=getHeaderCount()&&position<(getHeaderCount()+getCount())){
             B binding = DataBindingUtil.getBinding(holder.itemView);
             int itemPosition=position - getHeaderCount();
-            this.onBindItem(binding, this.datas.get(itemPosition),itemPosition);
+            this.onBindItem(binding, getItem(itemPosition),itemPosition);
         }else {
             super.onBindViewHolder(holder, position);
         }

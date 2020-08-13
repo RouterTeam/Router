@@ -46,7 +46,7 @@ ext {
             mmkvSdkVersion                : '1.1.2',
             rxpermissionsSdkVersion       : '0.9.5',
             skinSdkVersion                : '4.0.4',
-            imageLoaderSdkVersion         : '1.0.10',
+            imageLoaderSdkVersion         : '1.0.11',
             blurViewSdkVersion            : '1.0.0',
 
     ]

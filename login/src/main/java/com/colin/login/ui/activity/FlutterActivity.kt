@@ -55,9 +55,9 @@ class FlutterActivity : BaseLazyActivity() {
             super.onBackPressed()
     }
 
-    override fun finish() {
-        SoftInputHelper.hideOrShowKeyboard(mRootView, false, 0)
-        super.finish()
-    }
+//    override fun finish() {
+//        super.finish()
+//        SoftInputHelper.hideOrShowKeyboard(mRootView, false, 0)
+//    }
 
 }

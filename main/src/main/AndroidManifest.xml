@@ -16,26 +16,21 @@
             android:launchMode="singleTask"
             android:screenOrientation="sensorPortrait"
             android:theme="@style/MainStyle"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.StartTranceActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@style/MainStyle"
             android:windowSoftInputMode="stateHidden">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-                <activity android:name=".ui.StartTranceActivity"
-                    android:theme="@style/MainStyle"
-                    android:configChanges="keyboardHidden|orientation|screenSize"
-                    android:launchMode="singleTop"
-                    android:screenOrientation="sensorPortrait"
-                    android:alwaysRetainTaskState="true"
-                    android:windowSoftInputMode="stateHidden">
-                    <intent-filter>
-                        <action android:name="android.intent.action.MAIN" />
-
-                        <category android:name="android.intent.category.LAUNCHER" />
-                    </intent-filter>
-                </activity>
         <activity
             android:name=".ui.SplashActivity"
             android:alwaysRetainTaskState="true"
@@ -43,12 +38,6 @@
             android:launchMode="singleTop"
             android:screenOrientation="sensorPortrait"
             android:theme="@style/MainStyle"
-            android:windowSoftInputMode="stateHidden">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
+            android:windowSoftInputMode="stateHidden" />
     </application>
 </manifest>

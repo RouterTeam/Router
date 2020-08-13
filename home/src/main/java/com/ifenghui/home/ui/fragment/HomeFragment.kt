@@ -86,23 +86,6 @@ class HomeFragment : BaseFragment<FragmentHomeLayoutBinding, HomeViewModel>() {
     }
 
     /**
-     * 绑定事件
-     */
-//    override fun bindListener() {
-//        super.bindListener()
-//        mBinding?.recyclerView?.addOnScrollListener(object :OnScrollListener(){
-//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-//                super.onScrollStateChanged(recyclerView, newState)
-//                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-//                    mFragment()?.let { GlideApp.with(it).resumeRequests() }//恢复Glide加载图片
-//                }else {
-//                    mFragment()?.let { GlideApp.with(it).pauseRequests() }//禁止Glide加载图片
-//                }
-//            }
-//        })
-//    }
-
-    /**
      * 重新加载数据
      */
     override fun onReloadData() {
