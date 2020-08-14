@@ -11,14 +11,9 @@ class RecyclerViewManagerUtils {
         /**
          * 设置线性样式
          */
-        fun setLinearLayoutManager(
-            recyclerView: RecyclerView?,
-            mContext: Context?,
-            isVertical: Boolean
-        ) {
+        fun setLinearLayoutManager(recyclerView: RecyclerView?, mContext: Context?, isVertical: Boolean) {
             val linearLayoutManager = LinearLayoutManager(mContext)
-            linearLayoutManager.orientation =
-                if (isVertical) RecyclerView.VERTICAL else RecyclerView.HORIZONTAL
+            linearLayoutManager.orientation = if (isVertical) RecyclerView.VERTICAL else RecyclerView.HORIZONTAL
             recyclerView?.layoutManager = linearLayoutManager
         }
 

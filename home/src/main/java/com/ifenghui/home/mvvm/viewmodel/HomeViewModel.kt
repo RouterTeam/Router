@@ -1,10 +1,12 @@
 package com.ifenghui.home.mvvm.viewmodel
 
 import android.app.Application
+import android.os.Bundle
 import androidx.annotation.NonNull
 import androidx.lifecycle.MutableLiveData
 import com.ifenghui.apilibrary.api.entity.HomeResult
 import com.ifenghui.apilibrary.api.entity.HomeTitle
+import com.ifenghui.apilibrary.api.entity.Story
 import com.ifenghui.commonlibrary.base.viewmodel.BaseViewModel
 import com.ifenghui.commonlibrary.binding.listenener.InverseBindingListener
 import com.ifenghui.home.R
@@ -18,8 +20,10 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
     val refreshing: MutableLiveData<InverseBindingListener> = MutableLiveData()
     val refreshStatus: MutableLiveData<Boolean> = MutableLiveData()
     val storyFly:MutableLiveData<Int> = MutableLiveData()
-
+    val viewAlpha:MutableLiveData<Float> = MutableLiveData()
+    var tempData=ArrayList<Story>()
     init {
+        viewAlpha.value=0f
         refreshing.value = object :
             InverseBindingListener {
             override fun onChange() {
@@ -38,6 +42,7 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
             if (listData?.value == null)
                 listData?.value = ArrayList()
             listData?.value?.clear()
+            tempData.clear()
             //添加banner 数据
             if (model.ads != null) {
                 listData?.value?.add(model.ads)
@@ -55,6 +60,7 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
                 model.newStoryGroup.forEach { item ->
                     addTitle(item, true)
                     listData?.value?.addAll(item.storys)
+                    tempData?.addAll(item.storys)
                 }
             }
 
@@ -70,6 +76,7 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
                 model.classicAndCreateGroup.forEach { item ->
                     addTitle(item, true)
                     listData?.value?.addAll(item.storys)
+                    tempData?.addAll(item.storys)
                 }
             }
 
@@ -78,6 +85,7 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
                 model.emotionAndHumourGroup.forEach { item ->
                     addTitle(item, true)
                     listData?.value?.addAll(item.storys)
+//                    tempData?.addAll(item.storys)
                 }
             }
 
@@ -86,9 +94,10 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
                 model.traditionCultureGroup.forEach { item ->
                     addTitle(item, true)
                     listData?.value?.addAll(item.storys)
+//                    tempData?.addAll(item.storys)
                 }
             }
-
+            viewAlpha.value=1f
         }, { error -> //请求出错
             if (listData?.value?.size == 0)
                 postShowErrStatusViewEvent()
@@ -123,7 +132,9 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
      *
      */
     fun touchStoryClick(){
-        postStartActivityEvent(TouchStorysActivity::class.java,null,false)
+        val bundle=Bundle()
+        bundle.putSerializable("list_data",tempData)
+        postStartActivityEvent(TouchStorysActivity::class.java,bundle,false)
     }
 
 }

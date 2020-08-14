@@ -19,46 +19,148 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:bind_scrollbylistener="@{touchViewModel.scrollBy}"
+            android:clickable="false"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:overScrollMode="never" />
+            android:overScrollMode="never"
+            app:bind_scrollbylistener="@{touchViewModel.scrollBy}" />
+
         <ImageView
+            bind_startlistener="@{touchViewModel.startTrans}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintRight_toLeftOf="parent"
-            app:layout_constraintBottom_toTopOf="parent"
-            android:layout_marginBottom="@dimen/dp_50"
             android:layout_marginRight="@dimen/dp_50"
-            bind_startlistener="@{touchViewModel.startTrans}"
+            android:layout_marginBottom="@dimen/dp_50"
             android:rotation="45"
-            android:src="@mipmap/moyimo_star"/>
-        <ImageView
-            android:id="@+id/iv_ship"
+            android:src="@mipmap/moyimo_star"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="parent" />
+
+        <View
+            android:id="@+id/view_base"
+            android:layout_width="@dimen/dp_168"
+            android:layout_height="@dimen/dp_146"
+            android:layout_marginBottom="@dimen/dp_180"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="@dimen/dp_100"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.ifenghui.home.widget.TouchImageView
+            android:id="@+id/iv_top_left"
+            bind_loaddatalistener="@{touchViewModel.recommendTopLeft}"
+            bind_recommendstorylistener="@{touchViewModel.showRecommendStorys}"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:layout_marginRight="@dimen/dp_50"
+            android:alpha="@{touchViewModel.showRecommendAlpha}"
+            android:onClick="@{(view)->touchViewModel.touchViewClick(view)}"
+            app:layout_constraintBottom_toTopOf="@+id/view_base"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/view_base"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.ifenghui.home.widget.TouchImageView
+            android:id="@+id/iv_top_right"
+            bind_loaddatalistener="@{touchViewModel.recommendTopRight}"
+            bind_recommendstorylistener="@{touchViewModel.showRecommendStorys}"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_120"
+            android:layout_marginLeft="@dimen/dp_50"
+            android:layout_marginBottom="@dimen/dp_78"
+            android:alpha="@{touchViewModel.showRecommendAlpha}"
+            android:onClick="@{(view)->touchViewModel.touchViewClick(view)}"
+            app:layout_constraintBottom_toBottomOf="@+id/view_base"
+            app:layout_constraintLeft_toLeftOf="@+id/view_base"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.ifenghui.home.widget.TouchImageView
+            android:id="@+id/iv_middle_left"
+            bind_loaddatalistener="@{touchViewModel.recommendMiddleLeft}"
+            bind_recommendstorylistener="@{touchViewModel.showRecommendStorys}"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:alpha="@{touchViewModel.showRecommendAlpha}"
+            android:onClick="@{(view)->touchViewModel.touchViewClick(view)}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/view_base"
+            app:layout_constraintTop_toTopOf="@+id/view_base" />
+
+
+        <com.ifenghui.home.widget.TouchImageView
+            android:id="@+id/iv_middle_right"
+            bind_loaddatalistener="@{touchViewModel.recommendMiddleRight}"
+            bind_recommendstorylistener="@{touchViewModel.showRecommendStorys}"
+            android:layout_width="@dimen/dp_110"
+            android:layout_height="@dimen/dp_110"
+            android:layout_marginTop="@dimen/dp_60"
+            android:alpha="@{touchViewModel.showRecommendAlpha}"
+            android:onClick="@{(view)->touchViewModel.touchViewClick(view)}"
+            app:layout_constraintLeft_toRightOf="@+id/view_base"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view_base" />
+
+        <com.ifenghui.home.widget.TouchImageView
+            android:id="@+id/iv_bottom_left"
+            bind_loaddatalistener="@{touchViewModel.recommendBottomLeft}"
+            bind_recommendstorylistener="@{touchViewModel.showRecommendStorys}"
+            android:layout_width="@dimen/dp_125"
+            android:layout_height="@dimen/dp_125"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_60"
+            android:alpha="@{touchViewModel.showRecommendAlpha}"
+            android:onClick="@{(view)->touchViewModel.touchViewClick(view)}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/view_base"
+            app:layout_constraintTop_toBottomOf="@+id/view_base" />
+
+
+        <com.ifenghui.home.widget.TouchImageView
+            android:id="@+id/iv_bottom_right"
+            bind_loaddatalistener="@{touchViewModel.recommendBottomRight}"
+            bind_recommendstorylistener="@{touchViewModel.showRecommendStorys}"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:layout_marginLeft="@dimen/dp_50"
+            android:layout_marginTop="@dimen/dp_30"
+            android:alpha="@{touchViewModel.showRecommendAlpha}"
+            android:onClick="@{(view)->touchViewModel.touchViewClick(view)}"
+            app:layout_constraintLeft_toLeftOf="@+id/view_base"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_base" />
+
+        <ImageView
+            android:id="@+id/iv_ship"
+            bind_framelistener="@{touchViewModel.shipFrame}"
+            bind_resourcelistener="@{touchViewModel.shipResource}"
+            bind_rotationlistener="@{touchViewModel.planRotation}"
+            bind_transylistener="@{touchViewModel.planTrany}"
             android:layout_width="@dimen/dp_280"
             android:layout_height="@dimen/dp_243"
-            bind_transylistener="@{touchViewModel.planTrany}"
-            bind_rotationlistener="@{touchViewModel.planRotation}"
+            android:layout_marginTop="@dimen/dp_100"
             android:onClick="@{()->touchViewModel.dealTouchingClick()}"
             android:scaleX="@{touchViewModel.shipScale}"
             android:scaleY="@{touchViewModel.shipScale}"
-            bind_resourcelistener="@{touchViewModel.shipResource}"
-            bind_framelistener="@{touchViewModel.shipFrame}"
-            android:src="@mipmap/moyimo_frame1"/>
+            android:src="@mipmap/moyimo_frame1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
+            bind_transylistener="@{touchViewModel.planTrany}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:alpha="@{touchViewModel.shipAlpha}"
+            android:scaleX="0.94"
+            android:scaleY="0.94"
+            android:src="@mipmap/moyimo_frame5"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_ship"
             app:layout_constraintLeft_toLeftOf="@+id/iv_ship"
             app:layout_constraintRight_toRightOf="@+id/iv_ship"
-            bind_transylistener="@{touchViewModel.planTrany}"
-            app:layout_constraintTop_toTopOf="@+id/iv_ship"
-            android:alpha="@{touchViewModel.shipAlpha}"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_ship"
-            android:src="@mipmap/moyimo_frame5"/>
+            app:layout_constraintTop_toTopOf="@+id/iv_ship" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

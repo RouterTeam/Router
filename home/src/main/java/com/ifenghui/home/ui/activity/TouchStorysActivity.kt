@@ -1,7 +1,10 @@
 package com.ifenghui.home.ui.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.MotionEvent
 import androidx.lifecycle.ViewModel
+import com.ifenghui.apilibrary.api.entity.Story
 import com.ifenghui.commonlibrary.base.ui.activity.BaseActivity
 import com.ifenghui.commonlibrary.utils.RecyclerViewManagerUtils
 import com.ifenghui.home.BR
@@ -29,12 +32,24 @@ class TouchStorysActivity : BaseActivity<ActivityTouchstorysLayoutBinding, Touch
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateDelay(bundle: Bundle?) {
+
         resetToolBarTitle("摸一摸")
         RecyclerViewManagerUtils.setLinearLayoutManager(mBinding?.recyclerView, mActivity(), true)
         var adapter=TouchStorysAdapter(mActivity())
         mBinding?.recyclerView?.adapter=adapter
         adapter?.notifyDataSetChanged()
         mBinding?.recyclerView?.scrollToPosition(Int.MAX_VALUE-1)
+        mBinding?.recyclerView?.setOnTouchListener { _, _ -> true }
+        getPredata()
+    }
+
+    private fun getPredata(){
+        try {
+            val bundle = intent.extras
+            val serializable = bundle?.getSerializable("list_data")
+            mViewModel?.setListData(serializable as ArrayList<Story> )
+        }catch (e:Exception){}
     }
 }

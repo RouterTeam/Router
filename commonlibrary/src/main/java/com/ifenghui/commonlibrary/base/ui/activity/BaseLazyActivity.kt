@@ -179,7 +179,6 @@ abstract class BaseLazyActivity : RxAppCompatActivity(), IBaseView, TipsViewMana
      * 跳转页面
      */
     protected var ACTIVITY_REQUEST_CODE = 10000
-
     fun startActivity(clz: Class<*>, bundle: Bundle?, isNeedResult: Boolean) {
         try {
             val intent = Intent(this, clz)
