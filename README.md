@@ -5,8 +5,7 @@ kotin+mvvm+databinding+组建化
 
 
 ## Demo
-<img  src="https://raw.githubusercontent.com/RouterTeam/Router/master/short/home.png" width="375"/>
-![Alt text](https://raw.githubusercontent.com/colinlibrary/ImageLoader/master/shots/device-2020-08-03-131928.gif)
-
+<img  src="https://raw.githubusercontent.com/RouterTeam/Router/master/short/home.png" width="375"/> <img  src="https://raw.githubusercontent.com/RouterTeam/Router/master/short/home.png" width="375"/>
+ 
 
 
