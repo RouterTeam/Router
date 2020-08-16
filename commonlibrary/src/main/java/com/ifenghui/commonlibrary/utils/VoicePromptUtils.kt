@@ -41,43 +41,51 @@ class VoicePromptUtils {
      * 播放语音提示
      */
     fun playVoiceTips(context: Context, voiceResource: Int, callback: Callback<Any>?) {
-        if (mMediaPlayer == null) {
-            mMediaPlayer = MediaPlayer()
-            mMediaPlayer?.setAudioStreamType(AudioManager.STREAM_MUSIC)
-        }
-        mMediaPlayer?.pause()
-        mMediaPlayer?.reset()
-        mMediaPlayer?.setOnCompletionListener {
-            callback?.call(0)
-        }
-        mMediaPlayer?.setOnPreparedListener {
-            mMediaPlayer?.start()
-        }
-        val file = context.resources.openRawResourceFd(voiceResource)
         try {
+            if (mMediaPlayer == null) {
+                mMediaPlayer = MediaPlayer()
+                mMediaPlayer?.setAudioStreamType(AudioManager.STREAM_MUSIC)
+            }
+            mMediaPlayer?.pause()
+            mMediaPlayer?.reset()
+            mMediaPlayer?.setOnCompletionListener {
+                callback?.call(0)
+            }
+            mMediaPlayer?.setOnPreparedListener {
+                mMediaPlayer?.start()
+            }
+            val file = context.resources.openRawResourceFd(voiceResource)
+
             mMediaPlayer?.setDataSource(file.fileDescriptor, file.startOffset, file.length)
             file.close()
             mMediaPlayer?.setVolume(BEEP_VOLUME, BEEP_VOLUME)
             mMediaPlayer?.prepareAsync()
         } catch (e: IOException) {
             mMediaPlayer = null
+        } catch (e: Exception) {
+            mMediaPlayer = null
         }
-
     }
 
     /**
      * 暂停播放
      */
-    fun pauseMedia(){
-        mMediaPlayer?.pause()
+    fun pauseMedia() {
+        try {
+            mMediaPlayer?.pause()
+        } catch (e: Exception) {
+        }
     }
 
     /**
      * 重置音量
      */
-    fun resetMediaVolume(volume:Float){
-        BEEP_VOLUME=volume
-        mMediaPlayer?.setVolume(BEEP_VOLUME, BEEP_VOLUME)
+    fun resetMediaVolume(volume: Float) {
+        try {
+            BEEP_VOLUME = volume
+            mMediaPlayer?.setVolume(BEEP_VOLUME, BEEP_VOLUME)
+        } catch (e: Exception) {
+        }
     }
 
     /**

@@ -85,7 +85,7 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
                 model.emotionAndHumourGroup.forEach { item ->
                     addTitle(item, true)
                     listData?.value?.addAll(item.storys)
-//                    tempData?.addAll(item.storys)
+                    tempData?.addAll(item.storys)
                 }
             }
 
@@ -94,7 +94,7 @@ class HomeViewModel(@NonNull application: Application, model: HomeModel) :
                 model.traditionCultureGroup.forEach { item ->
                     addTitle(item, true)
                     listData?.value?.addAll(item.storys)
-//                    tempData?.addAll(item.storys)
+                    tempData?.addAll(item.storys)
                 }
             }
             viewAlpha.value=1f

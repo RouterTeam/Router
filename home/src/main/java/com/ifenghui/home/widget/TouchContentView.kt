@@ -4,30 +4,32 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.colin.library.GlideImageLoader
-import com.colin.skinlibrary.weiget.SkinImageView
 import com.ifenghui.apilibrary.api.entity.Story
 import com.ifenghui.commonlibrary.utils.ViewUtils
-import kotlin.random.Random
+import com.ifenghui.home.R
+import kotlinx.android.synthetic.main.item_touch_recommend_layout.view.*
 
-class TouchImageView : SkinImageView {
+class TouchContentView : ConstraintLayout {
 
     private var thirdPlaneMoveAnimator: ObjectAnimator? = null
     private var scaleXAnim: ObjectAnimator? = null
     private var scaleYAnim: ObjectAnimator? = null
     private var list:ArrayList<Int>?=null
+    private var touchRoot:View ?= null
     constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs){
-        scaleX = 0f
-        scaleY = 0f
-    }
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     private var currentStory:Story?=null
 
     override fun onFinishInflate() {
         super.onFinishInflate()
+        touchRoot=LayoutInflater.from(context).inflate(R.layout.item_touch_recommend_layout,this)
+        touchRoot?.iv_play?.let { GlideImageLoader.getInstance().displayWithDrawable(context,R.mipmap.moyimo_yinzhu)?.intoTargetView(it) }
         list=ArrayList()
         list?.add(100)
         list?.add(130)
@@ -43,10 +45,8 @@ class TouchImageView : SkinImageView {
         list?.add(210)
         list?.add(220)
         initAnim()
-//        touchImageSource()
         playReversenAnim()
-        scaleX = 0f
-        scaleY = 0f
+
     }
 
     private fun initAnim() {
@@ -61,7 +61,7 @@ class TouchImageView : SkinImageView {
      */
     fun loadImageSource(story: Story?){
         story?.let {
-            GlideImageLoader.getInstance().displayCircleWithBitmap(context,it.cover)?.resetPlaceHolder(0,0)?.intoTargetView(this)
+            touchRoot?.iv_pre?.let { it1 -> GlideImageLoader.getInstance().displayCircleWithBitmap(context,it.cover)?.resetCrossFadeTime(10)?.resetPlaceHolder(0,0)?.intoTargetView(it1) }
         }
     }
 
@@ -71,14 +71,14 @@ class TouchImageView : SkinImageView {
     fun playShoworHideAnim(isShow: Boolean) {
         scaleXAnim?.end()
         scaleYAnim?.end()
-
+        touchRoot?.iv_play?.alpha=0f
         if (isShow) {
             scaleXAnim?.setFloatValues(0f, 1.2f, 1.0f)
             scaleYAnim?.setFloatValues(0f, 1.2f, 1.0f)
             thirdPlaneMoveAnimator?.resume()
         } else {
-            scaleXAnim?.setFloatValues(1f, 0f)
-            scaleYAnim?.setFloatValues(1f, 0f)
+            scaleXAnim?.setFloatValues(scaleX, 0f)
+            scaleYAnim?.setFloatValues(scaleY, 0f)
         }
         var index= getRandomIndex()
         scaleYAnim?.startDelay=list!![index].toLong()
@@ -93,8 +93,11 @@ class TouchImageView : SkinImageView {
      */
     fun playReverseAnim() {
         thirdPlaneMoveAnimator?.pause()
-        scaleXAnim?.setFloatValues(1f, -1f,1f)
+        scaleXAnim?.setFloatValues(scaleX, -scaleX)
         scaleXAnim?.duration = 1500
+        postDelayed({
+            touchRoot?.iv_play?.alpha=1f
+        },1000)
         scaleXAnim?.start()
     }
 
@@ -102,6 +105,7 @@ class TouchImageView : SkinImageView {
      * 恢复默认动画
      */
     fun recoverDefaultAnim(){
+        touchRoot?.iv_play?.alpha=0f
         thirdPlaneMoveAnimator?.resume()
     }
 

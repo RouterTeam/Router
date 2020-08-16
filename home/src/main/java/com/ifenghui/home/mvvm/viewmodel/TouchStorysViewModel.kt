@@ -5,19 +5,16 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.app.Application
-import android.os.Handler
-import android.os.Parcelable
 import android.view.View
 import androidx.annotation.NonNull
 import androidx.lifecycle.MutableLiveData
 import com.ifenghui.apilibrary.api.entity.Story
 import com.ifenghui.commonlibrary.base.viewmodel.BaseViewModel
-import com.ifenghui.commonlibrary.utils.Callback
 import com.ifenghui.commonlibrary.utils.ViewUtils
 import com.ifenghui.commonlibrary.utils.VoicePromptUtils
 import com.ifenghui.home.R
 import com.ifenghui.home.mvvm.model.TouchStorysModel
-import com.ifenghui.home.widget.TouchImageView
+import com.ifenghui.home.widget.TouchContentView
 
 class TouchStorysViewModel : BaseViewModel<TouchStorysModel> {
     private var disdance = 0
@@ -31,7 +28,6 @@ class TouchStorysViewModel : BaseViewModel<TouchStorysModel> {
     var shipAlpha: MutableLiveData<Float> = MutableLiveData()
     var showRecommendStorys: MutableLiveData<Boolean> = MutableLiveData()
     var showRecommendAlpha: MutableLiveData<Float> = MutableLiveData()
-    var recommendDatas: MutableLiveData<ArrayList<Story>> = MutableLiveData()
     var recommendTopLeft: MutableLiveData<Story> = MutableLiveData()
     var recommendTopRight: MutableLiveData<Story> = MutableLiveData()
     var recommendMiddleLeft: MutableLiveData<Story> = MutableLiveData()
@@ -57,7 +53,7 @@ class TouchStorysViewModel : BaseViewModel<TouchStorysModel> {
     private var isNeedPlayEntrace = true//标示是否需要播放入场动画
     private var isPlayingAnim = true//标示动画是否播放中
 
-    private var currentSelectStory: TouchImageView? = null
+    private var currentSelectStory: TouchContentView? = null
     private var listdata: ArrayList<Story>? = null
     private var voiceTipResource = R.raw.moyimo_first_arrival
 
@@ -221,6 +217,7 @@ class TouchStorysViewModel : BaseViewModel<TouchStorysModel> {
     fun dealTouchingClick() {
         if (isPlayingAnim) return
         isPlayingAnim = true
+        currentSelectStory=null
         if (shipScale.value == 1.0f) {//处理需要播放入场动画的点击
             playPrepareFlyingAnim()
             return
@@ -240,7 +237,6 @@ class TouchStorysViewModel : BaseViewModel<TouchStorysModel> {
      */
     private fun playPrepareFlyingAnim() {
         VoicePromptUtils.getInstance().playVoiceTips(getApplication(), R.raw.moyimo_first_touch, null)
-
         shipFrame.value = true
         alphaAnim?.startDelay = 4000
         alphaAnim?.start()
@@ -280,16 +276,17 @@ class TouchStorysViewModel : BaseViewModel<TouchStorysModel> {
     fun touchViewClick(view: View) {
         if (isPlayingAnim) return
         view.let {
-            it as TouchImageView
-            if (it.scaleX != 1f) return
-            if (currentSelectStory?.id == it.id) {//点击的和当前的是同一个
+            it as TouchContentView
+            if (it.scaleX == 1f||it.scaleX==-1f){
+                if (currentSelectStory?.id == it.id) {//点击的和当前的是同一个
 
-            } else {
-                currentSelectStory?.recoverDefaultAnim()
-                currentSelectStory = it
-                it.playReverseAnim()
+                } else {
+                    VoicePromptUtils.getInstance().playVoiceTips(getApplication(), R.raw.common_btn,null)
+                    currentSelectStory?.recoverDefaultAnim()
+                    currentSelectStory = it
+                    it.playReverseAnim()
+                }
             }
-
         }
     }
 
@@ -357,6 +354,27 @@ class TouchStorysViewModel : BaseViewModel<TouchStorysModel> {
      */
     override fun onCleared() {
         super.onCleared()
-        VoicePromptUtils.getInstance().releasePrompt()
+        try {
+            VoicePromptUtils.getInstance().releasePrompt()
+            shipBgAnim?.end()
+            shipBgAnim = null
+            shipTanslationAnim?.end()
+            shipTanslationAnim = null
+            shipRecoverTransAnim?.end()
+            shipRecoverTransAnim = null
+            shipRotationAnim?.end()
+            shipRotationAnim = null
+            shipRecoverRotationAnim?.end()
+            shipRecoverRotationAnim = null
+            shipReversenAnim?.end()
+            shipReversenAnim = null
+            shipScalenAnim?.end()
+            shipScalenAnim = null
+            startTransAnim?.end()
+            startTransAnim = null
+            alphaAnim?.end()
+            alphaAnim = null
+        } catch (e: Exception) {
+        }
     }
 }

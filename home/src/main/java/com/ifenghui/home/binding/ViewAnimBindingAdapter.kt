@@ -1,12 +1,11 @@
 package com.ifenghui.home.binding
 
 import android.graphics.drawable.AnimationDrawable
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.ifenghui.apilibrary.api.entity.Story
-import com.ifenghui.home.widget.TouchImageView
+import com.ifenghui.home.widget.TouchContentView
 
 object ViewAnimBindingAdapter {
 
@@ -66,7 +65,7 @@ object ViewAnimBindingAdapter {
      */
     @JvmStatic
     @BindingAdapter("bind_recommendstorylistener")
-    fun bindRecommendStoryListener(view: TouchImageView, isShow: Boolean) {
+    fun bindRecommendStoryListener(view: TouchContentView, isShow: Boolean) {
         if (isShow && view.scaleY == 0f) {
             view.playShoworHideAnim(true)
         } else if (!isShow) {
@@ -79,7 +78,7 @@ object ViewAnimBindingAdapter {
      */
     @JvmStatic
     @BindingAdapter("bind_loaddatalistener")
-    fun bindLoadDataListener(view: TouchImageView, story: Story?) {
+    fun bindLoadDataListener(view: TouchContentView, story: Story?) {
         view.loadImageSource(story)
     }
 }

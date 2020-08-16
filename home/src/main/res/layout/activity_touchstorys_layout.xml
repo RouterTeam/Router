@@ -46,7 +46,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.ifenghui.home.widget.TouchImageView
+        <com.ifenghui.home.widget.TouchContentView
             android:id="@+id/iv_top_left"
             bind_loaddatalistener="@{touchViewModel.recommendTopLeft}"
             bind_recommendstorylistener="@{touchViewModel.showRecommendStorys}"
@@ -60,7 +60,7 @@
             app:layout_constraintRight_toRightOf="@+id/view_base"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.ifenghui.home.widget.TouchImageView
+        <com.ifenghui.home.widget.TouchContentView
             android:id="@+id/iv_top_right"
             bind_loaddatalistener="@{touchViewModel.recommendTopRight}"
             bind_recommendstorylistener="@{touchViewModel.showRecommendStorys}"
@@ -76,7 +76,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <com.ifenghui.home.widget.TouchImageView
+        <com.ifenghui.home.widget.TouchContentView
             android:id="@+id/iv_middle_left"
             bind_loaddatalistener="@{touchViewModel.recommendMiddleLeft}"
             bind_recommendstorylistener="@{touchViewModel.showRecommendStorys}"
@@ -89,7 +89,7 @@
             app:layout_constraintTop_toTopOf="@+id/view_base" />
 
 
-        <com.ifenghui.home.widget.TouchImageView
+        <com.ifenghui.home.widget.TouchContentView
             android:id="@+id/iv_middle_right"
             bind_loaddatalistener="@{touchViewModel.recommendMiddleRight}"
             bind_recommendstorylistener="@{touchViewModel.showRecommendStorys}"
@@ -102,7 +102,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/view_base" />
 
-        <com.ifenghui.home.widget.TouchImageView
+        <com.ifenghui.home.widget.TouchContentView
             android:id="@+id/iv_bottom_left"
             bind_loaddatalistener="@{touchViewModel.recommendBottomLeft}"
             bind_recommendstorylistener="@{touchViewModel.showRecommendStorys}"
@@ -117,7 +117,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view_base" />
 
 
-        <com.ifenghui.home.widget.TouchImageView
+        <com.ifenghui.home.widget.TouchContentView
             android:id="@+id/iv_bottom_right"
             bind_loaddatalistener="@{touchViewModel.recommendBottomRight}"
             bind_recommendstorylistener="@{touchViewModel.showRecommendStorys}"
