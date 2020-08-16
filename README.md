@@ -1,7 +1,7 @@
 # Router
 kotin+mvvm+databinding+组建化
 使用GlideApp实现图片加载
-[![skin-support](https://img.shields.io/badge/release-v1.0.11-green.svg)](http://jcenter.bintray.com/skin/support)
+[![skin-support](https://img.shields.io/badge/release-v1.0.0-green.svg)](http://jcenter.bintray.com/skin/support)
 
 
 ## Demo
