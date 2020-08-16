@@ -19,7 +19,7 @@ class ShelfModel : BaseModel {
      * 获取书架数据
      */
     fun getShelfData(pageNo:Int): Observable<ShelfResult>?{
-        return mShelfService?.getHasBuyStory("79653ff4129c42b38edfc56961fef405",pageNo,30)?.compose(RxUtils.exceptionTransformer())
+        return mShelfService?.getHasBuyStory("d4ae465e335e7ac2a0d0570eebfad5c7",pageNo,30)?.compose(RxUtils.exceptionTransformer())
             ?.compose(RxUtils.rxSchedulerHelper())
     }
 }

@@ -9,11 +9,14 @@ import java.net.URLEncoder
 
 class BaseInterceptor : Interceptor {
     private var headers: Map<String, String>? = null
-    private val userToken: String? = null
+    private var userToken: String? = null
 
-    constructor() {}
+    constructor() {
+        userToken="d4ae465e335e7ac2a0d0570eebfad5c7"
+    }
     constructor(headers: Map<String, String>?) {
         this.headers = headers
+
     }
 
     @Throws(IOException::class)
@@ -25,7 +28,7 @@ class BaseInterceptor : Interceptor {
             .scheme(oldRequest.url.scheme)
             .host(oldRequest.url.host)
         if (!TextUtils.isEmpty(userToken)) {//添加公共参数
-            authorizedUrlBuilder.addQueryParameter("token", userToken)
+            authorizedUrlBuilder.addQueryParameter("sstoken", userToken)
         }
 
         // 新的请求
