@@ -23,12 +23,14 @@ public abstract class BaseBindAdapter<T,B extends ViewDataBinding> extends BaseA
         B binding = DataBindingUtil.inflate(LayoutInflater.from(getmContext()), this.getItemLayout(viewType), viewGroup, false);
         onViewHolderInit(binding);
         viewholdercount++;
+        Log.e("-------","viewholdercount="+viewholdercount);
         return new BaseViewHolder(binding.getRoot());
     }
     int bindviewholdercount=0;
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
         bindviewholdercount++;
+        Log.e("======","bindviewholdercount="+bindviewholdercount);
         if (position>=getHeaderCount()&&position<(getHeaderCount()+getCount())){
             B binding = DataBindingUtil.getBinding(holder.itemView);
             int itemPosition=position - getHeaderCount();

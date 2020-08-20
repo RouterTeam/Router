@@ -93,7 +93,7 @@ class TouchContentView : ConstraintLayout {
      */
     fun playReverseAnim() {
         thirdPlaneMoveAnimator?.pause()
-        scaleXAnim?.setFloatValues(scaleX, -scaleX)
+        scaleXAnim?.setFloatValues(scaleX,0f, scaleX)
         scaleXAnim?.duration = 1500
         postDelayed({
             touchRoot?.iv_play?.alpha=1f
