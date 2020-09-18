@@ -12,6 +12,8 @@ import com.ifenghui.apilibrary.api.entity.User;
 import com.ifenghui.commonlibrary.R;
 import com.ifenghui.commonlibrary.utils.PreferencesManager;
 import com.ifenghui.commonlibrary.utils.RouterManger;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 public class BaseApplication extends MultiDexApplication {
     private static Context INSTANCE;
@@ -28,6 +30,15 @@ public class BaseApplication extends MultiDexApplication {
         PreferencesManager.initPreferencesManager(this);
         SkinManager.initSkinManager(this);
         initImageLoader();
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for
+            // heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+
+        RefWatcher install = LeakCanary.install(this);
+
     }
 
     /**

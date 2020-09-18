@@ -61,7 +61,8 @@ class TouchContentView : ConstraintLayout {
      */
     fun loadImageSource(story: Story?){
         story?.let {
-            touchRoot?.iv_pre?.let { it1 -> GlideImageLoader.getInstance().displayCircleWithBitmap(context,it.cover)?.resetCrossFadeTime(10)?.resetPlaceHolder(0,0)?.intoTargetView(it1) }
+            currentStory=it
+            touchRoot?.iv_pre?.let { it1 -> GlideImageLoader.getInstance().displayCircleWithBitmap(context,it.cover)?.resetCrossFadeTime(10)?.resetPlaceHolder(R.mipmap.default_avatar,R.mipmap.default_avatar)?.intoTargetView(it1) }
         }
     }
 

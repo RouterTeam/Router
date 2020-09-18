@@ -46,7 +46,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
                     override fun call(type: Any?) {
                         if (type is Int && type == 4)
                             iv_ad_cover?.postDelayed({
-//                                startActivity(MainActivity2::class.java, null, false)
                                 finish()
                             }, 3500)
                     }

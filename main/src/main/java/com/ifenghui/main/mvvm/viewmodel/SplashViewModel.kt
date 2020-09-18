@@ -18,14 +18,14 @@ open class SplashViewModel(@NonNull application: Application, model: SplashModel
 //            mNewsDetails.set(model.indexAds)
             mNewsDetails.value=model.indexAds
         },{error->
-//            if (error is ResponseThrowable){
-//                Log.e("========","错误"+error.code)
-//            }
-//            Log.e("========","错误")
+            if (error is ResponseThrowable){
+                Log.e("========","错误"+error.code)
+            }
+            Log.e("========","错误")
         },{
-//            Log.e("========","完成")
+            Log.e("========","完成")
         },{
-//            Log.e("========","开始")
+            Log.e("========","开始")
         }))
     }
 
