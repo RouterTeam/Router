@@ -1,5 +1,7 @@
 <resources>
     <dimen name="base_dip">480dp</dimen>
+    <dimen name="line_height">0.75dp</dimen>
+    <dimen name="bottom_navigation_height">75dp</dimen>
     <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_0_5">0.75dp</dimen>
     <dimen name="dp_1">1.5dp</dimen>
@@ -321,5 +323,5 @@
     <dimen name="dp_317">475.5dp</dimen>
     <dimen name="dp_318">477dp</dimen>
     <dimen name="dp_319">478.5dp</dimen>
-    <dimen name="dp_320">480p</dimen>
+    <dimen name="dp_320">480dp</dimen>
 </resources>

@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import com.colin.bottomnavigation.R;
 import com.colin.bottomnavigation.utils.DensityUtils;
 import com.colin.skinlibrary.SkinManager;
+import com.ifenghui.commonlibrary.utils.ViewUtils;
 
 import skin.support.widget.SkinCompatSupportable;
 
@@ -73,10 +74,10 @@ public class TabAnimView extends View implements SkinCompatSupportable {
 
     private void init(Context context) {
         //绘制内容区域
-        contentSize = DensityUtils.dp2px(context, 50);
+        contentSize = (int) context.getResources().getDimension(R.dimen.bottom_navigation_height);
         //线距离顶部距离
-        lineToTop = DensityUtils.dp2px(context, 50);
-        bitmapPadding = DensityUtils.dp2px(context, 5);
+        lineToTop = (int) context.getResources().getDimension(R.dimen.bottom_navigation_height);
+        bitmapPadding = (int) context.getResources().getDimension(R.dimen.dp_5);
 
         bitmapPaint = new Paint();
         bitmapPaint.setAntiAlias(true);
@@ -111,10 +112,12 @@ public class TabAnimView extends View implements SkinCompatSupportable {
                 (float) width - ((float) width - (float) contentSize) / 2,
                 height + value);
 
+        Path path = new Path();
+        path.moveTo(0, lineToTop);
+
         if (value < 0) {
-            Path path = new Path();
             //绘制第一段圆弧
-            path.moveTo(rectF.left - 20, lineToTop);
+            path.lineTo(rectF.left - 20, lineToTop);
             float firstCubicHight = ((float) lineToTop - rectF.top) / 8;
             float end = (float) lineToTop - firstCubicHight;
             path.cubicTo(
@@ -148,11 +151,14 @@ public class TabAnimView extends View implements SkinCompatSupportable {
             pathBg.lineTo(rectF.right + 20, height);
             pathBg.lineTo(rectF.left - 20, height);
             pathBg.lineTo(rectF.left - 20, lineToTop);
+            path.lineTo(width, lineToTop);
             canvas.drawPath(pathBg, paintBg);//绘制白色背景
 
-            canvas.drawPath(path, paintBgStroke);//绘制曲线
-
+        }else {
+            //绘制直线
+            path.lineTo(width, lineToTop);
         }
+        canvas.drawPath(path, paintBgStroke);//绘制曲线
 
         if (bpSel != null) {
             int bpSize = height - lineToTop;
@@ -177,10 +183,12 @@ public class TabAnimView extends View implements SkinCompatSupportable {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (width == 0) {
-            width = getMeasuredWidth();
+//            width = getMeasuredWidth();
+            width = ViewUtils.getScreenWidth(getContext())/4;
         }
         if (height == 0) {
-            height = getMeasuredHeight();
+//            height = getMeasuredHeight();
+            height = contentSize;
         }
     }
 

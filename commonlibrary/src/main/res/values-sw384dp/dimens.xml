@@ -1,5 +1,7 @@
 <resources>
     <dimen name="base_dip">384dp</dimen>
+    <dimen name="line_height">0.6dp</dimen>
+    <dimen name="bottom_navigation_height">60dp</dimen>
     <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_0_5">0.6dp</dimen>
     <dimen name="dp_1">1.2dp</dimen>
@@ -92,11 +94,11 @@
     <dimen name="dp_88">105.6dp</dimen>
     <dimen name="dp_89">106.8dp</dimen>
     <dimen name="dp_90">108dp</dimen>
-    <dimen name="dp_91">109.2p</dimen>
+    <dimen name="dp_91">109.2dp</dimen>
     <dimen name="dp_92">110.4dp</dimen>
     <dimen name="dp_93">111.6dp</dimen>
     <dimen name="dp_94">112.8dp</dimen>
-    <dimen name="dp_95">114p</dimen>
+    <dimen name="dp_95">114dp</dimen>
     <dimen name="dp_96">115.2dp</dimen>
     <dimen name="dp_97">116.4dp</dimen>
     <dimen name="dp_98">117.6dp</dimen>
@@ -144,7 +146,7 @@
     <dimen name="dp_140">168dp</dimen>
     <dimen name="dp_141">169.2dp</dimen>
     <dimen name="dp_142">170.4dp</dimen>
-    <dimen name="dp_143">171.6p</dimen>
+    <dimen name="dp_143">171.6dp</dimen>
     <dimen name="dp_144">172.8dp</dimen>
     <dimen name="dp_145">174dp</dimen>
     <dimen name="dp_146">175.2dp</dimen>

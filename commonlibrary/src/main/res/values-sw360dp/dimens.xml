@@ -1,5 +1,7 @@
 <resources>
     <dimen name="base_dip">360dp</dimen>
+    <dimen name="line_height">0.5dp</dimen>
+    <dimen name="bottom_navigation_height">56.25dp</dimen>
     <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_0_5">0.5625dp</dimen>
     <dimen name="dp_1">1.125dp</dimen>
@@ -25,7 +27,7 @@
     <dimen name="dp_21">23.625dp</dimen>
     <dimen name="dp_22">24.75dp</dimen>
     <dimen name="dp_23">25.875dp</dimen>
-    <dimen name="dp_24">27</dimen>
+    <dimen name="dp_24">27dp</dimen>
     <dimen name="dp_25">28.125dp</dimen>
     <dimen name="dp_26">29.25dp</dimen>
     <dimen name="dp_27">30.375dp</dimen>
@@ -183,7 +185,7 @@
     <dimen name="dp_179">201.375dp</dimen>
     <dimen name="dp_180">202.5dp</dimen>
     <dimen name="dp_181">203.625dp</dimen>
-    <dimen name="dp_182">204.75p</dimen>
+    <dimen name="dp_182">204.75dp</dimen>
     <dimen name="dp_183">205.875dp</dimen>
     <dimen name="dp_184">207dp</dimen>
     <dimen name="dp_185">208.125dp</dimen>

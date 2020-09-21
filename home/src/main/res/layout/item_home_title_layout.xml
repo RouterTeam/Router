@@ -39,7 +39,7 @@
             android:textColor="@color/_8da7fc"
             android:drawableRight="@mipmap/blue_more"
             android:text="更多"
-            android:paddingBottom="15dp"
+            android:paddingBottom="@dimen/dp_15"
             app:layout_constraintRight_toRightOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
