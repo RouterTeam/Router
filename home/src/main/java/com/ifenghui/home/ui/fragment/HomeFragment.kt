@@ -67,6 +67,9 @@ class HomeFragment : BaseFragment<FragmentHomeLayoutBinding, HomeViewModel>() {
 //                homeAdapter
 //            )
 //        )
+        //设置预加载itemview数目。默认是2
+        mBinding?.recyclerView?.setItemViewCacheSize(5)
+        mBinding?.recyclerView?.recycledViewPool?.setMaxRecycledViews(3,10)
         mBinding?.recyclerView?.adapter = homeAdapter
 
         mBinding?.smartrefreshlayout?.setOnRefreshListener {

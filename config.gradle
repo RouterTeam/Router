@@ -48,6 +48,7 @@ ext {
             skinSdkVersion                : '4.0.4',
             imageLoaderSdkVersion         : '1.0.11',
             blurViewSdkVersion            : '1.0.0',
+            leakcanarySdkVersion          : '1.5'
 
     ]
 
@@ -108,5 +109,7 @@ ext {
             "skin-support-constraint-layout": "skin.support:skin-support-constraint-layout:${versions["skinSdkVersion"]}",
             //动态高斯模糊库
             "realtimeblurview"              : "com.github.colinlibrary:MyRealTimeBlurView:${versions["blurViewSdkVersion"]}",
+            "debugleakcanary"               : "com.squareup.leakcanary:leakcanary-android:${versions["leakcanarySdkVersion"]}",
+            "releaseleakcanary"             : "com.squareup.leakcanary:leakcanary-android-no-op:${versions["leakcanarySdkVersion"]}",
     ]
 }

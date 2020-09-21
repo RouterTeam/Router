@@ -12,14 +12,15 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="@dimen/line_height"
         android:background="@color/ui_A3A3A3"
+        android:visibility="invisible"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.colin.bottomnavigation.widget.LottieTabView
         android:id="@+id/tab_home"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_100"
         app:icon_normal="@mipmap/soye"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -30,13 +31,13 @@
         app:tab_selected="true"
         app:text_normal_color="@color/ui_A3A3A3"
         app:text_selected_color="@color/colorAccent"
-        app:text_size="12sp"
+        app:text_size="@dimen/dp_12"
         app:top_bulge="true" />
 
     <com.colin.bottomnavigation.widget.LottieTabView
         android:id="@+id/tab_mag"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_100"
         app:icon_normal="@mipmap/fl"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/tab_home"
@@ -46,13 +47,13 @@
         app:tab_selected="false"
         app:text_normal_color="@color/ui_A3A3A3"
         app:text_selected_color="@color/colorAccent"
-        app:text_size="12sp"
+        app:text_size="@dimen/dp_12"
         app:top_bulge="true" />
 
     <com.colin.bottomnavigation.widget.LottieTabView
         android:id="@+id/tab_book"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_100"
         app:icon_normal="@mipmap/gwc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/tab_mag"
@@ -62,13 +63,13 @@
         app:tab_selected="false"
         app:text_normal_color="@color/ui_A3A3A3"
         app:text_selected_color="@color/colorAccent"
-        app:text_size="12sp"
+        app:text_size="@dimen/dp_12"
         app:top_bulge="true" />
 
     <com.colin.bottomnavigation.widget.LottieTabView
         android:id="@+id/tab_mine"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_100"
         app:icon_normal="@mipmap/wd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/tab_book"
@@ -78,6 +79,6 @@
         app:tab_selected="false"
         app:text_normal_color="@color/ui_A3A3A3"
         app:text_selected_color="@color/colorAccent"
-        app:text_size="12sp"
+        app:text_size="@dimen/dp_12"
         app:top_bulge="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>

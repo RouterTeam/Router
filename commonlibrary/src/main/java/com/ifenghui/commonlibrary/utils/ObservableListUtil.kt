@@ -16,12 +16,7 @@ class ObservableListUtil {
                     adapter?.notifyItemRangeRemoved(positionStart, itemCount)
                 }
 
-                override fun onItemRangeMoved(
-                    sender: T,
-                    fromPosition: Int,
-                    toPosition: Int,
-                    itemCount: Int
-                ) {
+                override fun onItemRangeMoved(sender: T, fromPosition: Int, toPosition: Int, itemCount: Int) {
                     if (itemCount == 1) {
                         adapter?.notifyItemMoved(fromPosition, toPosition)
                     } else {

@@ -23,6 +23,7 @@ class RecyclerViewManagerUtils {
         fun setGridLayoutManager(recyclerView: RecyclerView?, mContext: Context?, spaceCount: Int) {
             val gridLayoutManager = GridLayoutManager(mContext, spaceCount)
             recyclerView?.layoutManager = gridLayoutManager
+            recyclerView?.setHasFixedSize(true)
         }
     }
 }

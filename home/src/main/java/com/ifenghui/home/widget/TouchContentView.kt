@@ -61,7 +61,8 @@ class TouchContentView : ConstraintLayout {
      */
     fun loadImageSource(story: Story?){
         story?.let {
-            touchRoot?.iv_pre?.let { it1 -> GlideImageLoader.getInstance().displayCircleWithBitmap(context,it.cover)?.resetCrossFadeTime(10)?.resetPlaceHolder(0,0)?.intoTargetView(it1) }
+            currentStory=it
+            touchRoot?.iv_pre?.let { it1 -> GlideImageLoader.getInstance().displayCircleWithBitmap(context,it.cover)?.resetCrossFadeTime(10)?.resetPlaceHolder(R.mipmap.default_avatar,R.mipmap.default_avatar)?.intoTargetView(it1) }
         }
     }
 
@@ -93,7 +94,7 @@ class TouchContentView : ConstraintLayout {
      */
     fun playReverseAnim() {
         thirdPlaneMoveAnimator?.pause()
-        scaleXAnim?.setFloatValues(scaleX, -scaleX)
+        scaleXAnim?.setFloatValues(scaleX,0f, scaleX)
         scaleXAnim?.duration = 1500
         postDelayed({
             touchRoot?.iv_play?.alpha=1f

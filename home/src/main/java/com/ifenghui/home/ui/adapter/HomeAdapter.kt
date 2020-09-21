@@ -1,6 +1,7 @@
 package com.ifenghui.home.ui.adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import com.ifenghui.apilibrary.api.entity.*
@@ -68,9 +69,37 @@ class HomeAdapter(context: Context?) : BaseBindAdapter<Any, ViewDataBinding>(con
                 }
             }
             is ItemHomeTitleLayoutBinding -> {
-                binding.homeTitle = item as HomeTitle?
+                item as HomeTitle?
+                binding.homeTitle = item
                 binding.tvMore?.setOnClickListener {
-                    ProviderHelper.startAct(Constance.LOGIN_FRAGMENT_FLAG,getmContext(),"group_more/${item?.targetValue}/${item?.name}",null)
+                    //let ,with ,run 函数是以闭包形式返回最后一行代码的值
+                    //let可以省去使用前每次都判空，函数内部it指代当前对象
+//                    item?.let {
+//                        it as HomeTitle
+//                        ProviderHelper.startAct(Constance.LOGIN_FRAGMENT_FLAG,getmContext(),"group_more/${it.targetValue}/${it?.name}",null)
+//                    }
+                    //使用with函数需要传入对象作为参数，需要判空，函数内部this指代传入的对象
+//                    with(item){
+//                        ProviderHelper.startAct(Constance.LOGIN_FRAGMENT_FLAG,getmContext(),"group_more/${this?.targetValue}/${this?.name}",null)
+//                    }
+                    //run 是let和with的结合  run可以省去使用前每次都判空， 函数内部this指代当前对象
+//                    item?.run {
+//                        this as HomeTitle
+//                        ProviderHelper.startAct(Constance.LOGIN_FRAGMENT_FLAG,getmContext(),"group_more/${targetValue}/${name}",null)
+//                    }
+
+                    //apply函数的返回的是传入对象的本身,使用和run类似
+//                    var result=item?.apply {
+//                        this as HomeTitle
+//                        ProviderHelper.startAct(Constance.LOGIN_FRAGMENT_FLAG,getmContext(),"group_more/${targetValue}/${name}",null)
+//                    }
+
+                    //适用于let函数的任何场景，also函数和let很像，只是唯一的不同点就是let函数最后的返回值是最后一行的返回值而also函数的返回值是返回当前的这个对象。一般可用于多个扩展函数链式调用
+                    var result=item?.also {
+                        it as HomeTitle
+                        ProviderHelper.startAct(Constance.LOGIN_FRAGMENT_FLAG,getmContext(),"group_more/${it.targetValue}/${it?.name}",null)
+                    }
+
                 }
             }
             is ItemStoryLayoutBinding -> {

@@ -12,7 +12,7 @@ class BaseInterceptor : Interceptor {
     private var userToken: String? = null
 
     constructor() {
-        userToken="d4ae465e335e7ac2a0d0570eebfad5c7"
+//        userToken="d4ae465e335e7ac2a0d0570eebfad5c7"
     }
     constructor(headers: Map<String, String>?) {
         this.headers = headers

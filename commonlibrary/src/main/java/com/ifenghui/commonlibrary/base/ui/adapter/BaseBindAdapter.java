@@ -12,28 +12,32 @@ import androidx.databinding.ViewDataBinding;
 
 import com.ifenghui.commonlibrary.base.ui.viewholder.BaseViewHolder;
 
-public abstract class BaseBindAdapter<T,B extends ViewDataBinding> extends BaseAdapter<T> {
+public abstract class BaseBindAdapter<T, B extends ViewDataBinding> extends BaseAdapter<T> {
 
     public BaseBindAdapter(Context context) {
         super(context);
     }
-    int viewholdercount=0;
+
+    /**
+     * viewholder 创建
+     */
     @Override
     public BaseViewHolder OncreateViewHolder(ViewGroup viewGroup, int viewType) {
         B binding = DataBindingUtil.inflate(LayoutInflater.from(getmContext()), this.getItemLayout(viewType), viewGroup, false);
         onViewHolderInit(binding);
-        viewholdercount++;
         return new BaseViewHolder(binding.getRoot());
     }
-    int bindviewholdercount=0;
+
+    /**
+     * viewholder绑定
+     */
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
-        bindviewholdercount++;
-        if (position>=getHeaderCount()&&position<(getHeaderCount()+getCount())){
+        if (position >= getHeaderCount() && position < (getHeaderCount() + getCount())) {
             B binding = DataBindingUtil.getBinding(holder.itemView);
-            int itemPosition=position - getHeaderCount();
-            this.onBindItem(binding, getItem(itemPosition),itemPosition);
-        }else {
+            int itemPosition = position - getHeaderCount();
+            this.onBindItem(binding, getItem(itemPosition), itemPosition);
+        } else {
             super.onBindViewHolder(holder, position);
         }
     }
@@ -41,7 +45,8 @@ public abstract class BaseBindAdapter<T,B extends ViewDataBinding> extends BaseA
     /**
      * viewholder  init 数据使用
      */
-    protected void onViewHolderInit(B binding){}
+    protected void onViewHolderInit(B binding) {
+    }
 
     /**
      * 获取item布局资源
@@ -52,5 +57,5 @@ public abstract class BaseBindAdapter<T,B extends ViewDataBinding> extends BaseA
     /**
      * 更新数据
      */
-    protected abstract void onBindItem(B binding, T item,int position);
+    protected abstract void onBindItem(B binding, T item, int position);
 }

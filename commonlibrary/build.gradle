@@ -27,6 +27,10 @@ dependencies {
     api rootProject.ext.dependencies["imageloader"]
     api rootProject.ext.dependencies["realtimeblurview"]
 
+    debugApi rootProject.ext.dependencies["debugleakcanary"]
+    releaseApi rootProject.ext.dependencies["releaseleakcanary"]
+    testImplementation rootProject.ext.dependencies["releaseleakcanary"]
+
     api project(path: ':apilibrary')
     api project(path: ':skinlibrary')
     api project(path: ':spinkitlibrary')
